@@ -2,18 +2,16 @@ package categories.simple
 
 import categories.simple.categoryExamples.*
 import categories.simple.functor.*
-import cats.Monad
-import cats.implicits.*
-import cats.kernel.Monoid
 import Functor.Id
 import discipline1.*
 import annotations1.*
+import zio.prelude.classic
 
-trait Monad0[T[_]: cats.Functor] {
+trait Monad0[T[+_]: classic.Functor] {
   def pure[A]: A => T[A]
   def flatten[A]: T[T[A]] => T[A]
   def flatMap[A, B](a: T[A])(f: A => T[B]): T[B] =
-  	flatten(cats.Functor[T].map(a)(f))
+  	flatten(zio.prelude.Covariant[T].map(f)(a))
 }
 
 

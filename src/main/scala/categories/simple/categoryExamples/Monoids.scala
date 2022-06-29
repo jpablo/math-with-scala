@@ -1,6 +1,5 @@
 package categories.simple.categoryExamples
 
-import cats.implicits.*
 import categories.simple.CategoryS
 
 // Monoids are categories with only one object
@@ -13,9 +12,9 @@ type ConstantHom[A] = [_ <: ●, _ <: ●] =>> A
 /**
  * Creates a new Category given a Monoid[M]
  */
-def fromMonoid[M](M: cats.Monoid[M]) = 
+def fromMonoid[M](M: zio.prelude.classic.Monoid[M]) =
   new CategoryS[●, ConstantHom[M]]:
-    def id[A <: ●]: M = M.empty
+    def id[A <: ●]: M = M.identity
     extension [A <: ●, B <: ●, C <: ●] 
       (g: M) def ◦ (f: M) = M.combine(g, f)
 
@@ -27,7 +26,7 @@ object IntCategory extends CategoryS[●,  ConstantHom[Int]]:
 
 object Examples:
   given StringMonoidCat: CategoryS[●, ConstantHom[String]] =
-    fromMonoid(cats.Monoid[String])
+    fromMonoid(zio.prelude.Identity[String])
 
   assert("a" ◦ "b" == "ab")
 

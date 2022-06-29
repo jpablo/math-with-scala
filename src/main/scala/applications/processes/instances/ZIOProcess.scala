@@ -5,16 +5,16 @@ import applications.processes.{ProcessDSL, ProcessDSLOps, TypeName}
 import zio.{RIO, Task, ZIO}
 import java.net.URI
 
-import io.circe.Decoder
+import zio.json.JsonDecoder
 import sttp.client3.HttpURLConnectionBackend
 import sttp.model.Uri
 
 given RIOProcessDSL: ProcessDSL[RIO] with
   val backend = HttpURLConnectionBackend()
   import sttp.client3.*
-  import sttp.client3.circe.*
-  
-  def httpCall[A: BodySerializer, B: Decoder](name: String, uri: Uri): RIO[A, B] =
+  import sttp.client3.ziojson.*
+
+  def httpCall[A: BodySerializer, B: JsonDecoder](name: String, uri: Uri): RIO[A, B] =
     RIO.fromFunctionM[A, B] { (a: A) =>
       RIO.fromEither {
         basicRequest

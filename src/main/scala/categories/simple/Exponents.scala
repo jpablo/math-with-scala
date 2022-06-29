@@ -3,7 +3,7 @@ package categories.simple
 import discipline1.*
 import annotations1.*
 
-trait Exponents[~>[_, _]](Cat: Category[~>], val P: InternalProduct[~>]) {
+trait Exponents[~>[_, _]](Cat: Category[~>], val P: InternalProduct[~>]):
   import P.{`*`, `**`}
   import Cat.{◦, id}
   // A Category has exponentiation if it has a products
@@ -21,4 +21,3 @@ trait Exponents[~>[_, _]](Cat: Category[~>], val P: InternalProduct[~>]) {
   def property[A, B, C](g: (C * A) ~> B): IsEq[(C * A) ~> B] =
     ev ◦ (unique(g) ** id[A]) <-> g
 
-}

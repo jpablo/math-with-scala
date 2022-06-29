@@ -1,10 +1,5 @@
 package categories.simple
 
-import cats.kernel.Monoid
-import cats.Eq
-import org.scalacheck.{Arbitrary, Cogen, Prop}
-import Prop.*
-import org.typelevel.discipline.Laws
 import discipline1.{IsEq, <->}
 import annotations1.*
 
@@ -29,15 +24,15 @@ trait CategoryS[U, Hom[_ <: U, _ <: U]]:
     f: A ~> B,
     g: B ~> C,
     h: C ~> D
-  )(using CanEqual[A ~> D, A ~> D]) =
+  ) =
     h ◦ (g ◦ f) <-> (h ◦ g) ◦ f
 
   @Law
-  def identityL[A <: U, B <: U](f: A ~> B)(using CanEqual[A ~> B, A ~> B]) =
+  def identityL[A <: U, B <: U](f: A ~> B) =
     (id[B] ◦ f) <-> f
 
   @Law
-  def identityR[A <: U, B <: U](f: A ~> B)(using CanEqual[A ~> B, A ~> B]) =
+  def identityR[A <: U, B <: U](f: A ~> B) =
     f ◦ id[A] <-> f
 
 end CategoryS

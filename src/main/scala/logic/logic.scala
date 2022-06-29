@@ -17,14 +17,13 @@ type True = True.type
  */
 sealed trait False extends Prop
 
-object False {
+object False:
   /**
    * This function creates a value of an arbitrary type `C` given a contraction.
    *
    * TODO: Understand this better!
    */
   def elim[C](h: False): C = throw new Exception("Impossible!")
-}
 
 //-------------
 // Conjuntion
@@ -144,7 +143,7 @@ object iff:
 // Classical Logic
 // ---------------
 
-object classical {
+object Classical:
   /**
    * Law of Excluded Middle: ∀ (p : Prop), p ∨ ¬p
    */
@@ -162,7 +161,6 @@ object classical {
       // if not[p], use absurd to "create" a P
       (nP: not[P]) => absurd(nP, nnP): P
     )
-}
 
 
 trait DistributivityExample {
@@ -189,7 +187,7 @@ trait DistributivityExample {
 // ----------------------
 // Universal quantifier
 // ----------------------
-trait UniversalQuantifierExamples {
+trait UniversalQuantifierExamples:
 
 
   // Example:
@@ -224,7 +222,6 @@ trait UniversalQuantifierExamples {
   def ex1c[A, P[_ <: A] <: Prop, Q[_ <: A] <: Prop]: (A => P[A] and Q[A]) => (A => P[A]) =
     h => x => h(x).left
 
-}
 
 // ----------------------
 // Existential quantifier

@@ -1,6 +1,6 @@
 package categories.highOrder
 
-import categories.simple.{_, given}
+import categories.simple.{*, given}
 import categories.simple.functor.*
 
 /**

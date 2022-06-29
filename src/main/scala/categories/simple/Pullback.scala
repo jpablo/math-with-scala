@@ -8,7 +8,7 @@ import annotations1.*
 trait Pullback[A, B, C, ~>[_, _]: Category](
   val f: A ~> C,
   val g: B ~> C,
-) {
+):
   // is a limit for the diagram A ~> C <~ B:
   // A cone
   type D
@@ -20,7 +20,7 @@ trait Pullback[A, B, C, ~>[_, _]: Category](
 
   // with the universal property
   @Law
-  def unique[E](h: E ~> A, j: E ~> B)(using CanEqual[E ~> C,E ~> C]): Option[E ~> D] =
+  def unique[E](h: E ~> A, j: E ~> B): Option[E ~> D] =
     if (f ◦ h == g ◦ j)
     then Some(uniqueImpl[E])
     else None
@@ -33,4 +33,3 @@ trait Pullback[A, B, C, ~>[_, _]: Category](
 //      gp ◦ uniqueImpl[E] <-> h,
 //      fp ◦ uniqueImpl[E] <-> j,
     )
-}

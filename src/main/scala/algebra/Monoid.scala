@@ -1,12 +1,9 @@
 package algebra
 
-import org.scalacheck.*
-import org.scalacheck.Prop.forAll
 import discipline1.*
-import scala.language.strictEquality
 import annotations1.*
 
-trait Monoid[M](using Eq[M]) :
+trait Monoid[M]:
   val id: M
   extension (a: M) def * (b: M): M
 
@@ -25,7 +22,7 @@ end Monoid
 
 object MonoidInstances:
 
-  def funcMonoid[A](using Eq[A => A]) =
+  def funcMonoid[A] =
     new Monoid[A => A]:
       val id = identity[A]
       extension (a: A => A) def * (b: A => A) = a compose b

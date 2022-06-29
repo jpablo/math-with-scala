@@ -34,10 +34,8 @@ def exercise_1[A, B, ~>[_, _]](
   using
     C0 : Category[~>],
     TA: Terminal[A, ~>],
-    TB: Terminal[B, ~>],
-    eqB: CanEqual[B ~> B, B ~> B],
-    eqA: CanEqual[A ~> A, A ~> A],
- ) = {
+    TB: Terminal[B, ~>]
+ ) =
     new Isomorphism(
       from = TB.arrow[A],
       to = TA.arrow[B]
@@ -48,4 +46,3 @@ def exercise_1[A, B, ~>[_, _]](
       TA.arrow[B] ◦ TB.arrow[A] == C0.id[A]
       // because the Hom[X, X] = { id[X] } for every terminal object B
     }
-}

@@ -3,12 +3,12 @@ package categories.highOrder
 import categories.simple.functor.*
 import categories.simple.{given, *}
 import categories.simple.Scala
+
 // ----------------------------------------------------------
 // A monad is just a monoid in the category of endofunctors.
 //
 // The category of endofunctors and natural transformations
 // ----------------------------------------------------------
-
 
 
 // Given a Category[X] creates the category of endofunctors on X
@@ -29,9 +29,6 @@ def endo[X[_, _]: Category] =
         n * m
 
 object ExamplesEndo {
-  import cats.implicits.*
-  import scala.language.implicitConversions
-
 //  endo[Scala].id[List]
 
   // val optionKleisliEndo = endo[[A, B] =>> categories.simple.categoryExamples.Kleisli[Option, A, B]]

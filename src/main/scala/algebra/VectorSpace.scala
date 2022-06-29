@@ -19,5 +19,5 @@ trait VectorSpace[V, F](
 
   @Law("Identity element of scalar multiplication")
   def scalarMulIdentity(v: V) =
-    F._1 ⋅ v <-> v
+    F.one ⋅ v <-> v
 }

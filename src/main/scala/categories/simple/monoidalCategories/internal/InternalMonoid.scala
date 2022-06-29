@@ -7,7 +7,8 @@ import discipline1.{<->, IsEq}
 import categories.simple.monoidalCategories.StrictMonoidal
 
 trait InternalMonoid[C[_, _]](using val C: StrictMonoidal[C]):
-  import C.*; export C.*
+  import C.*
+  export C.*
 
   type M
   val m: M ⨂ M ~> M
@@ -22,14 +23,13 @@ trait InternalMonoid[C[_, _]](using val C: StrictMonoidal[C]):
 //    m ◦ (id[M] ⨂ e) <-> id[M]
 
   @Law
-  def associativity = {
+  def associativity =
     val assoc: ((M ⨂ M) ⨂ M) =:= (M ⨂ (M ⨂ M)) =
       C.associativity[M, M, M]
 
     val l = m ◦ (m ⨂ id[M]): ((M ⨂ M) ⨂ M ~> M)
     val r = m ◦ (id[M] ⨂ m): (M ⨂ (M ⨂ M) ~> M)
 //    l <-> r
-  }
 
 object Examples:
 

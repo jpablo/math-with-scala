@@ -1,19 +1,17 @@
 package categories.simple
 
 import categories.simple.functor.*
-import cats.implicits.*
 import discipline1.*
 
 
-def yonedaLemma[C[_, _], G[_], X0](G: (C --> Scala)[G])
-  (using C: Category[C] ) =
+def yonedaLemma[C[_, _], G[_], X0](G: (C --> Scala)[G])(using C: Category[C] ) =
   import C.id
 
   val F: (C --> Scala)[C[X0, _]] = homFunctor[C, X0]
 
   // at this point we know that F, G are functors and C is a category,
   // so we can simplify a bit by working with the natural transformation
-  // as a polymorhic function instead of the wrapper type Nat:
+  // as a polymorphic function instead of the wrapper type Nat:
   type ==>[F[_], G[_]] = [X] => F[X] => G[X]
 
   // ----------------
@@ -40,7 +38,6 @@ def yonedaLemma[C[_, _], G[_], X0](G: (C --> Scala)[G])
   // Proof:
   // a) yp(y(𝜑)) == 𝜑
   def proofPart1(φ: C[X0, _] ==> G) =
-
     List(
       // by definition of y:
       yp(y(φ)) <-> yp( φ[X0]( id[X0] ) ),
@@ -66,11 +63,8 @@ def yonedaLemma[C[_, _], G[_], X0](G: (C --> Scala)[G])
 
     )
 
-
-
   // b) y(yp(z)) == z
   def proofPart2(z: G[X0]) =
-
     List(
       // by definition of yp:
       y(yp(z)) <-> y( [X] => (f: C[X0, X]) => G(f)(z)),
@@ -88,3 +82,4 @@ def yonedaLemma[C[_, _], G[_], X0](G: (C --> Scala)[G])
 
     // Q.E.D
 
+end yonedaLemma

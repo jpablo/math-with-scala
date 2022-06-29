@@ -16,8 +16,6 @@ object TypeName {
 object PortLabel {
   def apply(lst: String*): List[PortLabel] =
     lst.toList.map(Single(_))
-
-  given CanEqual[PortLabel, PortLabel] = CanEqual.derived
 }
 
 sealed trait PortLabel {
@@ -49,7 +47,6 @@ given ToExpr[PortLabel] with {
  * Creates a short representation of the type A
  */
 def tpeNmeMacro[A: Type](using q: Quotes): Expr[TypeName[A]] = {
-  given CanEqual[q.reflect.Symbol, q.reflect.Symbol] = CanEqual.derived
   import quotes.reflect.*
 
   def toTypeName(x: TypeRepr): PortLabel = {

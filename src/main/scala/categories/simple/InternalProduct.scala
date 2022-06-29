@@ -3,7 +3,6 @@ package categories.simple
 import discipline1.*
 import categories.simple.*
 import annotations1.*
-import cats.data.AndThen
 
 // Internal Categorical Product
 trait InternalProduct[~>[_, _]](using val Cat: Category[~>]):
@@ -40,9 +39,6 @@ trait InternalProduct[~>[_, _]](using val Cat: Category[~>]):
     f: C ~> A,
     g: C ~> B,
     h: C ~> (A * B),
-  )(using
-    CanEqual[C ~> A, C ~> A],
-    CanEqual[C ~> B, C ~> B],
   ): IsEq[C ~> (A * B)] =  {
     assert(h >>> fst == f)
     assert(h >>> snd == g)
@@ -96,10 +92,7 @@ trait Exercises[~>[_, _]: Category: InternalProduct] {
   // -----------------------------------
   // fst[A, B] * snd[A, B] == id[A * B]
   // -----------------------------------
-  def exercise_1[A, B, C](using
-    CanEqual[(A * B) ~> A, (A * B) ~> A],
-    CanEqual[(A * B) ~> B , (A * B) ~> B]
-  ) = {
+  def exercise_1[A, B, C] = {
     // C.id[A * B] <-> fst[A, B] * snd[A, B]
     val uniqueness = P.uniqueness(fst[A, B], snd[A, B], C.id[A * B])
 
@@ -124,9 +117,7 @@ trait Exercises[~>[_, _]: Category: InternalProduct] {
   // ----------------------------------------
   // if f × g == k × h then f == k and g == h
   // ----------------------------------------
-  def exercise_2[A, B, C](f: C ~> A, g: C ~> B)(k: C ~> A, h: C ~> B)
-    (using CanEqual[C ~> (A * B),  C ~> (A * B)], CanEqual[C ~> A, C ~> A], CanEqual[C ~> B, C ~> B])
-  = {
+  def exercise_2[A, B, C](f: C ~> A, g: C ~> B)(k: C ~> A, h: C ~> B) = {
     f * g == k * h
     fst ◦ (f * g) ==  fst ◦ (k * h)
     f == k
@@ -137,10 +128,7 @@ trait Exercises[~>[_, _]: Category: InternalProduct] {
   // --------------------------------
   // (f ◦ h) * (g ◦ h) == (f * g) ◦ h
   // --------------------------------
-  def exercise_3[A, B, C, D](f: C ~> A, g: C ~> B, h: D ~> C)(using
-    CanEqual[D ~> A, D ~> A],
-    CanEqual[D ~> B, D ~> B]
-  ) = {
+  def exercise_3[A, B, C, D](f: C ~> A, g: C ~> B, h: D ~> C) = {
     // we know that
     (f ◦ h) * (g ◦ h) : D ~> (A * B)
     // is the unique arrow D ~> A × B such that

@@ -71,7 +71,7 @@ object CategoryP2Examples extends App:
 end CategoryP2Examples
 
 
-object CategoryTyples extends App {
+object CategoryTuples extends App:
   import categories.simple.categoryExamples.{_1, _2}
   // Example 2: Product of two arbitrary categories
   type Prod2P[~>[_, _], ->[_, _], A <: Tuple, B <: Tuple] =
@@ -92,7 +92,6 @@ object CategoryTyples extends App {
       extension [X <: Tuple, Y <: Tuple, Z <: Tuple] (g: Y ~> Z) def ◦ (f: X ~> Y): X ~> Z =
         (g._1 * f._1, g._2 + f._2)
 
-}
 
 // Another option: Modeling tuples as (F[1], F[2], ..., F[n])
 

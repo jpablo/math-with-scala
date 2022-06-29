@@ -34,9 +34,7 @@ def algCat[P[_]] =
 // ---------------------------------------------------------
 // Mon: the category of all Monoids and monoid homomorphisms
 // ---------------------------------------------------------
-import cats.Group
-import cats.implicits.*
-import scala.language.implicitConversions
+import zio.prelude.classic.Group
 
 val Grp = algCat[Group]
 
@@ -45,8 +43,8 @@ object GroupHomLaws {
     f: Homomorphism[Group, A, B],
     x: A,
     y: A
-  )(using CanEqual[B, B]) =
-    f(x |+| y) == (f(x) |+| f(y))
+  ) = ???
+//    f(x |+| y) == (f(x) |+| f(y))
 }
 
 // --------------------------------------------------------

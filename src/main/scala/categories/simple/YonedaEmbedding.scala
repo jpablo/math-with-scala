@@ -1,7 +1,6 @@
 package categories.simple
 
 import categories.simple.functor.*
-import cats.implicits.*
 import discipline1.*
 
 

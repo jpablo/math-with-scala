@@ -1,18 +1,12 @@
 package discipline1
 
-import org.scalacheck.{Arbitrary, Cogen, Prop}
-import org.scalacheck.util.Pretty
-//import cats.Eq
 import scala.language.implicitConversions
 import scala.annotation.targetName
 import scala.util.NotGiven
 
-final case class IsEq[A](lhs: A, rhs: A) //(using CanEqual[A, A]) //(using ev1: NotGiven[A =:= Any])
+final case class IsEq[A](lhs: A, rhs: A)
 
-type Eq[A] = CanEqual[A, A]
-
-extension [A] //(using Eq[A])
-  (lhs: A) def <-> (rhs: A) = IsEq(lhs, rhs)
+extension [A] (lhs: A) def <-> (rhs: A) = IsEq(lhs, rhs)
 
 //extension [A, B, F[_]] (lhs: F[A])
 //  @targetName("IsEqF")

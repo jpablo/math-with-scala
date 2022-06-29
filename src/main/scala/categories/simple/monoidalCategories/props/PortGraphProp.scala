@@ -19,7 +19,7 @@ type PortGraphCat[B] =
   [X, Y] =>> PortGraph[B]
 
 type Box[B] = (B, BoxId)
-// This whould be called Connection[B], since the port is attached to the box
+// This would be called Connection[B], since the port is attached to the box
 type Port[B] = (Box[B], Int)
 type BoxWithPorts[B] = SeqMap[Box[B], (List[PortLabel], List[PortLabel])]
 type ->[A, B] = (A, B)
@@ -30,7 +30,7 @@ case class PortGraph[B](
   incoming   : List[Port[B]],
   inner      : List[Port[B] -> Port[B]],
   outgoing   : List[Port[B]],
-)(using CanEqual[B, B]) {
+) {
   def andThen(other: PortGraph[B]) = {
     val (boxes, inner, incoming, outgoing) = PortGraph.combineEdges(this, other)
     PortGraph(
@@ -65,12 +65,6 @@ object PortGraph {
       boxes0
     )
 
-    // given: ((assocR,6Pg7KPfJfqskOg2PvFsPMd), pos) -> ((W1,W2), X)
-    // return:
-    // List(
-      // ((assocR,6Pg7KPfJfqskOg2PvFsPMd),pos + 0) -> W1),
-      // ((assocR,6Pg7KPfJfqskOg2PvFsPMd),pos + 1) -> W2),
-      // ((assocR,6Pg7KPfJfqskOg2PvFsPMd),pos + 2) -> X))
     def go(box: Box[B], pos0: Int, label: PortLabel): List[Port[B] -> PortLabel] =
       label match {
         case _: Single => List((box, pos0) -> label)
@@ -101,7 +95,7 @@ object PortGraph {
 
         val newDelta = delta + expanded.size - 1
         val (newConnections, expandedLabels) = expanded.unzip
-        // now we have to splice the expande labesl into the existing labels
+        // now we have to splice the expand labels into the existing labels
         val (before, current :: after) = labels.splitAt(startPos)
         val newLabels = before ++ expandedLabels.reverse ++ after
         val newLabelsBoth = (if (dir == Direction.In) (newLabels, right) else (left, newLabels))
@@ -116,7 +110,7 @@ object PortGraph {
     (updatedConnections.reverse, updatedBoxes)
   }
 
-  def combineEdges[B](g1: PortGraph[B], g2: PortGraph[B])(using CanEqual[B, B]) = {
+  def combineEdges[B](g1: PortGraph[B], g2: PortGraph[B]) = {
 
     // sanity check: graphs are compatible
     val left0  = g1.outgoing.map { case (b, i) => g1.boxes(b)._2(i) }
@@ -163,7 +157,7 @@ object PortGraph {
         )
 
     val r =
-      (0 until g1Outgoing.size).foldLeft(initial) { case ((boxes, inner, incoming, outgoing), i) =>
+      g1Outgoing.indices.foldLeft(initial) { case ((boxes, inner, incoming, outgoing), i) =>
         val left:  Port[B] = g1Outgoing(i)
         val right: Port[B] = g2Incoming(i)
         val rightBox = right._1
@@ -198,11 +192,11 @@ object PortGraph {
     (r._1, r._2.reverse.distinct, r._3.reverse.distinct, r._4.reverse.distinct)
   }
 
-  def emptyGraph[B](using CanEqual[B, B]) =
+  def emptyGraph[B] =
     PortGraph[B](SeqMap.empty, List.empty, List.empty, List.empty)
 
   // A single box with wires
-  def singleBox[B](b: B, in: List[PortLabel], out: List[PortLabel])(using CanEqual[B, B]): PortGraph[B] = {
+  def singleBox[B](b: B, in: List[PortLabel], out: List[PortLabel]): PortGraph[B] = {
     val box = withId(b)
     PortGraph(
       SeqMap(box -> (in, out)),
@@ -213,7 +207,7 @@ object PortGraph {
   }
 
   // identity Port Graph
-  def identity[B](box: B, ps: List[PortLabel])(using CanEqual[B, B]): PortGraph[B] =
+  def identity[B](box: B, ps: List[PortLabel]): PortGraph[B] =
     ps.foldLeft(emptyGraph) { (g, p) =>
       // copy the box label for now, but there should be a function
       // P => B  (i.e. id[P]: P ~> P)

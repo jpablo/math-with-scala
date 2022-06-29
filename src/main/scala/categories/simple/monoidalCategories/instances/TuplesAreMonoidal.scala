@@ -50,7 +50,7 @@ object ScalaTuplesAreMonoidal extends MonoidalCategory[Scala]:
               val (f1, f2, f3) = f
               ( f1(x), ( f2(y), f3(z) ) )
           // identities
-          def prove_identities[X](using CanEqual[X ***> X, X ***> X], CanEqual[Rassoc[X] => Rassoc[X], Rassoc[X] => Rassoc[X]]) = {
+          def prove_identities[X] = {
 
             val Scala3 = summon[Category[Scala3]]
 

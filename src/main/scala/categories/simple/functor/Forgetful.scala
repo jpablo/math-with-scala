@@ -26,12 +26,11 @@ trait FunctorTC[F[_], P[_], C[_, _], Q[_], D[_, _]](
   def map[A: P, B: P](f: A ~> B): F[A] -> F[B]
 }
 
-val ScalaTC =
-  new CategoryTC[Id, Scala] {
+val ScalaTC: CategoryTC[Id, Scala] =
+  new CategoryTC:
     def id[A: Id] = Scala.id[A]
     extension [A: Id, B: Id, C: Id] (g: B => C) def ◦ (f: A => B) =
       g compose f
-  }
 
 
 def forgetful[P[_], C[X, Y] <: Homomorphism[P, X, Y]](

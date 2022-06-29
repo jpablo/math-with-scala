@@ -13,15 +13,11 @@ given Subtypes: Category[<:<] with
       g compose f
 
 
-object SubtypesExamples {
+object SubtypesExamples:
 
   trait A
   trait B extends A
   trait C extends B
-
-  given CanEqual[A, A] = CanEqual.derived
-  given CanEqual[A =:= A, A =:= A] = CanEqual.derived
-  given CanEqual[A <:< A, A <:< A] = CanEqual.derived
 
   Subtypes.id[A] == summon[A <:< A]
 
@@ -32,5 +28,4 @@ object SubtypesExamples {
   val h: C ~> A = summon[C <:< A]
 
 //  g ◦ f == h
-}
 

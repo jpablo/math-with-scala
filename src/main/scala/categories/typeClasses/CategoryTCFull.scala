@@ -1,7 +1,6 @@
 package categories.typeClasses
 
 import annotations1.Law
-import scala.language.strictEquality
 
 trait HomId[A, ~>[_, _]]:
   val id: A ~> A
@@ -30,7 +29,7 @@ trait Category[~>[_, _]]:
     (using AndThen[A, B, C]): A ~> C = f >>> g
 
   @Law
-  def identityRight[A, B: Id](f: A ~> B) (using AndThen[A, B, B], CanEqual[A ~> B, A ~> B]) =
+  def identityRight[A, B: Id](f: A ~> B) (using AndThen[A, B, B]) =
       (f >>> id[B]) == f
 
   @Law
@@ -43,8 +42,7 @@ trait Category[~>[_, _]]:
       AndThen[A, C, D],
       AndThen[A, B, C],
       AndThen[B, C, D],
-      AndThen[A, B, D],
-      CanEqual[A ~> D, A ~> D]
+      AndThen[A, B, D]
   ) =
       ((f >>> g) >>> h) == (f >>> (g >>> h))
 

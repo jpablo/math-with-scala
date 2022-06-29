@@ -7,7 +7,7 @@ import guru.nidi.graphviz.model.Factory.{graph, node, to}
 import guru.nidi.graphviz.attribute.{Attributes, Color, Label, Rank, Shape, Style}
 import java.io.File
 
-object Examples extends App {
+object Examples extends App:
 
   // --------------------------
   val g: Graph =
@@ -65,4 +65,3 @@ object Examples extends App {
     viz.render(Format.SVG).toFile(new File(s"example/$name.svg"))
   }
 
-}

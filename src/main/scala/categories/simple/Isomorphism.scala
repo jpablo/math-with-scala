@@ -3,11 +3,9 @@ package categories.simple
 import discipline1.*
 import annotations1.*
 
-//========================================================================================
-/*                                                                                      *
- * Isomorphisms                                                                         *
- *                                                                                      */
-//========================================================================================
+/*                *
+ * Isomorphisms   *
+ *                */
 
 class Isomorphism[X, Y, ~>[_, _]](
   val from : X ~> Y,

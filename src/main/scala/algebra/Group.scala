@@ -1,13 +1,11 @@
 package algebra
 
-// import scala.annotation.infix
 import discipline1.*
 import annotations1.*
 
-trait Group[G](using Eq[G]) extends Monoid[G] {
+trait Group[G] extends Monoid[G]:
 
-  extension (a: G)
-    def inv: G
+  extension (a: G) def inv: G
 
   @Law
   def inverseLeft(x: G) =
@@ -24,9 +22,8 @@ trait Group[G](using Eq[G]) extends Monoid[G] {
       case 0          => id
       case j if j > 0 => x * prod(x, n - 1)
     }
-}
 
-object Group {
+object Group:
   def apply[G](using G: Group[G]) = G
 
   type Hom[A, B] = Homomorphism[Group, A, B]
@@ -38,24 +35,22 @@ object Group {
     y: A
   ) =
     f(x * y) <-> f(x) * f(y)
-}
 
-trait AbelianGroup[A] extends Group[A] {
+trait AbelianGroup[A] extends Group[A]:
   @Law
   def commutativity(x: A, y: A) =
     x * y <-> y * x
-}
 
 
 def inf[A](p: A => Boolean): A = ???
 def sup[A](p: A => Boolean): A = ???
 
 // the order of a group x: G
-def order[G: Group](x: G)(using CanEqual[G, G]): Int =
+def order[G: Group](x: G): Int =
   sup { n => Group[G].prod(x, n) == Group[G].id }
 
 // group actions
-trait GroupAction[G: Group, A] {
+trait GroupAction[G: Group, A]:
 
   extension (g: G) def ⋅ (a: A): A
 
@@ -66,11 +61,11 @@ trait GroupAction[G: Group, A] {
 
   def property2(a: A) =
     Group[G].id ⋅ a <-> a
-}
 
-import categories.simple.{Bijection}
 
-def sigmaIsPermutation[G: Group, A](g: G, σ: GroupAction[G, A]): Bijection[A, A] = {
+import categories.simple.Bijection
+
+def sigmaIsPermutation[G: Group, A](g: G, σ: GroupAction[G, A]): Bijection[A, A] =
   val G = Group[G]
   import G.inv
   import σ.⋅
@@ -90,5 +85,4 @@ def sigmaIsPermutation[G: Group, A](g: G, σ: GroupAction[G, A]): Bijection[A, A
   // the proof that `f2` is also the identity on A is identical
 
   Bijection(σ(g), σ(g.inv))
-}
 

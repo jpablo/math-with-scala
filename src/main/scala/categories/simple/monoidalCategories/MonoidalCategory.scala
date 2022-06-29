@@ -50,14 +50,3 @@ trait MonoidalCategory[C[_, _]](using C: Category[C]):
   def pentagonEquation[W, X, Y, Z] =
     (a[W, X, Y] ⨂ id[Z]) >>> a[W, X ⨂ Y, Z] >>> (id[W] ⨂ a[X, Y, Z]) <-> (a[W ⨂ X, Y, Z] >>> a[W, X, Y ⨂ Z])
 
-  // ---------------------
-  // type level rewrite rules
-//  type α[A] = A match { case (x ⨂ y) ⨂ z   => (x ⨂ (y ⨂ z)) }
-//  type αI[A] = A match { case (x ⨂ (y ⨂ z)) => (x ⨂ y) ⨂ z  }
-//
-//  type λ[A] = A match { case I ⨂ a => a }
-//  type λI[A] = I ⨂ A
-//
-//  type ρ[A] = A match { case a ⨂ I => a }
-//  type ρI[A] = A ⨂ I
-

@@ -13,7 +13,10 @@ import categories.simple.categoryExamples.*
  */
 trait MonoidalFunctor
   [F[_], C[_, _], D[_, _]]
-  (using val C: MonoidalCategory[C], val D: MonoidalCategory[D]) extends Functor[F, C, D]:
+  (using
+    val C: MonoidalCategory[C],
+    val D: MonoidalCategory[D]
+  ) extends Functor[F, C, D]:
   import D.⨂ as ●; import C.⨂
 
   type `F[A] ● F[B]`[T] = F[_1[T]] ● F[_2[T]]

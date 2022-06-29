@@ -9,13 +9,6 @@ import discipline1.*
 import scala.<:<.refl
 
 
-trait MonoidT:
-  type I
-  type ⨂[_, _]
-  @Law def unitLeft[A]: (I ⨂ A) =:= A
-  @Law def unitRight[A]: (A ⨂ I) =:= A
-  @Law def associativity[A, B, C]: (A ⨂ (B ⨂ C)) =:= ((A ⨂ B) ⨂ C)
-
 // A strict monoidal category is a category
 // equipped with bifunctor, usually called a categorical tensor product
 //  def tensor: (C × C --> C)[ [T] =>> _1[T] ⨂ _2[T] ]

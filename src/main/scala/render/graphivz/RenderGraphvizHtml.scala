@@ -19,10 +19,10 @@ import guru.nidi.graphviz.attribute.Records
 import guru.nidi.graphviz.attribute.Records.*
 import scala.collection.immutable.SeqMap
 
-object RenderGraphvizHtml {
+object RenderGraphvizHtml:
 
 
-  def render[B, P](pg: PortGraph[B]): Graph = {
+  def render[B, P](pg: PortGraph[B]): Graph =
     println(pg.boxes)
     println(pg.incoming)
     println(pg.inner)
@@ -90,11 +90,11 @@ object RenderGraphvizHtml {
     .`with`(incomingLinks:_*)
     .`with`(innerLinks:_*)
     .`with`(outgoingLinks:_*)
-  }
+  end render
 
   type PortId = String
 
-  def box(boxLabel: String, inPorts: List[PortId], outPorts: List[PortId], showPorts: Boolean = false) = {
+  def box(boxLabel: String, inPorts: List[PortId], outPorts: List[PortId], showPorts: Boolean = false) =
     import scalatags.Text.all.*
     import scala.language.implicitConversions
 
@@ -126,7 +126,8 @@ object RenderGraphvizHtml {
         td(portsTable("o", outPorts.indices))
       )
     )
-  }
+  end box
+
   // guru.nidi.graphviz.attribute.Size
   def toNode(label: String, id: String) =
     node(id).`with`(
@@ -157,4 +158,5 @@ object RenderGraphvizHtml {
     n0 link to(n1)
       .`with`(attribute.Arrow.NONE, attribute.Label.of(label))
 
-}
+end RenderGraphvizHtml
+

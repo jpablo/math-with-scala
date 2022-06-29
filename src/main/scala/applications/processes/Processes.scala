@@ -1,16 +1,15 @@
 package applications.processes
 
 import sttp.model.Uri
-import org.typelevel.discipline.Laws
 import discipline1.{<->, IsEq}
 import annotations1.*
-import io.circe.Decoder
+import zio.json.JsonDecoder
 import sttp.client3.BodySerializer
 
 import scala.annotation.alpha
 
 trait ProcessDSL[~>[_, _]]:
-  def httpCall[A: BodySerializer, B: Decoder](name: String, uri: Uri): A ~> B
+  def httpCall[A: BodySerializer, B: JsonDecoder](name: String, uri: Uri): A ~> B
 
 trait ProcessDSLOps[Process[_, _]] {
   // ------------------

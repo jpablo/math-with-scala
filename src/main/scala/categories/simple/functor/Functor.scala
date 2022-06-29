@@ -13,7 +13,10 @@ import discipline1.*
  */
 trait Functor
   [F[_], Source[_, _], Target[_, _]]
-  (using S: Category[Source], T: Category[Target]):
+  (using
+    S: Category[Source],
+    T: Category[Target]
+  ):
 
   type ~>[A, B] = Source[A, B]
   type ->[A, B] = Target[A, B]
@@ -85,15 +88,10 @@ type Endofunctor[F[_], C[_, _]] = (C --> C) [F]
 // --------------------------------------
 // creates endofunctors from cats.Functor
 // --------------------------------------
-given [F[_]](using F: cats.Functor[F]): Endofunctor[F, Scala] with
-  def map[A, B](f: A => B) = F.lift(f)
+given [F[+_]](using F: zio.prelude.classic.Functor[F]): Endofunctor[F, Scala] with
+  def map[A, B](f: A => B) = F.map(f)
 
-object FunctorExamples {
-  import cats.implicits.*
-
+object FunctorExamples:
   summon[Endofunctor[List, Scala]]
   summon[Endofunctor[Option, Scala]]
-}
-
-
 

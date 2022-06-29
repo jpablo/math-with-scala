@@ -2,7 +2,6 @@ package categories.simple
 
 import categories.simple.categoryExamples.*
 import categories.simple.functor.*
-import cats.implicits.*
 import discipline1.*
 import annotations1.*
 

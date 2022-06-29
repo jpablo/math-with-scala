@@ -3,7 +3,7 @@ package applications.processes
 import categories.simple.monoidalCategories.props.PortGraph.{singleBox, identity}
 import categories.simple.monoidalCategories.props.*
 import scala.annotation.alpha
-import io.circe.Decoder
+import zio.json.JsonDecoder
 import sttp.client3.BodySerializer
 import sttp.model.Uri
 import discipline1.*
@@ -22,7 +22,7 @@ val t = summon[TypeName[(Int, Int)]]
 type Graph[A, B] = PortGraph[String]
 
 given PortGraphProcessDSL: ProcessDSL[Graph] with
-  def httpCall[A: BodySerializer, B: Decoder](name: String, uri: Uri): Graph[A, B] = ???
+  def httpCall[A: BodySerializer, B: JsonDecoder](name: String, uri: Uri): Graph[A, B] = ???
 //    singleBox[String, String](name, List(tpeName[A]), List(tpeName[B]))
 
 

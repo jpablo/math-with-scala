@@ -7,7 +7,7 @@ import algebra.Homomorphism
 case class GaloisConnection[X: Order, Y: Order](
   f: Homomorphism[Order, X, Y],
   g: Homomorphism[Order, Y, X],
-) {
+):
   // laws:
   @Law
   def leftAdjoint(x: X, y: Y) =
@@ -16,7 +16,6 @@ case class GaloisConnection[X: Order, Y: Order](
   @Law
   def rightAdjoint(x: X, y: Y) =
     if x <= g(y) then f(x) <= y else false
-}
 
 //   X       g      Y
 //  ..................

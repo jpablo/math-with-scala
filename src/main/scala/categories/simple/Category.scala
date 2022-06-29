@@ -17,13 +17,12 @@ trait CategoryS[U, Hom[_ <: U, _ <: U]]:
   def id[A <: U]: A ~> A
 
   // Arrow combinator
-  extension [A <: U, B <: U, C <: U]
-    (g: B ~> C) def ◦ (f: A ~> B): A ~> C
+  extension [A <: U, B <: U, C <: U] (g: B ~> C)
+    def ◦ (f: A ~> B): A ~> C
 
   extension [A <: U, B <: U, C <: U] (f: A ~> B)
+//    @targetName("andThen")
     def >>> (g: B ~> C): A ~> C = g ◦ f
-
-//  type AndThenC[A <: U, B <: U, C <: U, F <: A ~> B, G <: B ~> C] <: A ~> C
 
   @Law
   def associativity[A <: U, B <: U, C <: U, D <: U](

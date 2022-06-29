@@ -1,8 +1,7 @@
 package categories.highOrder
 
 import categories.simple.functor.*
-import categories.Kinds.*
-import categories.simple.{given, _}
+import categories.simple.{given, *}
 import categories.simple.Scala
 // ----------------------------------------------------------
 // A monad is just a monoid in the category of endofunctors.

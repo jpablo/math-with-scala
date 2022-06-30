@@ -25,7 +25,7 @@ class CartesianMonoidalCategory1[C[_, _]](
 
   type ⨂[A, B] = A * B
   // or
-  type Prod[T] = _1[T] * _2[T]
+  type Prod[T] = Fst[T] * Snd[T]
 
   type I = T
 
@@ -33,8 +33,8 @@ class CartesianMonoidalCategory1[C[_, _]](
   type C2[A, B] = Prod2[C, C   ][A, B]
   type C3[A, B] = Prod3[C, C, C][A, B]
   // =:=
-  //  ( _1[A] ~> _1[B],
-  //    _2[A] ~> _2[B] )
+  //  ( Fst[A] ~> Fst[B],
+  //    Snd[A] ~> Snd[B] )
 
   val tensor: Bifunctor[⨂, C2, C] =
     new Functor:
@@ -63,9 +63,9 @@ class CartesianMonoidalCategory1[C[_, _]](
 
       // (X * Y) * Z ~> X * (Y * Z)
       def apply[X]: Lassoc[X] ~> Rassoc[X] =
-        type A1 = _1[X]
-        type A2 = _2[X]
-        type A3 = _3[X]
+        type A1 = Fst[X]
+        type A2 = Snd[X]
+        type A3 = Third[X]
 
         val a: Lassoc[X] ~> A1 = fst[A1 * A2, A3] >>> fst[A1, A2]
         val b: Lassoc[X] ~> A2 = fst[A1 * A2, A3] >>> snd[A1, A2]
@@ -76,9 +76,9 @@ class CartesianMonoidalCategory1[C[_, _]](
 
       // X * (Y * Z) ~> (X * Y) * Z
       def inverse[X]: Rassoc[X] ~> Lassoc[X] =
-        type A1 = _1[X]
-        type A2 = _2[X]
-        type A3 = _3[X]
+        type A1 = Fst[X]
+        type A2 = Snd[X]
+        type A3 = Third[X]
 
         val x: Rassoc[X] ~> A1 = fst[A1, A2 * A3]
         val y: Rassoc[X] ~> A2 = snd[A1, A2 * A3] >>> fst[A2, A3]

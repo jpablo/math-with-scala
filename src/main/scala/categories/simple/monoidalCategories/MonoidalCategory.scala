@@ -15,9 +15,9 @@ trait MonoidalCategory[C[_, _]](using C: Category[C]):
 
   // Lassoc, Rassoc are a functors: (C, C, C) --> C
   // (A ⨂ B) ⨂ C
-  type Lassoc[A] = (_1[A] ⨂ _2[A]) ⨂ _3[A]
+  type Lassoc[A] = (Fst[A] ⨂ Snd[A]) ⨂ Third[A]
   // A ⨂ (B ⨂ C)
-  type Rassoc[A] = _1[A] ⨂ (_2[A] ⨂ _3[A])
+  type Rassoc[A] = Fst[A] ⨂ (Snd[A] ⨂ Third[A])
   //  summon[ Lassoc[((Int, String), Long)] =:= ((Int ⨂ String) ⨂ Long)]
   //  summon[ Rassoc[((Int, String), Long)] =:=  (Int ⨂ (String ⨂ Long))]
 

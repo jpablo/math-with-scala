@@ -4,7 +4,7 @@ import categories.simple.*
 
 // Motivation:
 // instead of
-// type Scala2[A, B] = ( _1[A] => _1[B], _2[A] => _2[B] )
+// type Scala2[A, B] = ( Fst[A] => Fst[B], Snd[A] => Snd[B] )
 // we'd like to write
 // type Scala2[(A[1], A[2]), (B[1], B[2])] = (A[1] => B[1], A[2] => B[2])
 // or
@@ -72,10 +72,10 @@ end CategoryP2Examples
 
 
 object CategoryTuples extends App:
-  import categories.simple.categoryExamples.{_1, _2}
+  import categories.simple.categoryExamples.{Fst, Snd}
   // Example 2: Product of two arbitrary categories
   type Prod2P[~>[_, _], ->[_, _], A <: Tuple, B <: Tuple] =
-    (_1[A] ~> _1[B], _2[A] -> _2[B])
+    (Fst[A] ~> Fst[B], Snd[A] -> Snd[B])
   
   // Curried version
   type ×[~>[_, _], ->[_, _]] =
@@ -87,7 +87,7 @@ object CategoryTuples extends App:
     import C.◦ as *;import D.◦ as +
     new CategoryT[C × D]:
       def id[A <: Tuple]: A ~> A =
-        (C.id[_1[A]], D.id[_2[A]])
+        (C.id[Fst[A]], D.id[Snd[A]])
 
       extension [X <: Tuple, Y <: Tuple, Z <: Tuple] (g: Y ~> Z) def ◦ (f: X ~> Y): X ~> Z =
         (g._1 * f._1, g._2 + f._2)

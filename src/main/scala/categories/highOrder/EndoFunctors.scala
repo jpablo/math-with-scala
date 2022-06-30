@@ -50,7 +50,7 @@ object ExamplesEndo {
 //  def apply[A[_], B[_]](f: A ~> B) = map(f)
 //}
 
-// type BifunctorTC1[F[_, _], Prod  <: Hom2, D  <: Hom2] = FunctorTC1[[A] =>> F[_1[A],  _2[A]], Prod, D]
+// type BifunctorTC1[F[_, _], Prod  <: Hom2, D  <: Hom2] = FunctorTC1[[A] =>> F[Fst[A],  Snd[A]], Prod, D]
 
 // X =:= (F[_], G[_])
 // ([A] =>> F[A], [B] =>> G[B])
@@ -62,4 +62,4 @@ object ExamplesEndo {
 //type ××[~> <: Hom2, -> <: Hom2] = [A[_], B[_]]  =>> (Fst1[A] ~> Fst1[B], Snd1[A] -> Snd1[B])
 
 // trait BifunctorTC1[F[_, _], C1 <: Hom2, C2 <: Hom2, D <: Hom2] //(using CategoryTC1[C1 × C2], CategoryTC1[D])
-//   extends Functor[[A] =>> F[_1[A],  _2[A]], C1 ×× C2, D]
+//   extends Functor[[A] =>> F[Fst[A],  Snd[A]], C1 ×× C2, D]

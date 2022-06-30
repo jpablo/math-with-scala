@@ -19,8 +19,8 @@ trait MonoidalFunctor
   ) extends Functor[F, C, D]:
   import D.⨂ as ●; import C.⨂
 
-  type `F[A] ● F[B]`[T] = F[_1[T]] ● F[_2[T]]
-  type `F[A ⨂ B]`[T] = F[_1[T] ⨂ _2[T]]
+  type `F[A] ● F[B]`[T] = F[Fst[T]] ● F[Snd[T]]
+  type `F[A ⨂ B]`[T] = F[Fst[T] ⨂ Snd[T]]
 
 //  private val f1: (C × C --> D)[F1] = ???
 //  private val f2: (C × C --> D)[F2] = ???

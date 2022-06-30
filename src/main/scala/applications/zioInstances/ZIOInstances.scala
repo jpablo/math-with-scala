@@ -28,12 +28,12 @@ object ZIOInstances:
   summon[Category[RIO × RIO]]
   // Morphisms are pairs ( RIO[A,B], RIO[C,D] )
   type **>[A, B] =
-    ( RIO[_1[A], _1[B]],
-      RIO[_2[A], _2[B]] )
+    ( RIO[Fst[A], Fst[B]],
+      RIO[Snd[A], Snd[B]] )
   // this is the same as (RIO × RIO)[A, B]
 
   // A way to mark tuples
-  type Tuple[T] = (_1[T], _2[T])
+  type Tuple[T] = (Fst[T], Snd[T])
   // Product[(A, B)] =:= (A, B)
 
   // --------------------------------

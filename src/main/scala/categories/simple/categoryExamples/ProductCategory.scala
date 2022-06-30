@@ -6,16 +6,16 @@ import categories.simple.{_, given}
 // tuple extractors
 
 /**
- * _1[(A, B)] == A
+ * Fst[(A, B)] == A
  * @tparam A
  */
-type _1[A] = A match { case Tuple => Tuple.Elem[A, 0] }
-type _2[A] = A match { case Tuple => Tuple.Elem[A, 1] }
-type _3[A] = A match { case Tuple => Tuple.Elem[A, 2] }
+type Fst[A] = A match { case Tuple => Tuple.Elem[A, 0] }
+type Snd[A] = A match { case Tuple => Tuple.Elem[A, 1] }
+type Third[A] = A match { case Tuple => Tuple.Elem[A, 2] }
 
-// type _1[X] = X match { case a *: _            => a }
-// type _2[X] = X match { case _ *: b *: _       => b }
-// type _3[X] = X match { case _ *: _ *: c  *: _ => c }
+// type Fst[X]   = X match { case a *: _            => a }
+// type Snd[X]   = X match { case _ *: b *: _       => b }
+// type Third[X] = X match { case _ *: _ *: c  *: _ => c }
 
 
 // ----------------------------
@@ -25,8 +25,8 @@ type _3[A] = A match { case Tuple => Tuple.Elem[A, 2] }
 // ----------------------------
 
 type Prod2[~>[_, _], ->[_, _]] = [A, B] =>>
-  ( _1[A] ~> _1[B],
-    _2[A] -> _2[B] )
+  ( Fst[A] ~> Fst[B],
+    Snd[A] -> Snd[B] )
 
 // infix alias
 type ×[C[_, _], D[_, _]] =
@@ -34,63 +34,68 @@ type ×[C[_, _], D[_, _]] =
 
 
 
-// Scala × Scala = [A, B] =>> (_1[A] => _1[B], _2[A] => _2[B])
+// Scala × Scala = [A, B] =>> (Fst[A] => Fst[B], Snd[A] => Snd[B])
 // Scala2[A, B] =:= (Scala × Scala)[A, B]
 // Scala2[(A[1], A[2]), (B[1], B[2])] = (A[1] => B[1], A[2] => B[2])
 type Scala2[A, B] =
-  ( _1[A] => _1[B],
-    _2[A] => _2[B] )
+  ( Fst[A] => Fst[B],
+    Snd[A] => Snd[B] )
 
 // Prod3[C, C, C] is the category with objects Tuple3[_,_,_]
 // and morphisms
-// [A, B] =>> (_1[A] ~> _1[B], _2[A] ~> _2[B], _3[A] ~> _3[B])
+// [A, B] =>> (Fst[A] ~> Fst[B], Snd[A] ~> Snd[B], Third[A] ~> Third[B])
 
 // General product of three categories
 type Prod3[~>[_, _], ->[_, _], >>[_, _]] = [A, B] =>>
-  ( _1[A] ~> _1[B],
-    _2[A] -> _2[B],
-    _3[A] >> _3[B] )
+  ( Fst[A]   ~> Fst[B],
+    Snd[A]   -> Snd[B],
+    Third[A] >> Third[B] )
 
 
 trait Ex1:
 
   type C[_, _]; type A; type B
 
-  summon[ (((C × C) × C)[A, B]) =:= ((C × C × C)[A, B]) ]
+  summon[ (C × C × C)[A, B] =:= ((C × C) × C)[A, B] ]
 
   summon[
     (C × C × C)[A, B] =:=
-    ( (C[_1[_1[A]],  _1[_1[B]]], C[_2[_1[A]], _2[_1[B]]]), C[_2[A], _2[B]] )
+    (
+      ( C[Fst[Fst[A]],  Fst[Fst[B]]], C[Snd[Fst[A]], Snd[Fst[B]]] ),
+      C[Snd[A], Snd[B]]
+    )
   ]
 
-  // TODO: Doesn't compile in Scala 3.0.1
-  // summon[
-  //   (Scala × Scala × Scala)[A, B] =:=
-  //   ( (_1[_2[A]] => _1[_2[B]], _2[_2[A]] => _2[_2[B]]), _1[A] => _1[B] )
-  // ]
+   summon[
+     (Scala × Scala × Scala)[A, B] =:=
+     (
+       (Fst[Fst[A]] => Fst[Fst[B]], Snd[Fst[A]] => Snd[Fst[B]]),
+       Snd[A] => Snd[B]
+     )
+   ]
 
-//  type Triple[X1, Y1, Z1, X2, Y2, Z2] = ( (Y1 => Y2, Z1 => Z2), X1 => X2 )
 
   type X; type Y; type Z
-  // A = (X, (Y, Z))
-  summon[ _1[_2[(X, (Y, Z))]] =:= Y  ]
+  // sanity check
+  summon[ Fst[Snd[(X, (Y, Z))]] =:= Y  ]
+
+end Ex1
 
 // -------------------------
 // Product of two categories
 // C × D
 // -------------------------
-extension
-  [C[_, _], D[_, _]]
-  (C: Category[C]) def × (D: Category[D])
-: Category[C × D] =
-  import C.◦ as compose1
-  import D.◦ as compose2
+extension [C[_, _], D[_, _]] (C: Category[C])
+  def × (D: Category[D]): Category[C × D] =
 
-  new Category[C × D]:
-    def id[A]: A ~> A = ( C.id[_1[A]], D.id[_2[A]] )
-    extension [A, B, C]
-      (g: B ~> C) def ◦ (f: A ~> B): A ~> C =
-      ( g._1 compose1 f._1, g._2 compose2 f._2 )
+    import C.◦ as compose1
+    import D.◦ as compose2
+
+    new Category[C × D]:
+      def id[A]: A ~> A = ( C.id[Fst[A]], D.id[Snd[A]] )
+      extension [A, B, C]
+        (g: B ~> C) def ◦ (f: A ~> B): A ~> C =
+        ( g._1 compose1 f._1, g._2 compose2 f._2 )
 
 end extension
 
@@ -101,7 +106,7 @@ def prod3[C[_, _], D[_, _], E[_, _]](C: Category[C], D: Category[D], E: Category
 
   new Category[Prod3[C, D, E]]:
     def id[A]: A ~> A =
-      (C.id[_1[A]], D.id[_2[A]], E.id[_3[A]])
+      (C.id[Fst[A]], D.id[Snd[A]], E.id[Third[A]])
 
     extension [A, B, C] (g: B ~> C) def ◦ (f: A ~> B): A ~> C =
       (g._1 * f._1, g._2 + f._2, g._3 x f._3)

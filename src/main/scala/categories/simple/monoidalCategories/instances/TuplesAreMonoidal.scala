@@ -10,14 +10,14 @@ import isEqual.*
 
 // This is an arrow in the Product Category
 type **>[A, B] =
-  ( _1[A] => _1[B],
-    _2[A] => _2[B] )
+  ( Fst[A] => Fst[B],
+    Snd[A] => Snd[B] )
 
 // -----------------
 // Product functor:
 // -----------------
 // It's only defined in tuples, where it behaves as the identity
-type Tuple[T] = (_1[T], _2[T])
+type Tuple[T] = (Fst[T], Snd[T])
 // In morphisms:
 // (TA **> TB)  =>  (Product[TA] => Product[TB])
 
@@ -56,14 +56,14 @@ object ScalaTuplesAreMonoidal extends MonoidalCategory[Scala]:
 
             // LHS:
             map(Scala3.id[X]) <-> Scala.id[Rassoc[X]]
-                                  Scala.id[Rassoc[X]] == Scala.id[(_1[X], (_2[X], _3[X]))]
+                                  Scala.id[Rassoc[X]] == Scala.id[(Fst[X], (Snd[X], Third[X]))]
 
-                 Scala3.id[X] == (Scala.id[_1[X]], Scala.id[_2[X]], Scala.id[_3[X]])
+                 Scala3.id[X] == (Scala.id[Fst[X]], Scala.id[Snd[X]], Scala.id[Third[X]])
             // thus
-            map(Scala3.id[X]) <-> Scala.id[(_1[X], (_2[X], _3[X]))]
-                                  Scala.id[(_1[X], (_2[X], _3[X]))] <-> identity[(_1[X], (_2[X], _3[X]))]
+            map(Scala3.id[X]) <-> Scala.id[(Fst[X], (Snd[X], Third[X]))]
+                                  Scala.id[(Fst[X], (Snd[X], Third[X]))] <-> identity[(Fst[X], (Snd[X], Third[X]))]
 
-            map(Scala.id[_1[X]], Scala.id[_2[X]], Scala.id[_3[X]]) <-> identity[(_1[X], (_2[X], _3[X]))]
+            map(Scala.id[Fst[X]], Scala.id[Snd[X]], Scala.id[Third[X]]) <-> identity[(Fst[X], (Snd[X], Third[X]))]
 
           }
 

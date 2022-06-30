@@ -11,7 +11,7 @@ import scala.<:<.refl
 
 // A strict monoidal category is a category
 // equipped with bifunctor, usually called a categorical tensor product
-//  def tensor: (C × C --> C)[ [T] =>> _1[T] ⨂ _2[T] ]
+//  def tensor: (C × C --> C)[ [T] =>> Fst[T] ⨂ Snd[T] ]
 //  def tensor: (C × C --> C)[ [(A, B)] =>> A ⨂ B ]
 
 trait StrictMonoidal[C[_, _]] extends Category[C]:
@@ -57,8 +57,8 @@ trait StrictMonoidal[C[_, _]] extends Category[C]:
 object Example:
 
   type ProductArrow[A, B] =
-    ( _1[A] => _1[B],
-      _2[A] => _2[B] )
+    ( Fst[A] => Fst[B],
+      Snd[A] => Snd[B] )
 
   type Scala2[A, B] = (Scala × Scala)[A, B]
   val Scala2 = Scala × Scala
@@ -67,7 +67,7 @@ object Example:
   trait IntersectionIsMonoidal extends StrictMonoidal[Scala]:
     type I = Any
     type ⨂[A, B] = A & B
-    type ∩[X] = _1[X] & _2[X]
+    type ∩[X] = Fst[X] & Snd[X]
     // i.e. ∩[(A, B)] =:= (A & B) =:= (A ⨂ B)
     // def example[X, Y] =
       // summon[∩[(X, Y)] =:= (X & Y)]
@@ -92,8 +92,8 @@ object Example:
 
         @Proof
         def identitiesP[X] =
-          type X1 = _1[X]
-          type X2 = _2[X]
+          type X1 = Fst[X]
+          type X2 = Snd[X]
           List(
                 map(Scala2.id[X]) <-> id[∩[X]],
             map((id[X1], id[X2])) <-> id[∩[X]],
@@ -108,7 +108,7 @@ object Example:
   trait UnionIsMonoidal_Possibly extends StrictMonoidal[Scala]:
     type I = Nothing
     type ⨂[A, B] = A | B
-    type T[A] = _1[A] | _2[A]
+    type T[A] = Fst[A] | Snd[A]
     def tensor: (Scala × Scala --> Scala) [T] = categories.simple.functor.Examples.union
     def unitLeft[A]: (Nothing | A) =:= A = refl
     def unitRight[A]: (A | Nothing) =:= A = refl

@@ -15,8 +15,8 @@ trait BraidedMonoidalCategory[C[_, _]](
   import C.*; export C.*
   import M.*; export M.{⨂, I}
 
-  type Tensor[A]   = (_1[A] ⨂ _2[A])
-  type Braiding[A] = (_2[A] ⨂ _1[A])
+  type Tensor[A]   = (Fst[A] ⨂ Snd[A])
+  type Braiding[A] = (Snd[A] ⨂ Fst[A])
 
   // ∀ x,y: x ⨂ y <===>  y ⨂ x
   val braiding: (Tensor <===> Braiding)[C, C]

@@ -1,11 +1,7 @@
 val scala3Version = "3.1.2"
-val catsVersion   = "2.6.1"
-val scala2Version = "2.13"
 val sttpVersion   = "3.6.2"
 val zioVersion    = "1.0.15"
 val zioPreludeVersion = "1.0.0-RC8"
-
-def scala2(s: String) =  s + "_" + scala2Version
 
 lazy val root = project
   .in(file("."))

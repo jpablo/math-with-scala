@@ -1,7 +1,7 @@
 package categories.simple.categoryExamples
 
 import categories.simple.CategoryS
-import zio.prelude.classic
+import zio.prelude.*
 
 // Monoids are categories with only one object
 // trick: each element is an arrow
@@ -27,7 +27,7 @@ object IntCategory extends CategoryS[●,  ConstantHom[Int]]:
 
 object Examples:
   given StringMonoidCat: CategoryS[●, ConstantHom[String]] =
-    fromMonoid(zio.prelude.Identity[String])
+    fromMonoid(Identity[String])
 
   assert("a" ◦ "b" == "ab")
 

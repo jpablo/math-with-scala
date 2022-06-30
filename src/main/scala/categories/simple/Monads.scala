@@ -5,13 +5,13 @@ import categories.simple.functor.*
 import Functor.Id
 import isEqual.*
 import annotations1.*
-import zio.prelude.classic
+import zio.prelude.*
 
 trait Monad0[T[+_]: classic.Functor] {
   def pure[A]: A => T[A]
   def flatten[A]: T[T[A]] => T[A]
   def flatMap[A, B](a: T[A])(f: A => T[B]): T[B] =
-  	flatten(zio.prelude.Covariant[T].map(f)(a))
+  	flatten(Covariant[T].map(f)(a))
 }
 
 

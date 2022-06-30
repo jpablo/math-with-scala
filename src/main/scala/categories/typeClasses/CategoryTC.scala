@@ -34,17 +34,17 @@ def algCat[P[_]] =
 // ---------------------------------------------------------
 // Mon: the category of all Monoids and monoid homomorphisms
 // ---------------------------------------------------------
-import zio.prelude.classic.Group
+import zio.prelude.*
 
-val Grp = algCat[Group]
+val Grp = algCat[classic.Group]
 
 object GroupHomLaws {
-  def multiplication[A: Group, B: Group](
-    f: Homomorphism[Group, A, B],
+  def multiplication[A: classic.Group, B: classic.Group](
+    f: Homomorphism[classic.Group, A, B],
     x: A,
     y: A
-  ) = ???
-//    f(x |+| y) == (f(x) |+| f(y))
+  ) =
+    f(x <> y) == (f(x) <> f(y))
 }
 
 // --------------------------------------------------------

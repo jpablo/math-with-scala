@@ -37,11 +37,9 @@ class CartesianMonoidalCategory1[C[_, _]](
   //    Snd[A] ~> Snd[B] )
 
   val tensor: Bifunctor[⨂, C2, C] =
-    new Functor:
-      def map[A, B](f : C2[A, B]): C[Prod[A], Prod[B]] =
-        val (f1, f2) = f
-        ???
-//        f2 ** f2
+    Functor {
+      [A, B] => (f : C2[A, B]) => ???
+    }
 
 
   // This follows
@@ -49,40 +47,38 @@ class CartesianMonoidalCategory1[C[_, _]](
     new NaturalIsomorphism with (Lassoc ==> Rassoc)[C3, C] {
       // (x ⨂ y) ⨂ z =:= (x * y) * z
       val source: (C3 --> C)[Lassoc] =
-        new Functor:
-          def map[A, B](f: C3[A, B]): C[ Lassoc[A], Lassoc[B] ] =
-            val (f1, f2, f3) = f
-            (f1 ** f2) ** f3
+        Functor {
+          [A, B] => (f: C3[A, B]) => (f._1 ** f._2) ** f._3
+        }
 
-      // x ⨂ (y ⨂ z) =:= (x,(y,z))
+      // x ⨂ (y ⨂ z) =:= (x * (y * z))
       val target: (C3 --> C)[Rassoc] =
-        new Functor:
-          def map[A, B](f: C3[A, B]): C[ Rassoc[A], Rassoc[B] ] =
-            val (f1, f2, f3) = f
-            f1 ** (f2 ** f3)
+        Functor {
+          [A, B] => (f: C3[A, B]) => f._1 ** (f._2 ** f._3)
+        }
 
       // (X * Y) * Z ~> X * (Y * Z)
       def apply[X]: Lassoc[X] ~> Rassoc[X] =
-        type A1 = Fst[X]
-        type A2 = Snd[X]
-        type A3 = Third[X]
+        type X1 = Fst[X]
+        type X2 = Snd[X]
+        type X3 = Third[X]
 
-        val a: Lassoc[X] ~> A1 = fst[A1 * A2, A3] >>> fst[A1, A2]
-        val b: Lassoc[X] ~> A2 = fst[A1 * A2, A3] >>> snd[A1, A2]
-        val c: Lassoc[X] ~> A3 = snd[A1 * A2, A3]
+        val a: Lassoc[X] ~> X1 = fst[X1 * X2, X3] >>> fst[X1, X2]
+        val b: Lassoc[X] ~> X2 = fst[X1 * X2, X3] >>> snd[X1, X2]
+        val c: Lassoc[X] ~> X3 = snd[X1 * X2, X3]
 
         val from: Lassoc[X] ~> Rassoc[X] = a * (b * c)
         from
 
       // X * (Y * Z) ~> (X * Y) * Z
       def inverse[X]: Rassoc[X] ~> Lassoc[X] =
-        type A1 = Fst[X]
-        type A2 = Snd[X]
-        type A3 = Third[X]
+        type X1 = Fst[X]
+        type X2 = Snd[X]
+        type X3 = Third[X]
 
-        val x: Rassoc[X] ~> A1 = fst[A1, A2 * A3]
-        val y: Rassoc[X] ~> A2 = snd[A1, A2 * A3] >>> fst[A2, A3]
-        val z: Rassoc[X] ~> A3 = snd[A1, A2 * A3] >>> snd[A2, A3]
+        val x: Rassoc[X] ~> X1 = fst[X1, X2 * X3]
+        val y: Rassoc[X] ~> X2 = snd[X1, X2 * X3] >>> fst[X2, X3]
+        val z: Rassoc[X] ~> X3 = snd[X1, X2 * X3] >>> snd[X2, X3]
 
         val to: Rassoc[X] ~> Lassoc[X] = (x * y) * z
         to

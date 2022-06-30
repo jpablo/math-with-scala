@@ -25,22 +25,23 @@ object PPMonCatProduct extends CartesianMonoidalCategory[PP, Tuple2] with Monoid
   def tensor = ???
 
   type PP3[A, B] = Prod3[PP, PP, PP][A, B]
+
   val associator =
-    new NaturalIsomorphism with (Lassoc ==> Rassoc)[PP3, PP]:
-      val source: (PP3 --> PP)[Lassoc] =
-        new Functor:
-          def map[A, B](f: PP3[A, B]): PP[Lassoc[A], Lassoc[B]] = PP("Lassoc.map")
-      val target: (PP3 --> PP)[Rassoc] =
-        new Functor:
-          def map[A, B](f: PP3[A, B]): PP[Rassoc[A], Rassoc[B]] = PP("Rassoc.map")
+    new NaturalIsomorphism[Lassoc, Rassoc, PP3, PP] with (Lassoc ==> Rassoc)[PP3, PP]:
+      val source: (PP3 --> PP)[Lassoc] = new:
+        def map[A, B](f: PP3[A, B]): PP[Lassoc[A], Lassoc[B]] = PP("Lassoc.map")
+
+      val target: (PP3 --> PP)[Rassoc] = new:
+        def map[A, B](f: PP3[A, B]): PP[Rassoc[A], Rassoc[B]] = PP("Rassoc.map")
+
       def apply[A] = PP("a")
       def inverse[A] = PP("aI")
 
   def leftUnitor =
     new NaturalIsomorphism with (L ==> Id)[PP, PP]:
-      val source: (PP --> PP)[L] =
-        new Functor:
+      val source: (PP --> PP)[L] = new:
           def map[A, B](f: PP[A, B]): PP[L[A], L[B]] = ???
+
       val target: (PP --> PP)[Id] = Functor.identity[PP]
       def apply[A] = ???
       def inverse[A] = ???

@@ -1,13 +1,14 @@
 package categories.simple.categoryExamples
 
-import categories.simple.{_, given}
+import categories.simple.{*, given}
+
+import scala.annotation.targetName
 
 
 // tuple extractors
 
 /**
  * Fst[(A, B)] == A
- * @tparam A
  */
 type Fst[A]   = A match { case Tuple => Tuple.Elem[A, 0] }
 type Snd[A]   = A match { case Tuple => Tuple.Elem[A, 1] }
@@ -93,9 +94,10 @@ extension [C[_, _], D[_, _]] (C: Category[C])
 
     new Category[C × D]:
       def id[A]: A ~> A = ( C.id[Fst[A]], D.id[Snd[A]] )
-      extension [A, B, C]
-        (g: B ~> C) def ◦ (f: A ~> B): A ~> C =
-        ( g._1 compose1 f._1, g._2 compose2 f._2 )
+      extension [A, B, C] (g: B ~> C)
+        @targetName("compose")
+        def ◦ (f: A ~> B): A ~> C =
+          ( g._1 compose1 f._1, g._2 compose2 f._2 )
 
 end extension
 
@@ -108,8 +110,10 @@ def prod3[C[_, _], D[_, _], E[_, _]](C: Category[C], D: Category[D], E: Category
     def id[A]: A ~> A =
       (C.id[Fst[A]], D.id[Snd[A]], E.id[Third[A]])
 
-    extension [A, B, C] (g: B ~> C) def ◦ (f: A ~> B): A ~> C =
-      (g._1 * f._1, g._2 + f._2, g._3 x f._3)
+    extension [A, B, C] (g: B ~> C)
+      @targetName("compose")
+      def ◦ (f: A ~> B): A ~> C =
+        (g._1 * f._1, g._2 + f._2, g._3 x f._3)
 
 given prodCat[C[_, _], D[_, _]](using C: Category[C], D: Category[D]): Category[C × D] =
   C × D

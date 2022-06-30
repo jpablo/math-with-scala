@@ -22,7 +22,7 @@ def endo[X[_, _]: Category] =
   new CategoryF[EndoX, Hom]:
 
     def id[F[_]](using f: EndoX[F]): F ~> F =
-      Nat.identity(f)
+      NaturalTransformation.identity(f)
 
     extension [F[_]: EndoX, G[_]: EndoX, H[_]: EndoX]
       (m: F ~> G) override def >>> (n: G ~> H): F ~> H =

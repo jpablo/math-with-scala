@@ -5,10 +5,11 @@ import categories.simple.*
 import categories.simple.categoryExamples.*
 import categories.simple.functor.Functor.Id
 import categories.simple.categoryExamples.{*, given}
-import categories.simple.monoidalCategories.{BraidedMonoidalCategory, MonoidalCategory, StrictMonoidal, CartesianMonoidalCategory}
+import categories.simple.monoidalCategories.{BraidedMonoidalCategory, CartesianMonoidalCategory, MonoidalCategory, StrictMonoidal}
 import zio.{RIO, ZIO}
 import isEqual.*
 import categories.simple.functor.*
+import scala.annotation.targetName
 
 object ZIOInstances:
 
@@ -19,7 +20,9 @@ object ZIOInstances:
   // -------------------------
   given RIOCat: Category[RIO] with
     def id[A] = RIO.identity[A]
-    extension [A, B, C] (g: RIO[B, C]) def ◦ (f: RIO[A, B]) = g compose f
+    extension [A, B, C] (g: RIO[B, C])
+      @targetName("compose")
+      def ◦ (f: RIO[A, B]) = g compose f
 
   // --------------------------
   // Product Category RIO × RIO
@@ -50,9 +53,10 @@ object ZIOInstances:
   //  f: RIO[A1, B1]
   //  g: RIO[A2, B2]
   // (f, g) => f ⨂ g == f *** g : RIO[(A1, A2), (B1, B2)]
-  val tensorProduct = //  (RIO × RIO --> RIO) [Tuple]
-    new Functor[Tuple, RIO × RIO, RIO]:
-      def map[A, B](f: A **> B) = f._1 *** f._2
+  val tensorProduct: (RIO × RIO --> RIO) [Tuple] =
+    Functor {
+      [A, B] => (f: A **> B) => f._1 *** f._2
+    }
 
   // ---------------------------------------------------------
   // A Monoidal Category instance defined using Tuple2 directly
@@ -113,15 +117,15 @@ object ZIOInstances:
     // universal property:
     extension [A, B, C] (f: RIO[C, A]) def * (g: RIO[C, B]): RIO[C, (A, B)] = f &&& g
     type T = EmptyTuple
-    val terminal =
-      new Terminal:
+    val terminal: Terminal[T, RIO] =
+      new:
         def arrow[Y]: RIO[Y, EmptyTuple] = RIO.succeed(EmptyTuple)
 
 
   // -----------------------------------------------------------------------
   // A Monoidal Category instance defined using the InternalProduct instance
   // -----------------------------------------------------------------------
-  implicit val RIOMonCatProduct: CartesianMonoidalCategory[RIO, Tuple2] =
+  given RIOMonCatProduct: CartesianMonoidalCategory[RIO, Tuple2] =
     new CartesianMonoidalCategory with MonoidalCategory[RIO] with InternalProduct[RIO]:
       // ----------------------------
       // Internal Product definitions
@@ -132,8 +136,8 @@ object ZIOInstances:
       // universal property: A <~ X ~> B   ==>   X ~> (A, B)
       extension [A, B, X] (f: RIO[X, A]) def * (g: RIO[X, B]): RIO[X, (A, B)] = f &&& g
       type T = EmptyTuple
-      val terminal =
-        new Terminal:
+      val terminal: Terminal[T, RIO] =
+        new:
           def arrow[Y]: RIO[Y, EmptyTuple] = RIO.succeed(EmptyTuple)
       // -----------------------------
       // Monoidal Category definitions

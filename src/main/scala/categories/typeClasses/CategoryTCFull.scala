@@ -9,11 +9,11 @@ object HomId:
   def apply[A, ~>[_, _]](using ev: HomId[A, ~>]) = ev.id
 
 
-trait HomCompose[A, B, C, ~>[_, _]]:
-  def compose(g: B ~> C, f: A ~> B): A ~> C
-
 trait HomAndThen[A, B, C, ~>[_, _]]:
-  extension (f: A ~> B) def >>> (g: B ~> C): A ~> C
+  def andThen (f: A ~> B, g: B ~> C) : A ~> C
+  def compose (g: B ~> C, f: A ~> B) : A ~> C = andThen(f, g)
+  extension (f: A ~> B)
+    def >>> (g: B ~> C) : A ~> C = andThen(f, g)
 
 /**
  * A Category where the operations are delegated to type classes
@@ -24,9 +24,6 @@ trait Category[~>[_, _]]:
   type AndThen[A, B, C] = HomAndThen[A, B, C, ~>]
 
   def id[A: Id]: A ~> A = summon[Id[A]].id
-
-  extension [A, B, C] (f: A ~> B) def >>> (g: B ~> C)
-    (using AndThen[A, B, C]): A ~> C = f >>> g
 
   @Law
   def identityRight[A, B: Id](f: A ~> B) (using AndThen[A, B, B]) =
@@ -39,11 +36,11 @@ trait Category[~>[_, _]]:
     h: C ~> D
   )(
     using
-      AndThen[A, C, D],
-      AndThen[A, B, C],
-      AndThen[B, C, D],
-      AndThen[A, B, D]
+      a1: AndThen[A, B, C],
+      a2: AndThen[A, B, D],
+      a3: AndThen[A, C, D],
+      a4: AndThen[B, C, D],
   ) =
-      ((f >>> g) >>> h) == (f >>> (g >>> h))
+      a3.andThen(a1.andThen(f, g), h) == a2.andThen(f, a4.andThen(g, h))
 
 end Category

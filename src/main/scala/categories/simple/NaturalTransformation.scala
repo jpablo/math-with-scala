@@ -7,7 +7,7 @@ import annotations1.*
 
 /**
  * A Natural transformation is basically a polymorphic function
- * between the image of two functors F[_] and G[_]:
+ * between the images of two functors F[_] and G[_]:
  *
  *  <pre>
  *      φ: [A] => F[A] => G[A]
@@ -25,15 +25,15 @@ import annotations1.*
  *     F[Y]   ~~>    G[Y]
  *            φ[Y]
  * </pre>
- * @tparam Source
- * @tparam Target
- * @tparam C
- * @tparam D
  */
-trait Nat
-  [Source[_], Target[_], C[_, _]: Category, D[_, _]: Category] { self =>
+trait NaturalTransformation[
+  Source[_],
+  Target[_],
+  C[_, _] : Category,
+  D[_, _] : Category
+] { self =>
     type ~>[A, B] = D[A, B]
-    type ==>[F[_], G[_]] = Nat[F, G, C, D]
+    type ==>[F[_], G[_]] = NaturalTransformation[F, G, C, D]
 
     // Two functors from C to D
     val source: (C --> D) [Source]
@@ -45,8 +45,8 @@ trait Nat
     /**
      * vertical composition:  ψ * φ: H ==> G
      */
-    def * [H[_]] (other: H ==> Source): (H ==> Target) =
-      Nat(other.source, self.target, [X] => () => self[X] ◦ other[X])
+    def * [H[_]] (other: H ==> Source): H ==> Target =
+      NaturalTransformation(other.source, self.target, [X] => () => self[X] ◦ other[X])
 
     @Law
     def naturality[X, Y](
@@ -59,18 +59,13 @@ trait Nat
 }
 
 /**
- * A Natural Transformation between the functors F and G
- * @tparam F A Functor between the categories C, D
- * @tparam G A Functor between the categories C, D
- *
- * Essentially a natural transformation is polymorphic function
- * val nat = [F[_], G[_], ~>[_, _]] => [X] => F[X] ~> G[X]
+ * A Natural Transformation between the functors F and G.
  */
 type ==>[F[_], G[_]] =
-  [C[_, _], D[_, _]] =>> Nat[F, G, C, D]
+  [C[_, _], D[_, _]] =>> NaturalTransformation[F, G, C, D]
 
 
-object Nat:
+object NaturalTransformation:
   // Helper constructor
   def apply
     [F[_], G[_], C[_, _]: Category, D[_, _]: Category]
@@ -79,22 +74,20 @@ object Nat:
       target : (C --> D)[G],
       nat    : [X] => () => D[F[X], G[X]],
     )
-  : (F ==> G)[C, D] = {
-      val s = source; val t = target
-      new Nat {
-        val source = s
-        val target = t
-        def apply[X] = nat[X]()
-      }
-  }
+  : (F ==> G)[C, D] =
+    val (s, t) = (source, target)
+    new NaturalTransformation:
+      val source = s
+      val target = t
+      def apply[X] = nat[X]()
 
   def identity
     [F[_], C[_, _]: Category, D[_, _]: Category]
     (f: (C --> D)[F])
   : (F ==> F)[C, D] =
-      Nat(f, f, [X] => () => Category[D].id[F[X]])
+      NaturalTransformation(f, f, [X] => () => Category[D].id[F[X]])
 
-end Nat
+end NaturalTransformation
 
 
 /**
@@ -114,10 +107,10 @@ def whisker
     h   : (Cp --> C)  [H],
   )
 : (K ⊙ F ⊙ H ==> K ⊙ G ⊙ H)[Cp, Dp] =
-  Nat(
+  NaturalTransformation(
     source = k ⊙ nat.source ⊙ h,
     target = k ⊙ nat.target ⊙ h,
-    nat  = [X] => () => k( nat[H[X]] )
+    nat    = [X] => () => k( nat[H[X]] )
   )
 
 
@@ -149,7 +142,7 @@ extension
 trait NaturalIsomorphism
   [F[_], G[_], C[_,_], D[_, _]]
   (using C: Category[C], D: Category[D])
-extends Nat[F, G, C, D]:
+extends NaturalTransformation[F, G, C, D]:
   import D.~>
 
   // A family of arrows

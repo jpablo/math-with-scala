@@ -6,7 +6,6 @@ import categories.simple.functor.*
 /**
  * A Category where objects are type functions F[_] with a type class instance P[F] available
  * @tparam P A type class that objects must belong to
- * @tparam Hom
  */
 trait CategoryF[P[f[_]], Hom[f[_], g[_]]]:
 
@@ -44,12 +43,12 @@ def FunctorCat[C[_, _]: Category, D[_, _]: Category] =
   // objects are functors F: C --> D
   type Func[F[_]] = (C --> D)[F]
   // morphisms are natural transformations n: F ==> G between functors F and G
-  type ==>[F[_], G[_]] = Nat[F, G, C, D]
+  type ==>[F[_], G[_]] = NaturalTransformation[F, G, C, D]
 
   new CategoryF[Func, ==>] {
 
     // identity: natural identity at F[_]
-    def id[F[_]](using F: Func[F]) = Nat.identity(F)
+    def id[F[_]](using F: Func[F]) = NaturalTransformation.identity(F)
 
     // composition is vertical composition of nat transfs.
     extension[F[_]: Func, G[_]: Func, H[_]: Func]

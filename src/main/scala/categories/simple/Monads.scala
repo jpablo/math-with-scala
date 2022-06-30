@@ -9,7 +9,9 @@ import zio.prelude.*
 
 trait Monad0[T[+_]](using T: classic.Functor[T]):
   def pure[A]: A => T[A]
+
   def flatten[A]: T[T[A]] => T[A]
+
   def flatMap[A, B](a: T[A])(f: A => T[B]): T[B] =
   	flatten(T.map(f)(a))
 
@@ -39,7 +41,7 @@ trait Monad0[T[+_]](using T: classic.Functor[T]):
 trait Monad[T[_], X[_, _]: Category]:
 
   // redefine ==> locally (for endofunctors)
-  type ==>[H[_], G[_]] = Nat[H, G, X, X]
+  type ==>[H[_], G[_]] = NaturalTransformation[H, G, X, X]
 
   def t       : (X --> X) [T] // endofunctor X --> X
   def pure    : Id ==> T      // 𝜂: 1  ==> T
@@ -47,11 +49,11 @@ trait Monad[T[_], X[_, _]: Category]:
 
   @Law
   def unitarity1 =
-    (flatten * (pure *: t)) <-> Nat.identity(t)
+    (flatten * (pure *: t)) <-> NaturalTransformation.identity(t)
 
   @Law
   def unitarity2 =
-    (flatten * (t :* pure)) <-> Nat.identity(t)
+    (flatten * (t :* pure)) <-> NaturalTransformation.identity(t)
 
   @Law
   def associativity =
@@ -59,19 +61,20 @@ trait Monad[T[_], X[_, _]: Category]:
 
 end Monad
 
+
 object Monad:
 
-  def fromAdjuction
+  def fromAdjunction
     [C[_,_]: Category, D[_,_]: Category, F[_], G[_]]
     (adj: (F ⊣ G)[C, D])
   : Monad[G ⊙ F, C] =
     import adj.{unit, counit, f, g}
-    new Monad {
+    new Monad:
       def t = g ⊙ f
         : (C --> C) [G ⊙ F]
       def pure = unit
         : Id ==> G ⊙ F
       def flatten = g :* counit *: f
         : G ⊙ F ⊙ G ⊙ F ==> G ⊙ F
-    }
+
 end Monad

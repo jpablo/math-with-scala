@@ -2,6 +2,8 @@ package categories.products
 
 import categories.simple.*
 
+import scala.annotation.targetName
+
 // Motivation:
 // instead of
 // type Scala2[A, B] = ( Fst[A] => Fst[B], Snd[A] => Snd[B] )
@@ -89,8 +91,10 @@ object CategoryTuples extends App:
       def id[A <: Tuple]: A ~> A =
         (C.id[Fst[A]], D.id[Snd[A]])
 
-      extension [X <: Tuple, Y <: Tuple, Z <: Tuple] (g: Y ~> Z) def ◦ (f: X ~> Y): X ~> Z =
-        (g._1 * f._1, g._2 + f._2)
+      extension [X <: Tuple, Y <: Tuple, Z <: Tuple] (g: Y ~> Z)
+        @targetName("compose")
+        def ◦ (f: X ~> Y): X ~> Z =
+          (g._1 * f._1, g._2 + f._2)
 
 
 // Another option: Modeling tuples as (F[1], F[2], ..., F[n])

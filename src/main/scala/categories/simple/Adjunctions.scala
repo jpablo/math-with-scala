@@ -9,9 +9,13 @@ trait Adjunction
     val f: (C --> D)[F],
     val g: (D --> C)[G],
   )
-  (using c: Category[C], d: Category[D]):
+  (using
+    c: Category[C],
+    d: Category[D]
+  ):
   
-    import c.~>; import d.~> as ->
+    import c.~>
+    import d.~> as ->
     
     // A: C, B: D
     def iso[A, B]:
@@ -19,7 +23,7 @@ trait Adjunction
     
     // η : 1A ==> GF
     def unit: (Id ==> G ⊙ F)[C, C] =
-      new Nat:
+      new NaturalTransformation:
         val source = Functor.identity[C]
         val target = g ⊙ f
         def apply[X] = iso.from(d.id[F[X]])

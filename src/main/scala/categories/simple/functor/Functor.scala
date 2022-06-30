@@ -23,16 +23,20 @@ trait Functor
   type ->[A, B] = Target[A, B]
 
   def map[A, B](f: A ~> B): F[A] -> F[B]
-  // helper method to be able to do F(f)
+
+  // So we can do F(f)
   def apply[A, B](f: A ~> B) = map(f)
 
   /**
    * Functor composition operator: ⊙
-   * Given functors G: D --> E and F: C --> D creates the composite functor
-   * G ⊙ F between categories C --> E
+   * Given functors F: S --> T and G: R --> S creates the composite functor
+   * G ⊙ F between categories R --> T
    */
-  def ⊙ [F0[_], C[_, _]: Category] (F0: (C --> Source)[F0]) : (C --> Target) [F ⊙ F0] =
-    Functor( [X, Y] => (f: C[X, Y]) => map(F0(f)) )
+  def ⊙ [G[_], R[_, _]: Category] (other: (R --> Source)[G]) : (R --> Target) [F ⊙ G] =
+    Functor {
+      [X, Y] => (f: R[X, Y]) => map(other(f))
+    }
+
 
   @Law
   def composition[X, Y, Z](f: X ~> Y, g: Y ~> Z) =
@@ -61,16 +65,22 @@ type -->[From[_, _], To[_, _]] =
 
 
 object Functor:
-  // Static constructor
-  def apply
-    [F[_], C[_, _]: Category, D[_, _]: Category]
-    (map0: [A, B] => C[A, B] => D[F[A], F[B]]) =
-      new Functor[F, C, D] { def map[A, B](f: A ~> B): F[A] -> F[B] = map0(f) }
+
+  def apply [
+    F[_],
+    C[_, _]: Category,
+    D[_, _]: Category
+  ] (
+    map0: [A, B] => C[A, B] => D[F[A], F[B]]
+  ): Functor[F, C, D] = new:
+    def map[A, B](f: A ~> B): F[A] -> F[B] = map0(f)
 
   type Id[A] = A
 
   def identity[C[_, _]: Category]: (C --> C) [Id] =
-    Functor( [X, Y] => (f: C[X, Y]) => f )
+    Functor {
+      [X, Y] => (f: C[X, Y]) => f
+    }
 
 end Functor
 
@@ -89,8 +99,10 @@ type Endofunctor[F[_], C[_, _]] = (C --> C) [F]
 // --------------------------------------
 // creates endofunctors from zio.prelude.classic.Functor
 // --------------------------------------
-given [F[+_]](using F: classic.Functor[F]): Endofunctor[F, Scala] with
-  def map[A, B](f: A => B) = F.map(f)
+given [F[+_]](using F: classic.Functor[F]): Endofunctor[F, Scala] =
+  Functor {
+    [A, B] => (f: A => B) => F.map(f)
+  }
 
 object FunctorExamples:
   summon[Endofunctor[List, Scala]]

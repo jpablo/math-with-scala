@@ -1,6 +1,7 @@
 package categories.simple.liskov
 
 import categories.simple.Category
+import scala.annotation.targetName
 // ----------------
 // Liskov/Subtypes category
 // ----------------
@@ -8,8 +9,9 @@ import categories.simple.Category
 
 given Subtypes: Category[<:<] with
   def id[A] = <:<.refl
-  extension [A, B, C]
-    (g: B <:< C) def ◦ (f: A <:< B): A <:< C =
+  extension [A, B, C] (g: B <:< C)
+    @targetName("compose")
+    def ◦ (f: A <:< B): A <:< C =
       g compose f
 
 

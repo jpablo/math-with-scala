@@ -2,6 +2,7 @@ package categories.simple
 
 import isEqual.*
 import annotations1.*
+import scala.annotation.targetName
 
 
 trait CategoryS[U, Hom[_ <: U, _ <: U]]:
@@ -13,6 +14,7 @@ trait CategoryS[U, Hom[_ <: U, _ <: U]]:
 
   // Arrow combinator
   extension [A <: U, B <: U, C <: U] (g: B ~> C)
+    @targetName("compose")
     def ◦ (f: A ~> B): A ~> C
 
   extension [A <: U, B <: U, C <: U] (f: A ~> B)
@@ -53,8 +55,9 @@ type Scala[A, B] = A => B
 
 given Scala: Category[Scala] with
   def id[A]: A => A = identity[A]
-  extension [A, B, C]
-    (g: B => C) def ◦ (f: A => B) = g compose f
+  extension [A, B, C] (g: B => C)
+    @targetName("compose")
+    def ◦ (f: A => B) = g compose f
 
 
 //======================
@@ -66,4 +69,6 @@ type Op[C[_, _]] = [A, B] =>> C[B, A]
 given Op[C[_, _]](using C: Category[C]): Category[Op[C]] =
   new Category[Op[C]]:
     def id[A] = C.id[A]
-    extension [A, B, C](g: C <~ B) def ◦ (f: B <~ A) = C.◦(f)(g)
+    extension [A, B, C] (g: C <~ B)
+      @targetName("compose")
+      def ◦ (f: B <~ A) = C.◦(f)(g)

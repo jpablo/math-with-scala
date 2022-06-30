@@ -1,7 +1,7 @@
 package applications.processes
 
 import sttp.model.Uri
-import discipline1.{<->, IsEq}
+import isEqual.{<->, IsEq}
 import annotations1.*
 import zio.json.JsonDecoder
 import sttp.client3.BodySerializer

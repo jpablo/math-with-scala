@@ -1,6 +1,6 @@
 package categories.operads
 
-import discipline1.{IsEq, <->}
+import isEqual.{IsEq, <->}
 import annotations1.*
 
 trait Operad[Hom[_ <: Tuple, _]]:

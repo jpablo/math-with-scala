@@ -6,7 +6,7 @@ import algebra.Homomorphism
 import annotations1.*
 import categories.simple.Scala
 import categories.simple.categoryExamples.*
-import discipline1.*
+import isEqual.*
 
 /**
  * A Functor F between the categories C and D

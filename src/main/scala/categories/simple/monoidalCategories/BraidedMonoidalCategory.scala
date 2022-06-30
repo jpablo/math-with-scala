@@ -5,7 +5,7 @@ import annotations1.*
 import categories.simple.categoryExamples.*
 import categories.simple.functor.Functor.Id
 import categories.simple.functor.*
-import discipline1.*
+import isEqual.*
 
 trait BraidedMonoidalCategory[C[_, _]](
   using 

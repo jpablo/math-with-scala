@@ -1,6 +1,6 @@
 package categories.leanStyle
 import annotations1.*
-import discipline1.{IsEq, <->}
+import isEqual.{IsEq, <->}
 
 // class has_hom (obj : Type u) : Type (max u (v+1)) :=
 // (hom : obj → obj → Type v)

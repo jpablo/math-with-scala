@@ -1,7 +1,7 @@
 package algebra
 
 import annotations1.*
-import discipline1.*
+import isEqual.*
 
 trait Field[F](
     Sum : AbelianGroup[F],

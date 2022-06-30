@@ -3,7 +3,7 @@ package categories.simple
 import categories.simple.categoryExamples.*
 import categories.simple.functor.*
 import Functor.Id
-import discipline1.*
+import isEqual.*
 import annotations1.*
 import zio.prelude.classic
 

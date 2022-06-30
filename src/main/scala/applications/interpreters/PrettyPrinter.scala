@@ -49,7 +49,7 @@ object PPMonCatProduct extends CartesianMonoidalCategory[PP, Tuple2] with Monoid
 
 
 object Examples extends App:
-  import discipline1.*
+  import isEqual.*
   def pprint[A, B](e: IsEq[PP[A, B]]) =
     s"${e.lhs.value} <-> ${e.rhs.value}"
   // associativity

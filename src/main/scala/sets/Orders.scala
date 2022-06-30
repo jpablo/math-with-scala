@@ -1,6 +1,6 @@
 package sets
 
-import discipline1.*
+import isEqual.*
 import annotations1.*
 
 object Orders:

@@ -6,7 +6,7 @@ import annotations1.*
 import categories.simple.categoryExamples.{_, given}
 import categories.simple.functor.Functor.Id
 import categories.simple.functor.*
-import discipline1.*
+import isEqual.*
 
 // This is an arrow in the Product Category
 type **>[A, B] =

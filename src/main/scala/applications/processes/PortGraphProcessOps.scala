@@ -6,7 +6,7 @@ import scala.annotation.alpha
 import zio.json.JsonDecoder
 import sttp.client3.BodySerializer
 import sttp.model.Uri
-import discipline1.*
+import isEqual.*
 
 
 // inline given [A]: TypeName[A] = ${tpeNmeMacro[A]}

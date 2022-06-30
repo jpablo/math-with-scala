@@ -2,7 +2,7 @@ package categories.simple
 
 import annotations1.*
 import categories.simple.*
-import discipline1.*
+import isEqual.*
 
 
 case class Monic[A, B, ~>[_, _]: Category](f: A ~> B):

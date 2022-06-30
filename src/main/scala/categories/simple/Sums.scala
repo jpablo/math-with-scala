@@ -1,6 +1,6 @@
 package categories.simple
 
-import discipline1.*
+import isEqual.*
 import categories.simple.{_, given}
 
 object Ops {

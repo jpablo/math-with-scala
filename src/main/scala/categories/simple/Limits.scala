@@ -1,7 +1,7 @@
 package categories.simple
 
 import annotations1.*
-import discipline1.*
+import isEqual.*
 
 // ------------
 // Diagrams

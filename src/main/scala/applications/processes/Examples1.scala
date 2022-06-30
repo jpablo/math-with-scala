@@ -14,11 +14,7 @@ object Examples1:
     import C.*
     id[X1]
   }
-  
-  
-  
-  
-  
+
   def process2[~>[_, _]](
     CMC: CartesianMonoidalCategory[~>, Tuple2],
     p1 : A ~> X1,

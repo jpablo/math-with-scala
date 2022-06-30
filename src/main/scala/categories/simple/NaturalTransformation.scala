@@ -2,7 +2,7 @@ package categories.simple
 
 import categories.simple.categoryExamples.*
 import categories.simple.functor.*
-import discipline1.*
+import isEqual.*
 import annotations1.*
 
 /**

@@ -1,6 +1,6 @@
 package categories.typeClasses
 
-import discipline1.*
+import isEqual.*
 import algebra.Homomorphism
 
 /**

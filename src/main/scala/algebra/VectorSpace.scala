@@ -1,16 +1,14 @@
 package algebra
 
 import annotations1.*
-import discipline1.*
+import isEqual.*
 
 trait VectorSpace[V, F](
   using
-    V: AbelianGroup[V],
-    F: Field[F]
-  ) {
-
+  V: AbelianGroup[V],
+  F: Field[F]
+):
   extension (a: V) def + (b: V): V = a * b
-
   extension (a: F) def ⋅ (b: V): V
 
   @Law("Compatibility of scalar multiplication with field multiplication")
@@ -20,4 +18,3 @@ trait VectorSpace[V, F](
   @Law("Identity element of scalar multiplication")
   def scalarMulIdentity(v: V) =
     F.one ⋅ v <-> v
-}

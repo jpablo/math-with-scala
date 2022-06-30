@@ -4,7 +4,7 @@ import categories.simple.{*, given}
 import annotations1.*
 import categories.simple.categoryExamples.{*, given}
 import categories.simple.functor.*
-import discipline1.*
+import isEqual.*
 
 import scala.<:<.refl
 

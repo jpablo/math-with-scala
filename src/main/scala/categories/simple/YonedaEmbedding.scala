@@ -1,7 +1,7 @@
 package categories.simple
 
 import categories.simple.functor.*
-import discipline1.*
+import isEqual.*
 
 
 def yonedaEmbedding[X, Y, C[_, _]](using C: Category[C]):

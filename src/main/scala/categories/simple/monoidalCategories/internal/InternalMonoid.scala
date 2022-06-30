@@ -3,7 +3,7 @@ package categories.simple.monoidalCategories.internal
 import algebra.Monoid
 import annotations1.Law
 import categories.simple.Scala
-import discipline1.{<->, IsEq}
+import isEqual.{<->, IsEq}
 import categories.simple.monoidalCategories.StrictMonoidal
 
 trait InternalMonoid[C[_, _]](using val C: StrictMonoidal[C]):

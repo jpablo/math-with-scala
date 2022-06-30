@@ -5,7 +5,7 @@ import annotations1.*
 import categories.simple.categoryExamples.{*, given}
 import categories.simple.functor.Functor.Id
 import categories.simple.functor.*
-import discipline1.*
+import isEqual.*
 
 trait MonoidalCategory[C[_, _]](using C: Category[C]):
   export C.*

@@ -1,16 +1,16 @@
 package applications.zioInstances
 
-import annotations1.Law
+import annotations1.*
 import categories.simple.*
 import categories.simple.categoryExamples.*
 import categories.simple.functor.Functor.Id
-import categories.simple.categoryExamples.{_, given}
+import categories.simple.categoryExamples.{*, given}
 import categories.simple.monoidalCategories.{BraidedMonoidalCategory, MonoidalCategory, StrictMonoidal, CartesianMonoidalCategory}
 import zio.{RIO, ZIO}
-import discipline1.{<->, IsEq}
+import isEqual.*
 import categories.simple.functor.*
 
-object ZIOInstances {
+object ZIOInstances:
 
   // -------------------------
   // Category instance: RIOCat
@@ -193,4 +193,4 @@ object ZIOInstances {
   // -------------------------
 //  given RIOBraidedCat: BraidedMonoidalCategory[RIO]:
 //    val braiding: (Tensor <===> Braiding)[RIO, RIO] = ???
-}
+end ZIOInstances

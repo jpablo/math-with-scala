@@ -1,6 +1,6 @@
 package sets
 
-import discipline1.*
+import isEqual.*
 
 type Relation[X, Y] = PartialFunction[X, Set[Y]]
 

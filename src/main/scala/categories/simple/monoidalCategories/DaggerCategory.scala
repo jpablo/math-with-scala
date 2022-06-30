@@ -5,7 +5,7 @@ import categories.simple.*
 import categories.simple.categoryExamples.*
 import categories.simple.functor.Functor.Id
 import categories.simple.functor.*
-import discipline1.*
+import isEqual.*
 
 trait DaggerCategory[C[_, _]] extends Category[C]:
   extension [X, Y] (f: X ~> Y)

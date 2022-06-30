@@ -1,6 +1,6 @@
 package algebra
 
-import discipline1.*
+import isEqual.*
 import annotations1.*
 
 trait Monoid[M]:
@@ -36,9 +36,4 @@ object MonoidInstances:
     val id = ""
     extension (x: String) def * (y: String) = x + y
 
-// to run:
-// import algebra.*
-// import MonoidInstances.{_, given}
-// val ma = new MonoidAxioms[Int]
-// ma.main(Array.empty)
 end MonoidInstances

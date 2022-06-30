@@ -1,6 +1,6 @@
 package categories.simple
 
-import discipline1.*
+import isEqual.*
 import annotations1.*
 
 trait Exponents[~>[_, _]](Cat: Category[~>], val P: InternalProduct[~>]):

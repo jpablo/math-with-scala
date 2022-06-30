@@ -1,6 +1,6 @@
 package algebra
 
-import discipline1.*
+import isEqual.*
 import annotations1.*
 
 trait Group[G] extends Monoid[G]:

@@ -1,7 +1,7 @@
 package categories.simple
 
 import categories.simple.functor.*
-import discipline1.*
+import isEqual.*
 
 
 def yonedaLemma[C[_, _], G[_], X0](G: (C --> Scala)[G])(using C: Category[C] ) =

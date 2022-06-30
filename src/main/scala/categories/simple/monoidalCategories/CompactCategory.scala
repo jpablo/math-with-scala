@@ -5,7 +5,7 @@ import categories.simple.*
 import categories.simple.categoryExamples.*
 import categories.simple.functor.Functor.Id
 import categories.simple.functor.*
-import discipline1.*
+import isEqual.*
 
 trait CompactCategory[C[_, _]] extends MonoidalCategory[C]:
   type Dual[X]

@@ -9,8 +9,8 @@ import categories.simple.{_, given}
  * Fst[(A, B)] == A
  * @tparam A
  */
-type Fst[A] = A match { case Tuple => Tuple.Elem[A, 0] }
-type Snd[A] = A match { case Tuple => Tuple.Elem[A, 1] }
+type Fst[A]   = A match { case Tuple => Tuple.Elem[A, 0] }
+type Snd[A]   = A match { case Tuple => Tuple.Elem[A, 1] }
 type Third[A] = A match { case Tuple => Tuple.Elem[A, 2] }
 
 // type Fst[X]   = X match { case a *: _            => a }

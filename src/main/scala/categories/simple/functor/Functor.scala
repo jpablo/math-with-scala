@@ -7,6 +7,7 @@ import annotations1.*
 import categories.simple.Scala
 import categories.simple.categoryExamples.*
 import isEqual.*
+import zio.prelude.classic
 
 /**
  * A Functor F between the categories C and D
@@ -86,9 +87,9 @@ type -/->[C[_, _], D[_, _]] =
 type Endofunctor[F[_], C[_, _]] = (C --> C) [F]
 
 // --------------------------------------
-// creates endofunctors from cats.Functor
+// creates endofunctors from zio.prelude.classic.Functor
 // --------------------------------------
-given [F[+_]](using F: zio.prelude.classic.Functor[F]): Endofunctor[F, Scala] with
+given [F[+_]](using F: classic.Functor[F]): Endofunctor[F, Scala] with
   def map[A, B](f: A => B) = F.map(f)
 
 object FunctorExamples:

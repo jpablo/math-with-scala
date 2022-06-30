@@ -1,6 +1,7 @@
 package categories.simple.categoryExamples
 
 import categories.simple.CategoryS
+import zio.prelude.classic
 
 // Monoids are categories with only one object
 // trick: each element is an arrow
@@ -12,7 +13,7 @@ type ConstantHom[A] = [_ <: ●, _ <: ●] =>> A
 /**
  * Creates a new Category given a Monoid[M]
  */
-def fromMonoid[M](M: zio.prelude.classic.Monoid[M]) =
+def fromMonoid[M](M: classic.Monoid[M]) =
   new CategoryS[●, ConstantHom[M]]:
     def id[A <: ●]: M = M.identity
     extension [A <: ●, B <: ●, C <: ●] 

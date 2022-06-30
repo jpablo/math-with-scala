@@ -7,12 +7,11 @@ import isEqual.*
 import annotations1.*
 import zio.prelude.*
 
-trait Monad0[T[+_]: classic.Functor] {
+trait Monad0[T[+_]](using T: classic.Functor[T]):
   def pure[A]: A => T[A]
   def flatten[A]: T[T[A]] => T[A]
   def flatMap[A, B](a: T[A])(f: A => T[B]): T[B] =
-  	flatten(Covariant[T].map(f)(a))
-}
+  	flatten(T.map(f)(a))
 
 
 // pure: Id ==> T

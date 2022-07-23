@@ -2,7 +2,7 @@ package categories.simple.monoidalCategories
 
 import categories.simple.*
 import categories.simple.functor.*
-import categories.simple.categoryExamples.{_, given}
+import categories.simple.categoryExamples.{*, given}
 
 /**
  * A Cartesian Monoidal Category with a common bifunctor as both product and tensor

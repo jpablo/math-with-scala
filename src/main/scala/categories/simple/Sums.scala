@@ -1,7 +1,7 @@
 package categories.simple
 
 import isEqual.*
-import categories.simple.{_, given}
+import categories.simple.{*, given}
 
 object Ops {
   type Map[Tup <: Tuple, F[_ <: Tuple]] <: Tuple = Tup match

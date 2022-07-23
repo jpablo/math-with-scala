@@ -2,8 +2,8 @@ package applications.interpreters
 
 import categories.simple.*
 import categories.simple.monoidalCategories.{BraidedMonoidalCategory, MonoidalCategory, StrictMonoidal, CartesianMonoidalCategory}
-import categories.simple.{_, given}
-import categories.simple.categoryExamples.{_, given}
+import categories.simple.{*, given}
+import categories.simple.categoryExamples.{*, given}
 import categories.simple.functor.*
 import categories.simple.functor.Functor.Id
 

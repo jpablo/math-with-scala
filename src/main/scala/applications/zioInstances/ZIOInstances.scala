@@ -19,10 +19,10 @@ object ZIOInstances:
   // Morphisms are values RIO[A, B]
   // -------------------------
   given RIOCat: Category[RIO] with
-    def id[A] = RIO.identity[A]
+    def id[A] = RIO.access[A](x => x)
     extension [A, B, C] (g: RIO[B, C])
       @targetName("compose")
-      def ◦ (f: RIO[A, B]) = g compose f
+      def ◦ (f: RIO[A, B]) = f.flatMap(g.provide)
 
   // --------------------------
   // Product Category RIO × RIO
@@ -36,7 +36,7 @@ object ZIOInstances:
   // this is the same as (RIO × RIO)[A, B]
 
   // A way to mark tuples
-  type Tuple[T] = (Fst[T], Snd[T])
+  type ToTuple2[T] = (Fst[T], Snd[T])
   // Product[(A, B)] =:= (A, B)
 
   // --------------------------------
@@ -50,12 +50,27 @@ object ZIOInstances:
   // ----------------------------
   // A functor RIO × RIO --> RIO
   // ----------------------------
+//  extension [R, E, A] (self: ZIO[R, E, A])
+//    def split[R1, E1 >: E, B](that: ZIO[R1, E1, B]): ZIO[(R, R1), E1, (A, B)] =
+//      (ZIO.first >>> self) &&& (ZIO.second >>> that)
+//      val fst: ToTuple2[A] => Fst[A] = _._1
+//      val snd: ToTuple2[A] => Snd[A] = _._2
+//      val tensorFst = ZIO.fromFunction[(A, Any), A](_._1).flatMap(self.provide)
+//      val tensorSnd = ZIO.fromFunction(snd).flatMap(that.provide)
+//      (tensorFst zipWith tensorSnd)((a, b) => (a, b))
+
   //  f: RIO[A1, B1]
   //  g: RIO[A2, B2]
   // (f, g) => f ⨂ g == f *** g : RIO[(A1, A2), (B1, B2)]
-  val tensorProduct: (RIO × RIO --> RIO) [Tuple] =
+  val tensorProduct: (RIO × RIO --> RIO) [ToTuple2] =
     Functor {
-      [A, B] => (f: A **> B) => f._1 *** f._2
+      [A, B] => (f: A **> B) =>
+        val fst: ToTuple2[A] => Fst[A] = _._1
+        val snd: ToTuple2[A] => Snd[A] = _._2
+        val tensorFst = ZIO.fromFunction(fst).flatMap(f._1.provide)
+        val tensorSnd = ZIO.fromFunction(snd).flatMap(f._2.provide)
+        (tensorFst zipWith tensorSnd)((a, b) => (a, b))
+          : RIO[(Fst[A], Snd[A]), (Fst[B], Snd[B])]
     }
 
   // ---------------------------------------------------------
@@ -64,7 +79,7 @@ object ZIOInstances:
   object RIOMonCat extends MonoidalCategory[RIO]:
     type ⨂[A, B] = (A, B)
     type I = EmptyTuple
-    def tensor: (RIO × RIO --> RIO) [Tuple] = tensorProduct
+    def tensor: (RIO × RIO --> RIO) [ToTuple2] = tensorProduct
 
     val associator: (Lassoc <===> Rassoc)[RIO3, RIO] =
       new NaturalIsomorphism with (Lassoc ==> Rassoc)[RIO3, RIO]:
@@ -144,7 +159,7 @@ object ZIOInstances:
       // -----------------------------
 //      type ⨂[A, B] = A * B
       type I = T
-      def tensor: Functor[Tuple, RIO × RIO, RIO] = tensorProduct
+      def tensor: Functor[ToTuple2, RIO × RIO, RIO] = tensorProduct
 
       val associator: (Lassoc <===> Rassoc)[RIO3, RIO] =
         new NaturalIsomorphism with (Lassoc ==> Rassoc)[RIO3, RIO](using RIO3Cat, RIOCat):

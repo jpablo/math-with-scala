@@ -80,16 +80,16 @@ object RenderGraphvizHtml:
     graph("render").`with`(
       graph("incoming")
         .graphAttr().`with`(Rank.inSubgraph(RankType.SAME))
-        .`with`(incomingSortLinks:_*)
+        .`with`(incomingSortLinks*)
       ,
       graph("outgoing")
         .graphAttr()
         .`with`(Rank.inSubgraph(RankType.SAME))
-        .`with`(outgoingSortLinks:_*)
+        .`with`(outgoingSortLinks*)
     )
-    .`with`(incomingLinks:_*)
-    .`with`(innerLinks:_*)
-    .`with`(outgoingLinks:_*)
+    .`with`(incomingLinks*)
+    .`with`(innerLinks*)
+    .`with`(outgoingLinks*)
   end render
 
   type PortId = String

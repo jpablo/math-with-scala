@@ -1,7 +1,7 @@
 package categories.simple
 
 import isEqual.*
-import categories.simple.{_, given}
+import categories.simple.{*, given}
 import annotations1.*
 
 

@@ -121,27 +121,26 @@ def whisker
  *                                                                                      */
 //========================================================================================
 
-extension
-  [H[_], F[_], G[_], Cp[_, _]: Category, C[_, _]: Category, D[_, _]: Category]
-  (nat : (F ==> G)[C, D]) def *: (h : (Cp --> C)[H])
-: (F ⊙ H ==> G ⊙ H) [Cp, D] =
-  whisker(Functor.identity[D], nat, h)
+extension [H[_], F[_], G[_], Cp[_, _]: Category, C[_, _]: Category, D[_, _]: Category] (nat : (F ==> G)[C, D])
+  def *: (h : (Cp --> C)[H]): (F ⊙ H ==> G ⊙ H) [Cp, D] =
+    whisker(Functor.identity[D], nat, h)
 
 //========================================================================================
 /*                                                                                      *
  * (K :* φ): K ⊙ F ==> K ⊙ G                                                            *
  *                                                                                      */
 //========================================================================================
-extension
-  [F[_], G[_], K[_], C[_, _]: Category, D[_, _]: Category, Dp[_, _]: Category]
-  (k: (D --> Dp)[K]) def :* (nat: (F ==> G)[C, D])
-: (K ⊙ F ==> K ⊙ G) [C, Dp] =
-  whisker(k, nat, Functor.identity[C])
+extension [F[_], G[_], K[_], C[_, _]: Category, D[_, _]: Category, Dp[_, _]: Category] (k: (D --> Dp)[K])
+  def :* (nat: (F ==> G)[C, D]): (K ⊙ F ==> K ⊙ G) [C, Dp] =
+    whisker(k, nat, Functor.identity[C])
 
 
 trait NaturalIsomorphism
   [F[_], G[_], C[_,_], D[_, _]]
-  (using C: Category[C], D: Category[D])
+  (using
+    C: Category[C],
+    D: Category[D]
+  )
 extends NaturalTransformation[F, G, C, D]:
   import D.~>
 

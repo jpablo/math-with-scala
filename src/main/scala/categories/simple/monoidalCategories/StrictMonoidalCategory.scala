@@ -36,10 +36,9 @@ trait StrictMonoidal[C[_, _]] extends Category[C]:
   // Note: the tensor product induces a canonical binary operation in arrows.
   // This is just the Functor map applied to the arrows of the product category,
   // which are tuples of arrows.
-  extension [A1, B1, A2, B2]
-    ( f: A1 ~> B1) def ⨂ (
-      g: A2 ~> B2): (A1 ⨂ A2) ~> (B1 ⨂ B2) =
-    tensor[(A1, A2), (B1, B2)]((f, g))
+  extension [A1, B1, A2, B2] (f: A1 ~> B1)
+    def ⨂ (g: A2 ~> B2): (A1 ⨂ A2) ~> (B1 ⨂ B2) =
+      tensor[(A1, A2), (B1, B2)]((f, g))
 
   // Requiring that ⨂ is a bifunctor is the same as:
   @Law
@@ -79,7 +78,7 @@ object Example:
 
         @Proof
         def compositionP[X, Y, Z](f: ProductArrow[X, Y], g: ProductArrow[Y, Z]) =
-          import Scala2.{◦ => ◦◦}
+          import Scala2.{◦ as ◦◦}
           val (g1, g2) = g
           val (f1, f2) = f
           List(

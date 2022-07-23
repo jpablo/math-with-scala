@@ -1,9 +1,9 @@
 package categories.simple.monoidalCategories.instances
 
 import categories.simple.monoidalCategories.*
-import categories.simple.{_, given}
+import categories.simple.{*, given}
 import annotations1.*
-import categories.simple.categoryExamples.{_, given}
+import categories.simple.categoryExamples.{*, given}
 import categories.simple.functor.Functor.Id
 import categories.simple.functor.*
 import isEqual.*

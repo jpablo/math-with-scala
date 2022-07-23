@@ -23,4 +23,5 @@ lazy val root = project
 
 scalacOptions ++= Seq(
   "-Ykind-projector:underscores",
+  "-source:future"
 )

@@ -102,9 +102,9 @@ extension [C[_, _], D[_, _]] (C: Category[C])
 end extension
 
 def prod3[C[_, _], D[_, _], E[_, _]](C: Category[C], D: Category[D], E: Category[E]): Category[Prod3[C, D, E]] =
-  import C.{◦ => *}
-  import D.{◦ => +}
-  import E.{◦ => x}
+  import C.{◦ as *}
+  import D.{◦ as +}
+  import E.{◦ as x}
 
   new Category[Prod3[C, D, E]]:
     def id[A]: A ~> A =

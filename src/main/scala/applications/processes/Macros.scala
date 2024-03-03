@@ -15,7 +15,7 @@ object TypeName {
 
 object PortLabel {
   def apply(lst: String*): List[PortLabel] =
-    lst.toList.map(Single(_))
+    lst.toList.map(Single.apply)
 }
 
 sealed trait PortLabel {

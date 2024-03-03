@@ -69,11 +69,11 @@ object RenderGraphvizHtml:
       }.unzip
 
     val incomingSortLinks =
-      if (incoming.length > 1) List(incoming.reduceRight((n1, n2) => n1 link to(n2).`with`(Style.INVIS)))
+      if (incoming.length > 1) List(incoming.reduceRight((n1, n2) => n1 `link` to(n2).`with`(Style.INVIS)))
       else incoming
 
     val outgoingSortLinks =
-      if (outgoing.length > 1) List(outgoing.reduceRight((n1, n2) => n1 link to(n2).`with`(Style.INVIS)))
+      if (outgoing.length > 1) List(outgoing.reduceRight((n1, n2) => n1 `link` to(n2).`with`(Style.INVIS)))
       else outgoing
 
 
@@ -139,7 +139,7 @@ object RenderGraphvizHtml:
     )
 
   def linkInner(n0: Node, p0: String, n1: Node, p1: String, label: String = "") =
-    n0 link between(port("o" + p0, Compass.EAST), n1.port("i" + p1, Compass.WEST))
+    n0 `link` between(port("o" + p0, Compass.EAST), n1.port("i" + p1, Compass.WEST))
       .`with`(attribute.Arrow.NONE, attribute.Label.of(label))
 
   def formatType(s: String) = {
@@ -147,15 +147,15 @@ object RenderGraphvizHtml:
   }
 
   def linkIncoming(n0: Node, n1: Node, p1: String, label: String = "") =
-    n0 link to(n1.port("i" + p1, Compass.WEST))
+    n0 `link` to(n1.port("i" + p1, Compass.WEST))
       .`with`(attribute.Arrow.NONE, attribute.Label.of(label))
 
   def linkOutgoing(n0: Node, p0: String, n1: Node, label: String = "") =
-    n0 link between(port("o" + p0, Compass.EAST), n1)
+    n0 `link` between(port("o" + p0, Compass.EAST), n1)
       .`with`(attribute.Arrow.NONE, attribute.Label.of(label))
 
   def linkIdentity(n0: Node, n1: Node, label: String = "") =
-    n0 link to(n1)
+    n0 `link` to(n1)
       .`with`(attribute.Arrow.NONE, attribute.Label.of(label))
 
 end RenderGraphvizHtml

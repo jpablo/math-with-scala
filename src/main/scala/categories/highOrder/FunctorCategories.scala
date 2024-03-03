@@ -25,7 +25,7 @@ type IdF[A[_]] = Any
 
 trait CategoryF1[Hom[f[_], g[_]]] extends CategoryF[IdF, Hom]:
   def id[F[_]]: F ~> F
-  extension[A[_], B[_], C[_]] (f: A ~> B) def andThen (g: B ~> C): A ~> C
+  extension[A[_], B[_], C[_]] (f: A ~> B) infix def andThen (g: B ~> C): A ~> C
   // implement CategoryF methods in terms of CategoryF1 methods
   def id[F[_] : IdF]: F ~> F = id[F]
   // Is it possible to use the same operator (>>>) in both traits?

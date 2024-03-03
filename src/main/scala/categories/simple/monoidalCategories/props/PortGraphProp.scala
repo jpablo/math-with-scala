@@ -31,7 +31,7 @@ case class PortGraph[B](
   inner      : List[Port[B] -> Port[B]],
   outgoing   : List[Port[B]],
 ) {
-  def andThen(other: PortGraph[B]) = {
+  infix def andThen(other: PortGraph[B]) = {
     val (boxes, inner, incoming, outgoing) = PortGraph.combineEdges(this, other)
     PortGraph(
       boxes      = boxes,
@@ -96,7 +96,7 @@ object PortGraph {
         val newDelta = delta + expanded.size - 1
         val (newConnections, expandedLabels) = expanded.unzip
         // now we have to splice the expand labels into the existing labels
-        val (before, current :: after) = labels.splitAt(startPos)
+        val (before, current :: after) = labels.splitAt(startPos) : @unchecked
         val newLabels = before ++ expandedLabels.reverse ++ after
         val newLabelsBoth = (if (dir == Direction.In) (newLabels, right) else (left, newLabels))
 

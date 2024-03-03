@@ -41,9 +41,10 @@ object Examples:
       case sa: Snd[A] => f._2(sa)  // this is probably not correct!!
     }
 
-  type Product[A] = (Fst[A], Snd[A])
+  type Product[A] =
+    (Fst[A], Snd[A])
 
-  object product extends (Scala × Scala --> Scala) [Product]:
+  object product extends Functor[Product, Scala × Scala, Scala]:
     def map[A, B](f: ProductMorphism[A, B]): Product[A] => Product[B] =
       case (a1, a2) => (f._1(a1), f._2(a2))
 

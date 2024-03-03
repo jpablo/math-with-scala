@@ -78,7 +78,7 @@ object Example:
 
         @Proof
         def compositionP[X, Y, Z](f: ProductArrow[X, Y], g: ProductArrow[Y, Z]) =
-          import Scala2.{◦ as ◦◦}
+          import Scala2.◦ as ◦◦
           val (g1, g2) = g
           val (f1, f2) = f
           List(

@@ -97,7 +97,7 @@ extension [C[_, _], D[_, _]] (C: Category[C])
       extension [A, B, C] (g: B ~> C)
         @targetName("compose")
         def ◦ (f: A ~> B): A ~> C =
-          ( g._1 compose1 f._1, g._2 compose2 f._2 )
+          ( g._1 `compose1` f._1, g._2 `compose2` f._2 )
 
 end extension
 
@@ -113,7 +113,7 @@ def prod3[C[_, _], D[_, _], E[_, _]](C: Category[C], D: Category[D], E: Category
     extension [A, B, C] (g: B ~> C)
       @targetName("compose")
       def ◦ (f: A ~> B): A ~> C =
-        (g._1 * f._1, g._2 + f._2, g._3 x f._3)
+        (g._1 * f._1, g._2 + f._2, g._3 `x` f._3)
 
 given prodCat[C[_, _], D[_, _]](using C: Category[C], D: Category[D]): Category[C × D] =
   C × D

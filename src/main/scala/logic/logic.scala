@@ -28,7 +28,7 @@ object False:
 //-------------
 // Conjuntion
 //-------------
-case class and[A <: Prop, B <: Prop](left: A, right: B) extends Prop
+infix case class and[A <: Prop, B <: Prop](left: A, right: B) extends Prop
 
 type ∧[A <: Prop, B <: Prop] = A and B
 
@@ -46,7 +46,7 @@ trait AndExamples {
 // -----------
 // Disjunction
 // -----------
-sealed trait or[P <: Prop, Q <: Prop] extends Prop
+infix sealed trait or[P <: Prop, Q <: Prop] extends Prop
 
 type ∨[P <: Prop, Q <: Prop] = P or Q
 
@@ -87,7 +87,7 @@ class PropFunction[A, P <: Prop](f: A => P) extends (A => P) with Prop:
 type not[a <: Prop] = PropFunction[a, False]
 
 // helper function
-def not[P <: Prop](contradiction: P => False): not[P] = 
+def not[P <: Prop](contradiction: P => False): not[P] =
   PropFunction(contradiction)
 
 type ¬[P <: Prop] = not[P]
@@ -124,7 +124,7 @@ trait NotExamples {
 // -----------
 
 // mp: modus ponens
-case class iff[A <: Prop, B <: Prop](mp: A => B, mpr: B => A) extends Prop
+infix case class iff[A <: Prop, B <: Prop](mp: A => B, mpr: B => A) extends Prop
 
 type <->[A <: Prop, B <: Prop] = A iff B
 
@@ -254,7 +254,7 @@ type ==[A, B] = Eq[A, B]
 object Eq {
   def refl[A]: A == A = Eq.reflexivity()
 //  def reflV[A](a: A, b: A)(using a.type =:= b.type): a.type == b.type = Eq.reflexivity()
-  
+
   val f: Int => Int = ???
   val g: Int => Int = ???
   type FG = f.type == g.type
@@ -262,28 +262,28 @@ object Eq {
 
 
 object EqExamples extends App {
-  val ex1: 1 == 1 = Eq.refl 
+  val ex1: 1 == 1 = Eq.refl
   val ex2: 1 == 2 = ???
-  
+
   println(ex1)
   import scala.compiletime.ops.int.*
-  
+
   def lemma_add_succ[n <: Int]: n + 0 == n = ???
-  
+
   def lemma_zero_add2[n <: Int]: 0 + n == n = ???
 
   def lemma_zero_add(n: Int): 0 + n.type == n.type = {
-    type t = 0 + n.type 
+    type t = 0 + n.type
 //    Eq.refl[0 + n.type]
     ???
   }
 
 
   summon[ 0 + 0 =:= 0 ]
-  
+
   val zz: 0 + 0 == 0 = Eq.refl
   // subtypes
-  
+
   case class Subtype[A, P[_ <: A] <: Prop]
     (value: A)
     (property: P[value.type])

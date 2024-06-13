@@ -16,3 +16,12 @@ target
 .bsp/*
 .metals/*
 .vscode/*
+
+.bloop/*
+/project/.bloop/bloop.settings.json
+/project/.bloop/math-with-scala-build.json
+/project/project/.bloop/bloop.settings.json
+/project/project/.bloop/math-with-scala-build-build.json
+/project/project/project/metals.sbt
+/project/project/metals.sbt
+/project/metals.sbt

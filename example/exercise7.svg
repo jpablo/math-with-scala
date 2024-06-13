@@ -1,0 +1,59 @@
+<svg width="1024px" height="222px"
+ viewBox="0.00 0.00 280.83 60.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 56.8)">
+<title>outer</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-56.8 276.83,-56.8 276.83,4 -4,4"/>
+<!-- i0 -->
+<g id="node1" class="node">
+<title>i0</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-41" rx="1.8" ry="1.8"/>
+</g>
+<!-- 21b46deb&#45;9ca8&#45;46c7&#45;a678&#45;5deeedafd1aa -->
+<g id="node2" class="node">
+<title>21b46deb&#45;9ca8&#45;46c7&#45;a678&#45;5deeedafd1aa</title>
+<polygon fill="lightblue" stroke="transparent" points="106.36,-37 75.36,-37 75.36,-7 106.36,-7 106.36,-37"/>
+<text text-anchor="start" x="84.37" y="-17.4" font-family="Times,serif" font-size="14.00">fst</text>
+</g>
+<!-- i0&#45;&gt;21b46deb&#45;9ca8&#45;46c7&#45;a678&#45;5deeedafd1aa -->
+<g id="edge2" class="edge">
+<title>i0&#45;&gt;21b46deb&#45;9ca8&#45;46c7&#45;a678&#45;5deeedafd1aa:w</title>
+<path fill="none" stroke="black" d="M3.82,-40.7C10.27,-38.86 46.04,-29 75.86,-29"/>
+<text text-anchor="middle" x="39.48" y="-40.2" font-family="Times,serif" font-size="14.00">(A, B)</text>
+</g>
+<!-- i1 -->
+<g id="node3" class="node">
+<title>i1</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-2" rx="1.8" ry="1.8"/>
+</g>
+<!-- i0&#45;&gt;i1 -->
+<!-- 5e332977&#45;f960&#45;4897&#45;9ee1&#45;74d15b67359c -->
+<g id="node4" class="node">
+<title>5e332977&#45;f960&#45;4897&#45;9ee1&#45;74d15b67359c</title>
+<polygon fill="lightblue" stroke="transparent" points="223.13,-30 192.13,-30 192.13,0 223.13,0 223.13,-30"/>
+<text text-anchor="start" x="201.13" y="-10.4" font-family="Times,serif" font-size="14.00">fst</text>
+</g>
+<!-- 21b46deb&#45;9ca8&#45;46c7&#45;a678&#45;5deeedafd1aa&#45;&gt;5e332977&#45;f960&#45;4897&#45;9ee1&#45;74d15b67359c -->
+<g id="edge3" class="edge">
+<title>21b46deb&#45;9ca8&#45;46c7&#45;a678&#45;5deeedafd1aa:e&#45;&gt;5e332977&#45;f960&#45;4897&#45;9ee1&#45;74d15b67359c:w</title>
+<path fill="none" stroke="black" d="M106.36,-22C144.7,-22 154.29,-22 192.63,-22"/>
+<text text-anchor="middle" x="149.25" y="-26.2" font-family="Times,serif" font-size="14.00">(A, B):A</text>
+</g>
+<!-- i1&#45;&gt;21b46deb&#45;9ca8&#45;46c7&#45;a678&#45;5deeedafd1aa -->
+<g id="edge4" class="edge">
+<title>i1&#45;&gt;21b46deb&#45;9ca8&#45;46c7&#45;a678&#45;5deeedafd1aa:w</title>
+<path fill="none" stroke="black" d="M4.16,-2.12C10.34,-2.66 36.36,-5.1 57.36,-9.2 65.7,-10.83 67.37,-14 75.86,-14"/>
+<text text-anchor="middle" x="39.48" y="-13.2" font-family="Times,serif" font-size="14.00">C</text>
+</g>
+<!-- o0 -->
+<g id="node5" class="node">
+<title>o0</title>
+<ellipse fill="white" stroke="black" cx="271.03" cy="-15" rx="1.8" ry="1.8"/>
+</g>
+<!-- 5e332977&#45;f960&#45;4897&#45;9ee1&#45;74d15b67359c&#45;&gt;o0 -->
+<g id="edge5" class="edge">
+<title>5e332977&#45;f960&#45;4897&#45;9ee1&#45;74d15b67359c:e&#45;&gt;o0</title>
+<path fill="none" stroke="black" d="M223.13,-15C241.37,-15 263.6,-15 268.87,-15"/>
+<text text-anchor="middle" x="246.18" y="-19.2" font-family="Times,serif" font-size="14.00">A</text>
+</g>
+</g>
+</svg>

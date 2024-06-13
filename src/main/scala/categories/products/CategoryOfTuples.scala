@@ -127,7 +127,7 @@ object CategoryP2FuncExamples extends App:
     import C.>>> as andThen1
     import D.>>> as andThen2
 
-    new CategoryF1:
+    new CategoryF1[C × D]:
       def id[A[_]] = (C.id[A[1]], D.id[A[2]])
         : A ~> A
       extension [A[_], B[_], C[_]]

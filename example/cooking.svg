@@ -1,0 +1,59 @@
+<svg width="1024px" height="421px"
+ viewBox="0.00 0.00 235.71 96.60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 92.6)">
+<title>outer</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-92.6 231.71,-92.6 231.71,4 -4,4"/>
+<!-- i0 -->
+<g id="node1" class="node">
+<title>i0</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-79.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01 -->
+<g id="node2" class="node">
+<title>ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01</title>
+<polygon fill="lightblue" stroke="transparent" points="139.9,-56.8 76.9,-56.8 76.9,-26.8 139.9,-26.8 139.9,-56.8"/>
+<text text-anchor="start" x="86.35" y="-37.2" font-family="Times,serif" font-size="14.00">cooking</text>
+</g>
+<!-- i0&#45;&gt;ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01 -->
+<g id="edge3" class="edge">
+<title>i0&#45;&gt;ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01:w</title>
+<path fill="none" stroke="black" d="M3.59,-79.5C8.59,-77.64 36.32,-67.3 58.9,-58.8 67.13,-55.7 68.61,-51.8 77.4,-51.8"/>
+<text text-anchor="middle" x="40.25" y="-76" font-family="Times,serif" font-size="14.00">eggs</text>
+</g>
+<!-- i1 -->
+<g id="node3" class="node">
+<title>i1</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-40.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- i0&#45;&gt;i1 -->
+<!-- o0 -->
+<g id="node5" class="node">
+<title>o0</title>
+<ellipse fill="white" stroke="black" cx="225.91" cy="-41.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01&#45;&gt;o0 -->
+<g id="edge4" class="edge">
+<title>ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01:e&#45;&gt;o0</title>
+<path fill="none" stroke="black" d="M139.9,-41.8C174.73,-41.8 217.59,-41.8 224.07,-41.8"/>
+<text text-anchor="middle" x="182.01" y="-46" font-family="Times,serif" font-size="14.00">omelette</text>
+</g>
+<!-- i1&#45;&gt;ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01 -->
+<g id="edge5" class="edge">
+<title>i1&#45;&gt;ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01:w</title>
+<path fill="none" stroke="black" d="M3.85,-40.8C10.5,-40.8 47.35,-40.8 77.4,-40.8"/>
+<text text-anchor="middle" x="40.25" y="-45" font-family="Times,serif" font-size="14.00">butter</text>
+</g>
+<!-- i2 -->
+<g id="node4" class="node">
+<title>i2</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-1.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- i1&#45;&gt;i2 -->
+<!-- i2&#45;&gt;ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01 -->
+<g id="edge6" class="edge">
+<title>i2&#45;&gt;ebd18572&#45;6c00&#45;45cc&#45;8bb0&#45;b1f00e5dde01:w</title>
+<path fill="none" stroke="black" d="M3.62,-1.98C8.8,-3.15 37.42,-9.87 58.9,-20 67.72,-24.16 67.65,-31.8 77.4,-31.8"/>
+<text text-anchor="middle" x="40.25" y="-25" font-family="Times,serif" font-size="14.00">cheese</text>
+</g>
+</g>
+</svg>

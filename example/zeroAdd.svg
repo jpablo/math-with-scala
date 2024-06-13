@@ -1,0 +1,46 @@
+<svg width="1024px" height="479px"
+ viewBox="0.00 0.00 124.09 57.60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 53.6)">
+<title>outer</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-53.6 120.09,-53.6 120.09,4 -4,4"/>
+<!-- i0 -->
+<g id="node1" class="node">
+<title>i0</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-40.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- 857a447b&#45;8870&#45;4003&#45;91d6&#45;760f068dafd1 -->
+<g id="node2" class="node">
+<title>857a447b&#45;8870&#45;4003&#45;91d6&#45;760f068dafd1</title>
+<polygon fill="lightblue" stroke="transparent" points="75.49,-36.8 50.49,-36.8 50.49,-6.8 75.49,-6.8 75.49,-36.8"/>
+<text text-anchor="start" x="59.54" y="-17.2" font-family="Times,serif" font-size="14.00">+</text>
+</g>
+<!-- i0&#45;&gt;857a447b&#45;8870&#45;4003&#45;91d6&#45;760f068dafd1 -->
+<g id="edge2" class="edge">
+<title>i0&#45;&gt;857a447b&#45;8870&#45;4003&#45;91d6&#45;760f068dafd1:w</title>
+<path fill="none" stroke="black" d="M3.97,-40.28C9.27,-37.99 31.68,-28.8 50.99,-28.8"/>
+<text text-anchor="middle" x="27.05" y="-37" font-family="Times,serif" font-size="14.00">0</text>
+</g>
+<!-- i1 -->
+<g id="node3" class="node">
+<title>i1</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-1.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- i0&#45;&gt;i1 -->
+<!-- o0 -->
+<g id="node4" class="node">
+<title>o0</title>
+<ellipse fill="white" stroke="black" cx="114.29" cy="-21.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- 857a447b&#45;8870&#45;4003&#45;91d6&#45;760f068dafd1&#45;&gt;o0 -->
+<g id="edge3" class="edge">
+<title>857a447b&#45;8870&#45;4003&#45;91d6&#45;760f068dafd1:e&#45;&gt;o0</title>
+<path fill="none" stroke="black" d="M75.49,-21.8C90.19,-21.8 108.11,-21.8 112.36,-21.8"/>
+</g>
+<!-- i1&#45;&gt;857a447b&#45;8870&#45;4003&#45;91d6&#45;760f068dafd1 -->
+<g id="edge4" class="edge">
+<title>i1&#45;&gt;857a447b&#45;8870&#45;4003&#45;91d6&#45;760f068dafd1:w</title>
+<path fill="none" stroke="black" d="M3.86,-2.1C10.47,-3.94 45.99,-13.8 50.99,-13.8"/>
+<text text-anchor="middle" x="27.05" y="-13" font-family="Times,serif" font-size="14.00">m</text>
+</g>
+</g>
+</svg>

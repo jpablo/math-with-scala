@@ -1,0 +1,35 @@
+<svg width="1024px" height="197px"
+ viewBox="0.00 0.00 207.61 39.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 35.8)">
+<title>outer</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-35.8 203.61,-35.8 203.61,4 -4,4"/>
+<!-- i0 -->
+<g id="node1" class="node">
+<title>i0</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-15" rx="1.8" ry="1.8"/>
+</g>
+<!-- b9c3e5a8&#45;4516&#45;4fef&#45;93f1&#45;50d7a7ca3adc -->
+<g id="node2" class="node">
+<title>b9c3e5a8&#45;4516&#45;4fef&#45;93f1&#45;50d7a7ca3adc</title>
+<polygon fill="lightblue" stroke="transparent" points="118.81,-30 80.81,-30 80.81,0 118.81,0 118.81,-30"/>
+<text text-anchor="start" x="89.31" y="-10.4" font-family="Times,serif" font-size="14.00">sort</text>
+</g>
+<!-- i0&#45;&gt;b9c3e5a8&#45;4516&#45;4fef&#45;93f1&#45;50d7a7ca3adc -->
+<g id="edge1" class="edge">
+<title>i0&#45;&gt;b9c3e5a8&#45;4516&#45;4fef&#45;93f1&#45;50d7a7ca3adc:w</title>
+<path fill="none" stroke="black" d="M3.9,-15C10.85,-15 49.39,-15 80.81,-15"/>
+<text text-anchor="middle" x="42.2" y="-19.2" font-family="Times,serif" font-size="14.00">List[A]</text>
+</g>
+<!-- o0 -->
+<g id="node3" class="node">
+<title>o0</title>
+<ellipse fill="white" stroke="black" cx="197.81" cy="-15" rx="1.8" ry="1.8"/>
+</g>
+<!-- b9c3e5a8&#45;4516&#45;4fef&#45;93f1&#45;50d7a7ca3adc&#45;&gt;o0 -->
+<g id="edge2" class="edge">
+<title>b9c3e5a8&#45;4516&#45;4fef&#45;93f1&#45;50d7a7ca3adc:e&#45;&gt;o0</title>
+<path fill="none" stroke="black" d="M118.81,-15C150.23,-15 188.76,-15 195.71,-15"/>
+<text text-anchor="middle" x="157.41" y="-19.2" font-family="Times,serif" font-size="14.00">List[A]</text>
+</g>
+</g>
+</svg>

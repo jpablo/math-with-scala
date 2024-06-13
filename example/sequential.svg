@@ -1,0 +1,92 @@
+<svg width="1024px" height="286px"
+ viewBox="0.00 0.00 289.86 81.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 77)">
+<title>outer</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-77 285.86,-77 285.86,4 -4,4"/>
+<!-- i0 -->
+<g id="node1" class="node">
+<title>i0</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-56" rx="1.8" ry="1.8"/>
+</g>
+<!-- 677830f0&#45;3bdd&#45;4e5b&#45;9919&#45;5acdacdc434f -->
+<g id="node2" class="node">
+<title>677830f0&#45;3bdd&#45;4e5b&#45;9919&#45;5acdacdc434f</title>
+<polygon fill="lightblue" stroke="transparent" points="131.71,-73 99.71,-73 99.71,-43 131.71,-43 131.71,-73"/>
+<text text-anchor="start" x="108.71" y="-53.4" font-family="Times,serif" font-size="14.00">h1</text>
+</g>
+<!-- i0&#45;&gt;677830f0&#45;3bdd&#45;4e5b&#45;9919&#45;5acdacdc434f -->
+<g id="edge3" class="edge">
+<title>i0&#45;&gt;677830f0&#45;3bdd&#45;4e5b&#45;9919&#45;5acdacdc434f:w</title>
+<path fill="none" stroke="black" d="M3.75,-56.03C11.14,-56.3 59.99,-58 99.71,-58"/>
+<text text-anchor="middle" x="26.65" y="-60.2" font-family="Times,serif" font-size="14.00">A</text>
+</g>
+<!-- i1 -->
+<g id="node3" class="node">
+<title>i1</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-17" rx="1.8" ry="1.8"/>
+</g>
+<!-- i0&#45;&gt;i1 -->
+<!-- 65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef -->
+<g id="node6" class="node">
+<title>65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef</title>
+<polygon fill="lightblue" stroke="transparent" points="233.71,-52 208.71,-52 208.71,-22 233.71,-22 233.71,-52"/>
+<text text-anchor="start" x="218.21" y="-32.4" font-family="Times,serif" font-size="14.00">g</text>
+</g>
+<!-- 677830f0&#45;3bdd&#45;4e5b&#45;9919&#45;5acdacdc434f&#45;&gt;65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef -->
+<g id="edge4" class="edge">
+<title>677830f0&#45;3bdd&#45;4e5b&#45;9919&#45;5acdacdc434f:e&#45;&gt;65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef:w</title>
+<path fill="none" stroke="black" d="M131.71,-58C166.71,-58 174.2,-44 209.21,-44"/>
+</g>
+<!-- 3c682bbb&#45;c342&#45;48ea&#45;b715&#45;2ea21d3eb922 -->
+<g id="node4" class="node">
+<title>3c682bbb&#45;c342&#45;48ea&#45;b715&#45;2ea21d3eb922</title>
+<polygon fill="lightblue" stroke="transparent" points="81.71,-30 49.71,-30 49.71,0 81.71,0 81.71,-30"/>
+<text text-anchor="start" x="58.71" y="-10.4" font-family="Times,serif" font-size="14.00">h2</text>
+</g>
+<!-- i1&#45;&gt;3c682bbb&#45;c342&#45;48ea&#45;b715&#45;2ea21d3eb922 -->
+<g id="edge5" class="edge">
+<title>i1&#45;&gt;3c682bbb&#45;c342&#45;48ea&#45;b715&#45;2ea21d3eb922:w</title>
+<path fill="none" stroke="black" d="M3.96,-16.91C9.23,-16.53 31.45,-15 49.71,-15"/>
+<text text-anchor="middle" x="26.65" y="-20.2" font-family="Times,serif" font-size="14.00">C</text>
+</g>
+<!-- de68e2fe&#45;abc8&#45;4a3a&#45;837b&#45;04d40750735d -->
+<g id="node5" class="node">
+<title>de68e2fe&#45;abc8&#45;4a3a&#45;837b&#45;04d40750735d</title>
+<polygon fill="lightblue" stroke="transparent" points="171.71,-30 149.71,-30 149.71,0 171.71,0 171.71,-30"/>
+<text text-anchor="start" x="158.38" y="-10.4" font-family="Times,serif" font-size="14.00">f</text>
+</g>
+<!-- 3c682bbb&#45;c342&#45;48ea&#45;b715&#45;2ea21d3eb922&#45;&gt;de68e2fe&#45;abc8&#45;4a3a&#45;837b&#45;04d40750735d -->
+<g id="edge6" class="edge">
+<title>3c682bbb&#45;c342&#45;48ea&#45;b715&#45;2ea21d3eb922:e&#45;&gt;de68e2fe&#45;abc8&#45;4a3a&#45;837b&#45;04d40750735d:w</title>
+<path fill="none" stroke="black" d="M81.71,-15C111.93,-15 119.48,-15 149.71,-15"/>
+</g>
+<!-- de68e2fe&#45;abc8&#45;4a3a&#45;837b&#45;04d40750735d&#45;&gt;65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef -->
+<g id="edge7" class="edge">
+<title>de68e2fe&#45;abc8&#45;4a3a&#45;837b&#45;04d40750735d:e&#45;&gt;65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef:w</title>
+<path fill="none" stroke="black" d="M171.71,-15C189.5,-15 191.42,-29 209.21,-29"/>
+</g>
+<!-- o0 -->
+<g id="node7" class="node">
+<title>o0</title>
+<ellipse fill="white" stroke="black" cx="280.06" cy="-56" rx="1.8" ry="1.8"/>
+</g>
+<!-- 65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef&#45;&gt;o0 -->
+<g id="edge9" class="edge">
+<title>65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef:e&#45;&gt;o0</title>
+<path fill="none" stroke="black" d="M233.71,-44C251.95,-44 272.99,-53.19 277.97,-55.48"/>
+<text text-anchor="middle" x="255.98" y="-53.2" font-family="Times,serif" font-size="14.00">E</text>
+</g>
+<!-- o1 -->
+<g id="node8" class="node">
+<title>o1</title>
+<ellipse fill="white" stroke="black" cx="280.06" cy="-17" rx="1.8" ry="1.8"/>
+</g>
+<!-- 65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef&#45;&gt;o1 -->
+<g id="edge8" class="edge">
+<title>65eb8b68&#45;41d6&#45;4790&#45;8ff7&#45;80db97cbdeef:e&#45;&gt;o1</title>
+<path fill="none" stroke="black" d="M233.71,-29C243.15,-29 272.73,-19.14 278.19,-17.3"/>
+<text text-anchor="middle" x="255.98" y="-30.2" font-family="Times,serif" font-size="14.00">F</text>
+</g>
+<!-- o0&#45;&gt;o1 -->
+</g>
+</svg>

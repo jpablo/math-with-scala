@@ -1,0 +1,89 @@
+<svg width="1024px" height="301px"
+ viewBox="0.00 0.00 377.89 111.10" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 107.1)">
+<title>outer</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-107.1 373.89,-107.1 373.89,4 -4,4"/>
+<!-- i0 -->
+<g id="node1" class="node">
+<title>i0</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-80.3" rx="1.8" ry="1.8"/>
+</g>
+<!-- 46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76 -->
+<g id="node2" class="node">
+<title>46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76</title>
+<polygon fill="lightblue" stroke="transparent" points="162.67,-76.3 105.67,-76.3 105.67,-46.3 162.67,-46.3 162.67,-76.3"/>
+<text text-anchor="start" x="114.84" y="-56.7" font-family="Times,serif" font-size="14.00">assocR</text>
+</g>
+<!-- i0&#45;&gt;46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76 -->
+<g id="edge3" class="edge">
+<title>i0&#45;&gt;46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76:w</title>
+<path fill="none" stroke="black" d="M3.81,-80.09C11.66,-78.5 63.53,-68.3 106.17,-68.3"/>
+<text text-anchor="middle" x="54.64" y="-80.5" font-family="Times,serif" font-size="14.00">((W, X), Y)</text>
+</g>
+<!-- i1 -->
+<g id="node3" class="node">
+<title>i1</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-41.3" rx="1.8" ry="1.8"/>
+</g>
+<!-- i0&#45;&gt;i1 -->
+<!-- fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b -->
+<g id="node4" class="node">
+<title>fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b</title>
+<polygon fill="lightblue" stroke="transparent" points="268.88,-76.3 211.88,-76.3 211.88,-46.3 268.88,-46.3 268.88,-76.3"/>
+<text text-anchor="start" x="221.06" y="-56.7" font-family="Times,serif" font-size="14.00">assocR</text>
+</g>
+<!-- 46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76&#45;&gt;fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b -->
+<g id="edge4" class="edge">
+<title>46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76:e&#45;&gt;fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b:w</title>
+<path fill="none" stroke="black" d="M162.67,-50.3C185.37,-50.3 162,-15.42 180.67,-2.5 185.5,0.84 189.04,0.82 193.88,-2.5 212.68,-15.38 189.6,-50.3 212.38,-50.3"/>
+<text text-anchor="middle" x="187.28" y="-7.5" font-family="Times,serif" font-size="14.00">Z</text>
+</g>
+<!-- 46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76&#45;&gt;fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b -->
+<g id="edge5" class="edge">
+<title>46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76:e&#45;&gt;fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b:w</title>
+<path fill="none" stroke="black" d="M162.67,-57.3C173.03,-57.3 170.92,-45.99 180.67,-42.5 186.2,-40.52 188.34,-40.56 193.88,-42.5 203.82,-45.99 201.86,-57.3 212.38,-57.3"/>
+<text text-anchor="middle" x="187.28" y="-47.5" font-family="Times,serif" font-size="14.00">Y</text>
+</g>
+<!-- 46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76&#45;&gt;fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b -->
+<g id="edge6" class="edge">
+<title>46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76:e&#45;&gt;fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b:w</title>
+<path fill="none" stroke="black" d="M162.67,-64.3C184.77,-64.3 190.29,-64.3 212.38,-64.3"/>
+<text text-anchor="middle" x="187.28" y="-68.5" font-family="Times,serif" font-size="14.00">X</text>
+</g>
+<!-- 46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76&#45;&gt;fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b -->
+<g id="edge7" class="edge">
+<title>46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76:e&#45;&gt;fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b:w</title>
+<path fill="none" stroke="black" d="M162.67,-72.3C172.54,-72.3 171.28,-82.26 180.67,-85.3 186.26,-87.11 188.28,-87.07 193.88,-85.3 203.47,-82.27 202.34,-72.3 212.38,-72.3"/>
+<text text-anchor="middle" x="187.28" y="-90.5" font-family="Times,serif" font-size="14.00">W</text>
+</g>
+<!-- i1&#45;&gt;46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76 -->
+<g id="edge8" class="edge">
+<title>i1&#45;&gt;46acc306&#45;7688&#45;4a74&#45;8195&#45;33eed3d3ac76:w</title>
+<path fill="none" stroke="black" d="M3.65,-41.29C10.19,-41.21 53.42,-40.97 87.67,-47.5 96.13,-49.11 97.55,-53.3 106.17,-53.3"/>
+<text text-anchor="middle" x="54.64" y="-52.5" font-family="Times,serif" font-size="14.00">Z</text>
+</g>
+<!-- o0 -->
+<g id="node5" class="node">
+<title>o0</title>
+<ellipse fill="white" stroke="black" cx="368.09" cy="-80.3" rx="1.8" ry="1.8"/>
+</g>
+<!-- fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b&#45;&gt;o0 -->
+<g id="edge10" class="edge">
+<title>fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b:e&#45;&gt;o0</title>
+<path fill="none" stroke="black" d="M268.88,-68.3C309.42,-68.3 358.68,-78.5 366.13,-80.09"/>
+<text text-anchor="middle" x="317.59" y="-80.5" font-family="Times,serif" font-size="14.00">W</text>
+</g>
+<!-- o1 -->
+<g id="node6" class="node">
+<title>o1</title>
+<ellipse fill="white" stroke="black" cx="368.09" cy="-41.3" rx="1.8" ry="1.8"/>
+</g>
+<!-- fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b&#45;&gt;o1 -->
+<g id="edge9" class="edge">
+<title>fea5396d&#45;632c&#45;43b6&#45;b668&#45;72d33f89069b:e&#45;&gt;o1</title>
+<path fill="none" stroke="black" d="M268.88,-53.3C277.29,-53.3 278.64,-49.12 286.88,-47.5 319.22,-41.13 360.1,-41.24 366.29,-41.29"/>
+<text text-anchor="middle" x="317.59" y="-52.5" font-family="Times,serif" font-size="14.00">(X, (Y, Z))</text>
+</g>
+<!-- o0&#45;&gt;o1 -->
+</g>
+</svg>

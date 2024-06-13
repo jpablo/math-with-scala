@@ -1,0 +1,47 @@
+<svg width="1024px" height="458px"
+ viewBox="0.00 0.00 131.64 58.60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 54.6)">
+<title>outer</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-54.6 127.64,-54.6 127.64,4 -4,4"/>
+<!-- i0 -->
+<g id="node1" class="node">
+<title>i0</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-21.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- 6c073a3d&#45;3514&#45;42c4&#45;a2c2&#45;bbca3bb6d3db -->
+<g id="node2" class="node">
+<title>6c073a3d&#45;3514&#45;42c4&#45;a2c2&#45;bbca3bb6d3db</title>
+<polygon fill="lightblue" stroke="transparent" points="74.71,-36.8 49.71,-36.8 49.71,-6.8 74.71,-6.8 74.71,-36.8"/>
+<text text-anchor="start" x="59.21" y="-17.2" font-family="Times,serif" font-size="14.00">p</text>
+</g>
+<!-- i0&#45;&gt;6c073a3d&#45;3514&#45;42c4&#45;a2c2&#45;bbca3bb6d3db -->
+<g id="edge2" class="edge">
+<title>i0&#45;&gt;6c073a3d&#45;3514&#45;42c4&#45;a2c2&#45;bbca3bb6d3db:w</title>
+<path fill="none" stroke="black" d="M3.97,-21.8C9.3,-21.8 31.77,-21.8 50.21,-21.8"/>
+<text text-anchor="middle" x="26.65" y="-26" font-family="Times,serif" font-size="14.00">A</text>
+</g>
+<!-- o0 -->
+<g id="node3" class="node">
+<title>o0</title>
+<ellipse fill="white" stroke="black" cx="121.84" cy="-40.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- 6c073a3d&#45;3514&#45;42c4&#45;a2c2&#45;bbca3bb6d3db&#45;&gt;o0 -->
+<g id="edge4" class="edge">
+<title>6c073a3d&#45;3514&#45;42c4&#45;a2c2&#45;bbca3bb6d3db:e&#45;&gt;o0</title>
+<path fill="none" stroke="black" d="M74.71,-28.8C93.25,-28.8 114.66,-37.99 119.73,-40.28"/>
+<text text-anchor="middle" x="97.37" y="-38" font-family="Times,serif" font-size="14.00">B</text>
+</g>
+<!-- o1 -->
+<g id="node4" class="node">
+<title>o1</title>
+<ellipse fill="white" stroke="black" cx="121.84" cy="-1.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- 6c073a3d&#45;3514&#45;42c4&#45;a2c2&#45;bbca3bb6d3db&#45;&gt;o1 -->
+<g id="edge3" class="edge">
+<title>6c073a3d&#45;3514&#45;42c4&#45;a2c2&#45;bbca3bb6d3db:e&#45;&gt;o1</title>
+<path fill="none" stroke="black" d="M74.71,-13.8C84.31,-13.8 114.4,-3.94 119.96,-2.1"/>
+<text text-anchor="middle" x="97.37" y="-15" font-family="Times,serif" font-size="14.00">C</text>
+</g>
+<!-- o0&#45;&gt;o1 -->
+</g>
+</svg>

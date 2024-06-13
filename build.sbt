@@ -1,4 +1,4 @@
-val scala3Version = "3.4.0"
+val scala3Version = "3.5.0-RC1"
 val sttpVersion   = "3.8.3"
 val zioVersion    = "1.0.15"
 val zioPreludeVersion = "1.0.0-RC8"
@@ -22,7 +22,7 @@ lazy val root = project
   )
 
 scalacOptions ++= Seq(
-  "-Ykind-projector:underscores",
+  "-Xkind-projector:underscores",
   "-source:future",
   "-deprecation",
   "-feature",

@@ -18,6 +18,7 @@ trait CategoryS[U, Hom[_ <: U, _ <: U]]:
     def ◦ (f: A ~> B): A ~> C
 
   extension [A <: U, B <: U, C <: U] (f: A ~> B)
+    @targetName("andThen")
     def >>> (g: B ~> C): A ~> C = g ◦ f
 
   @Law

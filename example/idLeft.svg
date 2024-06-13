@@ -1,0 +1,92 @@
+<svg width="1024px" height="1005px"
+ viewBox="0.00 0.00 107.91 105.60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 101.6)">
+<title>outer</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-101.6 103.91,-101.6 103.91,4 -4,4"/>
+<!-- i0 -->
+<g id="node1" class="node">
+<title>i0</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-80.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- 8e9c0ff5&#45;e3e5&#45;4589&#45;aef3&#45;f32ecdf3d0df -->
+<g id="node2" class="node">
+<title>8e9c0ff5&#45;e3e5&#45;4589&#45;aef3&#45;f32ecdf3d0df</title>
+<ellipse fill="black" stroke="black" cx="49.95" cy="-81.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- i0&#45;&gt;8e9c0ff5&#45;e3e5&#45;4589&#45;aef3&#45;f32ecdf3d0df -->
+<g id="edge5" class="edge">
+<title>i0&#45;&gt;8e9c0ff5&#45;e3e5&#45;4589&#45;aef3&#45;f32ecdf3d0df:w</title>
+<path fill="none" stroke="black" d="M3.6,-80.82C9.16,-80.94 41.89,-81.65 47.98,-81.78"/>
+<text text-anchor="middle" x="25.88" y="-85" font-family="Times,serif" font-size="14.00">Z</text>
+</g>
+<!-- i1 -->
+<g id="node3" class="node">
+<title>i1</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-41.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- i0&#45;&gt;i1 -->
+<!-- o0 -->
+<g id="node7" class="node">
+<title>o0</title>
+<ellipse fill="white" stroke="black" cx="98.11" cy="-80.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- 8e9c0ff5&#45;e3e5&#45;4589&#45;aef3&#45;f32ecdf3d0df&#45;&gt;o0 -->
+<g id="edge6" class="edge">
+<title>8e9c0ff5&#45;e3e5&#45;4589&#45;aef3&#45;f32ecdf3d0df:e&#45;&gt;o0</title>
+<path fill="none" stroke="black" d="M51.75,-81.78C57.31,-81.66 90.04,-80.95 96.13,-80.82"/>
+<text text-anchor="middle" x="74.03" y="-85" font-family="Times,serif" font-size="14.00">Z</text>
+</g>
+<!-- 20284786&#45;29ef&#45;425a&#45;87ad&#45;fb9140998401 -->
+<g id="node4" class="node">
+<title>20284786&#45;29ef&#45;425a&#45;87ad&#45;fb9140998401</title>
+<ellipse fill="black" stroke="black" cx="49.95" cy="-41.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- i1&#45;&gt;20284786&#45;29ef&#45;425a&#45;87ad&#45;fb9140998401 -->
+<g id="edge7" class="edge">
+<title>i1&#45;&gt;20284786&#45;29ef&#45;425a&#45;87ad&#45;fb9140998401:w</title>
+<path fill="none" stroke="black" d="M3.6,-41.8C9.16,-41.8 41.89,-41.8 47.98,-41.8"/>
+<text text-anchor="middle" x="25.88" y="-46" font-family="Times,serif" font-size="14.00">E</text>
+</g>
+<!-- i2 -->
+<g id="node5" class="node">
+<title>i2</title>
+<ellipse fill="white" stroke="black" cx="1.8" cy="-2.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- i1&#45;&gt;i2 -->
+<!-- o1 -->
+<g id="node8" class="node">
+<title>o1</title>
+<ellipse fill="white" stroke="black" cx="98.11" cy="-41.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- 20284786&#45;29ef&#45;425a&#45;87ad&#45;fb9140998401&#45;&gt;o1 -->
+<g id="edge8" class="edge">
+<title>20284786&#45;29ef&#45;425a&#45;87ad&#45;fb9140998401:e&#45;&gt;o1</title>
+<path fill="none" stroke="black" d="M51.75,-41.8C57.31,-41.8 90.04,-41.8 96.13,-41.8"/>
+<text text-anchor="middle" x="74.03" y="-46" font-family="Times,serif" font-size="14.00">E</text>
+</g>
+<!-- 4a035f85&#45;844e&#45;4aff&#45;934f&#45;64193631bce7 -->
+<g id="node6" class="node">
+<title>4a035f85&#45;844e&#45;4aff&#45;934f&#45;64193631bce7</title>
+<ellipse fill="black" stroke="black" cx="49.95" cy="-1.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- i2&#45;&gt;4a035f85&#45;844e&#45;4aff&#45;934f&#45;64193631bce7 -->
+<g id="edge9" class="edge">
+<title>i2&#45;&gt;4a035f85&#45;844e&#45;4aff&#45;934f&#45;64193631bce7:w</title>
+<path fill="none" stroke="black" d="M3.6,-2.78C9.16,-2.66 41.89,-1.95 47.98,-1.82"/>
+<text text-anchor="middle" x="25.88" y="-7" font-family="Times,serif" font-size="14.00">F</text>
+</g>
+<!-- o2 -->
+<g id="node9" class="node">
+<title>o2</title>
+<ellipse fill="white" stroke="black" cx="98.11" cy="-2.8" rx="1.8" ry="1.8"/>
+</g>
+<!-- 4a035f85&#45;844e&#45;4aff&#45;934f&#45;64193631bce7&#45;&gt;o2 -->
+<g id="edge10" class="edge">
+<title>4a035f85&#45;844e&#45;4aff&#45;934f&#45;64193631bce7:e&#45;&gt;o2</title>
+<path fill="none" stroke="black" d="M51.75,-1.82C57.31,-1.94 90.04,-2.65 96.13,-2.78"/>
+<text text-anchor="middle" x="74.03" y="-7" font-family="Times,serif" font-size="14.00">F</text>
+</g>
+<!-- o0&#45;&gt;o1 -->
+<!-- o1&#45;&gt;o2 -->
+</g>
+</svg>

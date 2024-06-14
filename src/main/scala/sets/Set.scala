@@ -1,3 +1,4 @@
+package sets
 
 
 trait Set[S]:

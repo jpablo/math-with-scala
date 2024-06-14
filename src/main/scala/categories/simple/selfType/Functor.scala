@@ -16,13 +16,13 @@ trait Functor (using val S: Category0, val T: Category0):
 
   type Self[A]
 
-  type ~>[A, B] = S.Self[A, B]
-  type ->[A, B] = T.Self[A, B]
-
-  def map[A, B](f: A ~> B): Self[A] -> Self[B]
-
-  // So we can do F(f)
-  def apply[A, B](f: A ~> B) = map(f)
+//  type ~>[A, B] = S.Self[A, B]
+//  type ->[A, B] = T.Self[A, B]
+//
+//  def map[A, B](f: A ~> B): Self[A] -> Self[B]
+//
+//  // So we can do F(f)
+//  def apply[A, B](f: A ~> B) = map(f)
 
   /**
    * Functor composition operator: ⊙
@@ -63,14 +63,21 @@ type ⊙[G[_], F[_]] = [A] =>> G[F[A]]
 
 object Functor:
 
-  def apply [F[_], C[_, _], D[_, _]] (
-    map0: [A, B] => C[A, B] => D[F[A], F[B]]
-  )(using S0: Category0.Aux[C], T0: Category0.Aux[D]): Functor =
-    new Functor(using S0, T0):
-      type Self[A] = F[A]
-//      summon[S0.Self[Int, Int] =:= S.Self[Int, Int]]
-      def map[A, B](f: S.Self[A, B]): T.Self[F[A], F[B]] = ???
-//        map0[A, B](f)
+//  def apply [
+//    F[_],
+//    C[_, _]: Category0 as S0,
+//    D[_, _]: Category0 as T0
+//  ] (
+//    map0: [A, B] => S0.Self[A, B] => T0.Self[F[A], F[B]]
+//  ): Functor =
+//    new Functor(using S0, T0):
+//      type Self[A] = F[A]
+//
+//      def map[A, B](f: S.Self[A, B]): T.Self[F[A], F[B]] = ??? // map0[A, B](???)
+//
+//      def map1[A, B](f: S0.Self[A, B]): T0.Self[F[A], F[B]] = map0[A, B](f)
+//
+//      def map2[A, B](f: C[A, B]): D[F[A], F[B]] = map0[A, B](f)
 
 //  type Id[A] = A
 //

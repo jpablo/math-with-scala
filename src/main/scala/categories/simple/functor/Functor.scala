@@ -33,7 +33,7 @@ trait Functor
    * G ⊙ F between categories R --> T
    */
   def ⊙ [G[_], R[_, _]: Category] (other: (R --> Source)[G]) : (R --> Target) [F ⊙ G] =
-    Functor {
+    Functor.apply {
       [X, Y] => (f: R[X, Y]) => map(other(f))
     }
 
@@ -73,7 +73,7 @@ object Functor:
   ] (
     map0: [A, B] => C[A, B] => D[F[A], F[B]]
   ): Functor[F, C, D] = new:
-    def map[A, B](f: A ~> B): F[A] -> F[B] = map0(f)
+    def map[A, B](f: A ~> B): F[A] -> F[B] = map0[A, B](f)
 
   type Id[A] = A
 

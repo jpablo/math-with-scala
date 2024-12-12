@@ -17,6 +17,6 @@ object PeanoInstances:
   case class Nats(value: BigInteger)
 //    assert(value.compareTo(BigInteger.ZERO) >= 0)
 
-  given Peano[Nats] with
+  given Peano[Nats]:
     val zero = Nats(BigInteger.ZERO)
     def s(n: Nats) = Nats(n.value.add(BigInteger.ONE))

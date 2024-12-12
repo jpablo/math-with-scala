@@ -35,7 +35,7 @@ object Orders:
         true
 
 
-  given Order[Int] with
+  given Order[Int]:
     extension (a: Int) def < (b: Int): Boolean = a <= b
 
 

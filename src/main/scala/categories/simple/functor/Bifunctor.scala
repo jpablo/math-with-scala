@@ -34,12 +34,12 @@ object Examples:
   // Not sure union is a bifunctor
   type Union[A] = Fst[A] | Snd[A]
 
-  object union extends (Scala × Scala --> Scala) [Union]:
-    def map[A, B](f: ProductMorphism[A, B]): Union[A] => Union[B] =
-    {
-      case fa: Fst[A] => f._1(fa)
-      case sa: Snd[A] => f._2(sa)  // this is probably not correct!!
-    }
+//  object union extends (Scala × Scala --> Scala) [Union]:
+//    def map[A, B](f: ProductMorphism[A, B]): Union[A] => Union[B] =
+//    {
+//      case fa: Fst[A] => f._1(fa)
+//      case sa: Snd[A] => f._2(sa)  // this is probably not correct!!
+//    }
 
   type Product[A] =
     (Fst[A], Snd[A])

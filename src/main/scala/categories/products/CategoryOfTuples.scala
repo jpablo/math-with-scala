@@ -64,7 +64,9 @@ object CategoryP2Examples extends App:
     import D.>>> as andThen2
 
     new CategoryP2[C × D]:
-      def id[A1, A2] = (C.id[A1], D.id[A2])
+      def id[A1, A2] =
+        (C.id[A1], D.id[A2])
+
       extension[A1, A2, B1, B2, C1, C2]
        (f: (A1, A2) ~> (B1, B2)) def >>>
        (g: (B1, B2) ~> (C1, C2)) =
@@ -92,7 +94,6 @@ object CategoryTuples extends App:
         (C.id[Fst[A]], D.id[Snd[A]])
 
       extension [X <: Tuple, Y <: Tuple, Z <: Tuple] (g: Y ~> Z)
-        @targetName("compose")
         def ◦ (f: X ~> Y): X ~> Z =
           (g._1 * f._1, g._2 + f._2)
 

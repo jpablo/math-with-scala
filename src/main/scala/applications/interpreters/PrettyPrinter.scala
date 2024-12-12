@@ -9,7 +9,7 @@ import categories.simple.functor.Functor.Id
 
 case class PP[A, B](value: String)
 
-given PPCat: Category[PP] with
+given PPCat: Category[PP]:
   def id[A] = PP("id")
   extension [A, B, C] (g: PP[B, C]) def ◦ (f: PP[A, B]) = PP(s"(${g.value} ◦ ${f.value})")
 

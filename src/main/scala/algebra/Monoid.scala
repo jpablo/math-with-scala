@@ -28,11 +28,11 @@ object MonoidInstances:
       extension (a: A => A) def * (b: A => A) = a compose b
       // identities, associativity
 
-  given Monoid[Int] with
+  given Monoid[Int]:
     val id = 0
     extension (x: Int) def * (y: Int) = x + y
 
-  given Monoid[String] with
+  given Monoid[String]:
     val id = ""
     extension (x: String) def * (y: String) = x + y
 

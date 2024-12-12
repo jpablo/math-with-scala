@@ -7,7 +7,7 @@ import annotations1.*
  * Isomorphisms   *
  *                */
 
-class Isomorphism[X, Y, ~>[_, _]](
+open class Isomorphism[X, Y, ~>[_, _]](
   val from : X ~> Y,
   val to   : Y ~> X
 )(using C: Category[~>]):
@@ -20,7 +20,7 @@ class Isomorphism[X, Y, ~>[_, _]](
 
 
 case class Bijection[A, B](
-  override val from: A => B, 
+  override val from: A => B,
   override val to: B => A
 ) extends Isomorphism(from, to)
 

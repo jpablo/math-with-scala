@@ -99,7 +99,7 @@ type Endofunctor[F[_], C[_, _]] = (C --> C) [F]
 // --------------------------------------
 // creates endofunctors from zio.prelude.classic.Functor
 // --------------------------------------
-given [F[+_]](using F: classic.Functor[F]): Endofunctor[F, Scala] =
+given [F[+_]] => (F: classic.Functor[F]) => Endofunctor[F, Scala] =
   Functor {
     [A, B] => (f: A => B) => F.map(f)
   }

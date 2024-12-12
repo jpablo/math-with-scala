@@ -7,10 +7,11 @@ case class TypeName[A](value: PortLabel)
 object TypeName {
 
   inline given emptyTypeName: TypeName[EmptyTuple] = TypeName(Single("I"))
-  inline given [A]: TypeName[A] = ${tpeNmeMacro[A]}
+
+  inline given [A] => TypeName[A] = ${ tpeNmeMacro[A] }
 
   // inline given [A, B](using na: TypeName[A], nb: TypeName[B]): TypeName[(A, B)] =
-    // TypeName(Multiple(List(na.value, nb.value)))
+  // TypeName(Multiple(List(na.value, nb.value)))
 }
 
 object PortLabel {
@@ -32,16 +33,17 @@ sealed trait PortLabel {
       case Multiple(value) => value.map(_.toString).mkString("(", ", ", ")")
     }
 }
+
 case class Single(value: String) extends PortLabel
+
 case class Multiple(value: List[PortLabel]) extends PortLabel
 
-given ToExpr[PortLabel] with {
+given ToExpr[PortLabel]:
   def apply(x: PortLabel)(using Quotes) =
     x match {
-      case Single(value) => '{ Single(${Expr(value)})  }
-      case Multiple(value) => '{ Multiple(${Expr(value)})  }
+      case Single(value) => '{ Single(${ Expr(value) }) }
+      case Multiple(value) => '{ Multiple(${ Expr(value) }) }
     }
-}
 
 /**
  * Creates a short representation of the type A
@@ -70,7 +72,7 @@ def tpeNmeMacro[A: Type](using q: Quotes): Expr[TypeName[A]] = {
     }
   }
   // Expr(toTypeName(TypeRepr.of[A]))
-  '{ TypeName[A](${Expr(toTypeName(TypeRepr.of[A]))})  }
+  '{ TypeName[A](${ Expr(toTypeName(TypeRepr.of[A])) }) }
   // '{ TypeName[A](${Expr(toTypeName(t.unseal.tpe))})  }
   // '{ Single("a") }
   // Expr(t.show)

@@ -18,10 +18,9 @@ object ZIOInstances:
   // Objects are all types
   // Morphisms are values RIO[A, B]
   // -------------------------
-  given RIOCat: Category[RIO] with
+  given RIOCat: Category[RIO]:
     def id[A] = RIO.access[A](x => x)
     extension [A, B, C] (g: RIO[B, C])
-      @targetName("compose")
       def ◦ (f: RIO[A, B]) = f.flatMap(g.provide)
 
   // --------------------------
@@ -62,65 +61,65 @@ object ZIOInstances:
   //  f: RIO[A1, B1]
   //  g: RIO[A2, B2]
   // (f, g) => f ⨂ g == f *** g : RIO[(A1, A2), (B1, B2)]
-  val tensorProduct: (RIO × RIO --> RIO) [ToTuple2] =
-    Functor {
-      [A, B] => (f: A **> B) =>
-        val fst: ToTuple2[A] => Fst[A] = _._1
-        val snd: ToTuple2[A] => Snd[A] = _._2
-        val tensorFst = ZIO.fromFunction(fst).flatMap(f._1.provide)
-        val tensorSnd = ZIO.fromFunction(snd).flatMap(f._2.provide)
-        (tensorFst zipWith tensorSnd)((a, b) => (a, b))
-          : RIO[(Fst[A], Snd[A]), (Fst[B], Snd[B])]
-    }
+  val tensorProduct: (RIO × RIO --> RIO) [ToTuple2] = ???
+//    Functor {
+//      [A, B] => (f: A **> B) =>
+//        val fst: ToTuple2[A] => Fst[A] = _._1
+//        val snd: ToTuple2[A] => Snd[A] = _._2
+//        val tensorFst = ZIO.fromFunction(fst).flatMap(f._1.provide)
+//        val tensorSnd = ZIO.fromFunction(snd).flatMap(f._2.provide)
+//        (tensorFst zipWith tensorSnd)((a, b) => (a, b))
+//          : RIO[(Fst[A], Snd[A]), (Fst[B], Snd[B])]
+//    }
 
-  // ---------------------------------------------------------
-  // A Monoidal Category instance defined using Tuple2 directly
-  // ---------------------------------------------------------
-  object RIOMonCat extends MonoidalCategory[RIO]:
-    type ⨂[A, B] = (A, B)
-    type I = EmptyTuple
-    def tensor: (RIO × RIO --> RIO) [ToTuple2] = tensorProduct
-
-    val associator: (Lassoc <===> Rassoc)[RIO3, RIO] =
-      new NaturalIsomorphism with (Lassoc ==> Rassoc)[RIO3, RIO]:
-        // (x ⨂ y) ⨂ z =:= ((x, y), z)
-        val source: (RIO3 --> RIO)[Lassoc] =
-          new Functor:
-            def map[A, B](f: RIO3[A, B]) =
-              val (f1, f2, f3) = f
-              (f1 *** f2) *** f3
-
-        // x ⨂ (y ⨂ z) =:= (x, (y, z))
-        val target: (RIO3 --> RIO)[Rassoc] =
-          new Functor:
-            def map[A, B](f: RIO3[A, B]) =
-              val (f1, f2, f3) = f
-              f1 *** (f2 *** f3)
-
-        def apply[A]   = RIO.fromFunction { case ((x, y), z) => (x, (y, z)) }
-        def inverse[A] = RIO.fromFunction { case (x, (y, z)) => ((x, y), z) }
-
-    // L[X] =  I ⨂ X
-    val leftUnitor : (L <===> Id)[RIO, RIO] =
-      new NaturalIsomorphism with (L ==> Id)[RIO, RIO]:
-        val source: (RIO --> RIO)[L] =
-          new Functor:
-            def map[A, B](f: RIO[A, B]) =
-              f.provideSome((a: I ⨂ A) => a._2).map(b => (EmptyTuple, b))
-        val target: (RIO --> RIO)[Id] = Functor.identity[RIO]
-        def apply[A] = RIO.fromFunction { _._2 }
-        def inverse[A] = RIO.fromFunction { a => (EmptyTuple, a) }
-
-    // R[X] =  X ⨂ I
-    val rightUnitor: (R <===> Id)[RIO, RIO] =
-      new NaturalIsomorphism with (R ==> Id)[RIO, RIO]:
-        val source: (RIO --> RIO)[R] =
-          new Functor:
-            def map[A, B](f: RIO[A, B]) =
-              f.provideSome((a: A ⨂ I) => a._1).map(b => (b, EmptyTuple))
-        val target: (RIO --> RIO)[Id] = Functor.identity[RIO]
-        def apply[A] = RIO.fromFunction { _._1 }
-        def inverse[A] = RIO.fromFunction { a => (a, EmptyTuple) }
+//  // ---------------------------------------------------------
+//  // A Monoidal Category instance defined using Tuple2 directly
+//  // ---------------------------------------------------------
+//  object RIOMonCat extends MonoidalCategory[RIO]:
+//    type ⨂[A, B] = (A, B)
+//    type I = EmptyTuple
+//    def tensor: (RIO × RIO --> RIO) [ToTuple2] = tensorProduct
+//
+//    val associator: (Lassoc <===> Rassoc)[RIO3, RIO] =
+//      new NaturalIsomorphism with (Lassoc ==> Rassoc)[RIO3, RIO]:
+//        // (x ⨂ y) ⨂ z =:= ((x, y), z)
+//        val source: (RIO3 --> RIO)[Lassoc] =
+//          new Functor:
+//            def map[A, B](f: RIO3[A, B]) =
+//              val (f1, f2, f3) = f
+//              (f1 *** f2) *** f3
+//
+//        // x ⨂ (y ⨂ z) =:= (x, (y, z))
+//        val target: (RIO3 --> RIO)[Rassoc] =
+//          new Functor:
+//            def map[A, B](f: RIO3[A, B]) =
+//              val (f1, f2, f3) = f
+//              f1 *** (f2 *** f3)
+//
+//        def apply[A]   = RIO.fromFunction { case ((x, y), z) => (x, (y, z)) }
+//        def inverse[A] = RIO.fromFunction { case (x, (y, z)) => ((x, y), z) }
+//
+//    // L[X] =  I ⨂ X
+//    val leftUnitor : (L <===> Id)[RIO, RIO] =
+//      new NaturalIsomorphism with (L ==> Id)[RIO, RIO]:
+//        val source: (RIO --> RIO)[L] =
+//          new Functor:
+//            def map[A, B](f: RIO[A, B]) =
+//              f.provideSome((a: I ⨂ A) => a._2).map(b => (EmptyTuple, b))
+//        val target: (RIO --> RIO)[Id] = Functor.identity[RIO]
+//        def apply[A] = RIO.fromFunction { _._2 }
+//        def inverse[A] = RIO.fromFunction { a => (EmptyTuple, a) }
+//
+//    // R[X] =  X ⨂ I
+//    val rightUnitor: (R <===> Id)[RIO, RIO] =
+//      new NaturalIsomorphism with (R ==> Id)[RIO, RIO]:
+//        val source: (RIO --> RIO)[R] =
+//          new Functor:
+//            def map[A, B](f: RIO[A, B]) =
+//              f.provideSome((a: A ⨂ I) => a._1).map(b => (b, EmptyTuple))
+//        val target: (RIO --> RIO)[Id] = Functor.identity[RIO]
+//        def apply[A] = RIO.fromFunction { _._1 }
+//        def inverse[A] = RIO.fromFunction { a => (a, EmptyTuple) }
 
   // ---------------------------
   // Internal Product Instance
@@ -161,45 +160,45 @@ object ZIOInstances:
       type I = T
       def tensor: Functor[ToTuple2, RIO × RIO, RIO] = tensorProduct
 
-      val associator: (Lassoc <===> Rassoc)[RIO3, RIO] =
-        new NaturalIsomorphism with (Lassoc ==> Rassoc)[RIO3, RIO](using RIO3Cat, RIOCat):
-          // (x ⨂ y) ⨂ z =:= ((x, y), z)
-          val source: (RIO3 --> RIO)[Lassoc] =
-            new Functor:
-              def map[A, B](f: RIO3[A, B]) =
-                val (f1, f2, f3) = f
-                (f1 ** f2) ** f3
-          // x ⨂ (y ⨂ z) =:= (x, (y, z))
-          val target: (RIO3 --> RIO)[Rassoc] =
-            new Functor:
-              def map[A, B](f: RIO3[A, B]) =
-                val (f1, f2, f3) = f
-                f1 ** (f2 ** f3)
+      val associator: (Lassoc <===> Rassoc)[RIO3, RIO] = ???
+//        new NaturalIsomorphism with (Lassoc ==> Rassoc)[RIO3, RIO](using RIO3Cat, RIOCat):
+//          // (x ⨂ y) ⨂ z =:= ((x, y), z)
+//          val source: (RIO3 --> RIO)[Lassoc] =
+//            new Functor:
+//              def map[A, B](f: RIO3[A, B]) =
+//                val (f1, f2, f3) = f
+//                (f1 ** f2) ** f3
+//          // x ⨂ (y ⨂ z) =:= (x, (y, z))
+//          val target: (RIO3 --> RIO)[Rassoc] =
+//            new Functor:
+//              def map[A, B](f: RIO3[A, B]) =
+//                val (f1, f2, f3) = f
+//                f1 ** (f2 ** f3)
+//
+//          def apply[A] =
+//            RIO.fromFunction { case ((x, y), z) => (x, (y, z)) }
+//
+//          def inverse[A] =
+//            RIO.fromFunction { case (x, (y, z)) => ((x, y), z) }
 
-          def apply[A] =
-            RIO.fromFunction { case ((x, y), z) => (x, (y, z)) }
-
-          def inverse[A] =
-            RIO.fromFunction { case (x, (y, z)) => ((x, y), z) }
-
-      val leftUnitor : (L <===> Id)[RIO, RIO] =
-        new NaturalIsomorphism with (L ==> Id)[RIO, RIO]:
-          val source: (RIO --> RIO)[L] =
-            new Functor:
-              def map[A, B](f: RIO[A, B]) =
-                f.provideSome((a: I * A) => a._2).map(b => (EmptyTuple, b))
-          val target: (RIO --> RIO)[Id] = Functor.identity[RIO]
-          def apply[A] =
-            RIO.fromFunction { _._2 }
-          def inverse[A] =
-            RIO.fromFunction { a => (EmptyTuple, a) }
+      val leftUnitor : (L <===> Id)[RIO, RIO] = ???
+//        new NaturalIsomorphism with (L ==> Id)[RIO, RIO]:
+//          val source: (RIO --> RIO)[L] =
+//            new Functor:
+//              def map[A, B](f: RIO[A, B]) =
+//                f.provideSome((a: I * A) => a._2).map(b => (EmptyTuple, b))
+//          val target: (RIO --> RIO)[Id] = Functor.identity[RIO]
+//          def apply[A] =
+//            RIO.fromFunction { _._2 }
+//          def inverse[A] =
+//            RIO.fromFunction { a => (EmptyTuple, a) }
 
       val rightUnitor: (R <===> Id)[RIO, RIO] =
         new NaturalIsomorphism with (R ==> Id)[RIO, RIO]:
           val source: (RIO --> RIO)[R] =
             new Functor:
-              def map[A, B](f: RIO[A, B]) =
-                f.provideSome((a: A ⨂ I) => a._1).map(b => (b, EmptyTuple))
+              def map[A, B](f: RIO[A, B]) = ???
+//                f.provideSome((a: A ⨂ I) => a._1).map(b => (b, EmptyTuple))
           val target: (RIO --> RIO)[Id] =
             Functor.identity[RIO]
           def apply[A] =

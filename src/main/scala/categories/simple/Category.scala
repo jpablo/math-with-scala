@@ -6,19 +6,17 @@ import scala.annotation.targetName
 
 
 trait CategoryS[U, Hom[_ <: U, _ <: U]]:
-  type ~> [A <: U, B <: U] = Hom[A, B]
-  type <~ [A <: U, B <: U] = Hom[B, A]
+  type ~>[A <: U, B <: U] = Hom[A, B]
+  type <~[A <: U, B <: U] = Hom[B, A]
 
   // Arrow constructor
   def id[A <: U]: A ~> A
 
   // Arrow combinator
-  extension [A <: U, B <: U, C <: U] (g: B ~> C)
-    @targetName("compose")
+  extension [A <: U, B <: U, C <: U](g: B ~> C)
     def ◦ (f: A ~> B): A ~> C
 
-  extension [A <: U, B <: U, C <: U] (f: A ~> B)
-    @targetName("andThen")
+  extension [A <: U, B <: U, C <: U](f: A ~> B)
     def >>> (g: B ~> C): A ~> C = g ◦ f
 
   @Law
@@ -54,10 +52,10 @@ object Category:
 //========================================================================================
 type Scala[A, B] = A => B
 
-given Scala: Category[Scala] with
+given Scala: Category[Scala]:
   def id[A]: A => A = identity[A]
-  extension [A, B, C] (g: B => C)
-    @targetName("compose")
+
+  extension [A, B, C](g: B => C)
     def ◦ (f: A => B) = g compose f
 
 
@@ -67,9 +65,9 @@ given Scala: Category[Scala] with
 
 type Op[C[_, _]] = [A, B] =>> C[B, A]
 
-given Op[C[_, _]](using C: Category[C]): Category[Op[C]] =
-  new Category[Op[C]]:
-    def id[A] = C.id[A]
-    extension [A, B, C] (g: C <~ B)
-      @targetName("compose")
-      def ◦ (f: B <~ A) = C.◦(f)(g)
+given OpInstance: [Hom[_, _]: Category as cat] => Category[Op[Hom]]:
+  def id[A] = cat.id[A]
+
+  extension [A, B, C](g: C <~ B)
+    def ◦ (f: B <~ A) = cat.◦(f)(g)
+

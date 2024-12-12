@@ -20,12 +20,12 @@ object Examples extends App:
 
   val diagrams =
     List(
-      "idLeft"                -> categories.simple.monoidalCategories.props.Examples.idLeft,
-      // "idRight"               -> categories.simple.monoidalCategories.props.Examples.idRight,
+//      "idLeft"                -> categories.simple.monoidalCategories.props.Examples.idLeft,
+//       "idRight"               -> categories.simple.monoidalCategories.props.Examples.idRight,
       // "graph1"                -> categories.simple.monoidalCategories.props.Examples.graph1,
       // "graph2"                -> categories.simple.monoidalCategories.props.Examples.graph2,
       // "combined"              -> categories.simple.monoidalCategories.props.Examples.combined,
-      // "process"               -> categories.simple.monoidalCategories.props.Presentation.process,
+//       "process"               -> categories.simple.monoidalCategories.props.Presentation.process,
       // //      "combinedRight" -> categories.simple.monoidalCategories.props.Examples.combinedRight,
       // //      "combinedLeft"  -> categories.simple.monoidalCategories.props.Examples.combinedLeft,
       // "sort"                  -> categories.simple.monoidalCategories.props.Presentation.sort,
@@ -43,12 +43,12 @@ object Examples extends App:
       // "diagramEq2"            -> categories.simple.monoidalCategories.props.Presentation.diagramEq2,
       // "zeroAdd"               -> categories.simple.monoidalCategories.props.Presentation.zeroAdd,
       // "identityM"             -> categories.simple.monoidalCategories.props.Presentation.identityM,
-      // "example"               -> applications.processes.ExampleGraph.g,
+//       "example"               -> applications.processes.ExampleGraph.g,
       // "exercise7"             -> applications.processes.Exercise7.g,
-      // "triangleEquations1"    -> applications.processes.triangle_equations.g.lhs,
+       "triangleEquations1"    -> applications.processes.triangle_equations.g.lhs,
       // "triangleEquations2"    -> applications.processes.triangle_equations.g.rhs,
       // "pentagonEquations0"    -> applications.processes.pentagon_equations.g,
-      // "pentagonEquations1"    -> applications.processes.pentagon_equations.g.lhs,
+//       "pentagonEquations1"    -> applications.processes.pentagon_equations.g.lhs,
       // "pentagonEquations2"    -> applications.processes.pentagon_equations.g.rhs,
     )
 
@@ -59,9 +59,10 @@ object Examples extends App:
       g.`with`(RenderGraphvizHtml.render(diagram))
     ).width(1024)
 
-//    println(viz.render(Format.DOT).toString)
+    println(s"----- $name -----")
+    println(viz.render(Format.DOT).toString)
 
 //    viz.render(Format.PNG).toFile(new File(s"example/$name.png"))
-    viz.render(Format.SVG).toFile(new File(s"example/$name.svg"))
+//    viz.render(Format.SVG).toFile(new File(s"example/$name.svg"))
   }
 

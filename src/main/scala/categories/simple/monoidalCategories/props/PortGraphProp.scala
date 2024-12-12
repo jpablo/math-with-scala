@@ -22,13 +22,12 @@ type Box[B] = (B, BoxId)
 // This would be called Connection[B], since the port is attached to the box
 type Port[B] = (Box[B], Int)
 type BoxWithPorts[B] = SeqMap[Box[B], (List[PortLabel], List[PortLabel])]
-type ->[A, B] = (A, B)
 
 case class PortGraph[B](
   boxes: BoxWithPorts[B],
   // connections:
   incoming   : List[Port[B]],
-  inner      : List[Port[B] -> Port[B]],
+  inner      : List[(Port[B], Port[B])],
   outgoing   : List[Port[B]],
 ) {
   infix def andThen(other: PortGraph[B]) = {
@@ -65,11 +64,11 @@ object PortGraph {
       boxes0
     )
 
-    def go(box: Box[B], pos0: Int, label: PortLabel): List[Port[B] -> PortLabel] =
+    def go(box: Box[B], pos0: Int, label: PortLabel): List[(Port[B], PortLabel)] =
       label match {
         case _: Single => List((box, pos0) -> label)
         case Multiple(labels) =>
-          val z0 = (pos0, List.empty[Port[B] -> PortLabel])
+          val z0 = (pos0, List.empty[(Port[B], PortLabel)])
           val (_, r) =
             labels.foldLeft(z0) { case ((pos, acc), label) =>
               val acc1 = go(box, pos, label)
@@ -89,7 +88,7 @@ object PortGraph {
         val label = labels(startPos)
 
         // go(b, 1, "E") -> List((b, 1) -> "E", ...)
-        val expanded: List[Port[B] -> PortLabel] = go(box, startPos, label)
+        val expanded: List[(Port[B], PortLabel)] = go(box, startPos, label)
 
         assert(expanded.nonEmpty)
 

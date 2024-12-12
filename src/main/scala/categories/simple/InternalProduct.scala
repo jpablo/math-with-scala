@@ -69,7 +69,7 @@ trait InternalProduct[~>[_, _]](using val Cat: Category[~>]):
 
 end InternalProduct
 
-given CartesianProduct: InternalProduct[Scala] with
+given CartesianProduct: InternalProduct[Scala]:
   type *[A, B] = (A, B)
 
   extension [A, B, C] (f: C => A) def * (g: C => B): C => (A, B) =
@@ -82,7 +82,7 @@ given CartesianProduct: InternalProduct[Scala] with
 
   val terminal = new Terminal { def arrow[Y] = _ => EmptyTuple }
 
-trait Exercises[~>[_, _]: Category: InternalProduct] {
+trait Exercises[~>[_, _]: {Category, InternalProduct}] {
   val C = summon[Category[~>]]
   val P = summon[InternalProduct[~>]]
   import P.{fst, snd, `*`}

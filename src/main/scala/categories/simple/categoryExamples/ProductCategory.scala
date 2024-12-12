@@ -2,8 +2,6 @@ package categories.simple.categoryExamples
 
 import categories.simple.{*, given}
 
-import scala.annotation.targetName
-
 
 // tuple extractors
 
@@ -18,6 +16,9 @@ type Third[A] = A match { case Tuple => Tuple.Elem[A, 2] }
 // type Snd[X]   = X match { case _ *: b *: _       => b }
 // type Third[X] = X match { case _ *: _ *: c  *: _ => c }
 
+object ExtractorTests:
+  summon[Fst[(Int, String)] =:= Int]
+  summon[Snd[(Int, String)] =:= String]
 
 // ----------------------------
 // Product category:
@@ -32,7 +33,6 @@ type Prod2[~>[_, _], ->[_, _]] = [A, B] =>>
 // infix alias
 type ×[C[_, _], D[_, _]] =
   [A, B] =>> Prod2[C, D][A, B]
-
 
 
 // Scala × Scala = [A, B] =>> (Fst[A] => Fst[B], Snd[A] => Snd[B])
@@ -86,16 +86,15 @@ end Ex1
 // Product of two categories
 // C × D
 // -------------------------
-extension [C[_, _], D[_, _]] (C: Category[C])
+extension [C[_, _], D[_, _]] (c: Category[C])
   def × (D: Category[D]): Category[C × D] =
 
-    import C.◦ as compose1
+    import c.◦ as compose1
     import D.◦ as compose2
 
     new Category[C × D]:
-      def id[A]: A ~> A = ( C.id[Fst[A]], D.id[Snd[A]] )
+      def id[A]: A ~> A = ( c.id[Fst[A]], D.id[Snd[A]] )
       extension [A, B, C] (g: B ~> C)
-        @targetName("compose")
         def ◦ (f: A ~> B): A ~> C =
           ( g._1 `compose1` f._1, g._2 `compose2` f._2 )
 
@@ -111,15 +110,14 @@ def prod3[C[_, _], D[_, _], E[_, _]](C: Category[C], D: Category[D], E: Category
       (C.id[Fst[A]], D.id[Snd[A]], E.id[Third[A]])
 
     extension [A, B, C] (g: B ~> C)
-      @targetName("compose")
       def ◦ (f: A ~> B): A ~> C =
         (g._1 * f._1, g._2 + f._2, g._3 `x` f._3)
 
-given prodCat[C[_, _], D[_, _]](using C: Category[C], D: Category[D]): Category[C × D] =
-  C × D
+given prodCat: [C[_, _]: Category as c, D[_, _]: Category as d] => Category[C × D] =
+  c × d
 
-given prodCat3[C[_, _]](using C: Category[C]): Category[Prod3[C, C, C]] =
-  prod3(C, C, C)
+given prodCat3: [C[_, _]: Category as c] => Category[Prod3[C, C, C]] =
+  prod3(c, c, c)
 
 object Example:
   summon[Category[Scala × Scala]]

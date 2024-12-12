@@ -26,7 +26,7 @@ trait Diagram[D[_], ~>[_, _]: Category] {
 
 // Given a pair of types (C, A) produce an arrow
 case class ConeArrow[C, i: D, ~>[_, _]: Category, D[_]](f: C ~> i)
-  
+
 // --------
 // Cones
 // --------
@@ -38,17 +38,17 @@ trait Cone[D[_], ~>[_, _]: Category] {
   type C
   // together with arrows f[i]: C ~> i
   type Arrow[i] = ConeArrow[C, i, ~>, D]
-  
-  def f[i: D: Arrow]: C ~> i = summon[Arrow[i]].f
-  
+
+  def f[i: {D, Arrow}]: C ~> i = summon[Arrow[i]].f
+
   def fp[i: D]: C ~> i
 
   // such that
   @Law
-  def factorization[i: D: Arrow, j: D: Arrow] =
+  def factorization[i: {D, Arrow}, j: {D, Arrow}] =
     D.arrows[i, j].map { g => g ◦ f[i] <-> f[j] }
 }
- 
+
 // --------
 // Limits
 // --------
@@ -62,8 +62,8 @@ trait Limit[D[_], ~>[_, _]: Category] extends Cone[D, ~>] {
   // such that
   @Law
   def factorization[i: D](c: Cone[D, ~>])(
-    using 
-        c.Arrow[i], 
+    using
+        c.Arrow[i],
           Arrow[i]): IsEq[c.C ~> i] =
 
 //    c.f[i] <-> f[i] ◦ unique(c)
@@ -72,18 +72,18 @@ trait Limit[D[_], ~>[_, _]: Category] extends Cone[D, ~>] {
 
 object LimitExamples {
   def prod[A, B, ~>[_, _]: Category, C0] = {
-    
+
     trait Prod[X]
-    
+
     given prodA: Prod[A] = ???
     given prodB: Prod[B] = ???
-    
+
     val d = new Diagram[Prod, ~>] {
       def arrows[i : Prod, j : Prod]: Set[i ~> j] = Set.empty
-    }    
-    
+    }
+
     d.arrows[A, B]
-    
+
     val c = new Cone[Prod, ~>] {
       val D = d
       type C = C0
@@ -95,14 +95,14 @@ object LimitExamples {
 // universal property with respect to D-cones.
 
 
-// Example 1: Given the arrow-less diagram {A, B}, a D-cone is an 
+// Example 1: Given the arrow-less diagram {A, B}, a D-cone is an
 // object C together with two arrows A <~f~ C ~g~> B
 // A limit of all such cones is the product of A and B:
 // object Examples
 //   val prod = new Limit[Scala, ]
 
 
-    
+
 
 // -----------
 // Co-cones
@@ -145,9 +145,8 @@ object ColimiExamples {
   }
 
   // example
-  given IsCoProduct[Scala, String | Int, Int] with {
+  given IsCoProduct [Scala, String | Int, Int]:
     def f: Int => String | Int = identity
-  }
-  
+
 }
 

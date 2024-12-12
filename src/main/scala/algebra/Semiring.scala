@@ -10,7 +10,7 @@ trait Semiring[R]:
     def * (y: R) : R
 
 
-given Semiring[Boolean] with
+given sb: Semiring[Boolean]:
   val zero = false
   val one = true
   val closure = _ => true

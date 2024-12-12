@@ -19,15 +19,14 @@ trait Terminal[⊤, ~>[_, _]: Category]:
 // In Scala terminal objects are types with only one inhabitant:
 
 // Example: Unit
-given Terminal[Unit, Scala] with
+given Terminal[Unit, Scala]:
   def arrow[Y] = _ => ()
 
 // Another example: a singleton object is the only inhabitant of a type
 object Singleton
 
-given Terminal[Singleton.type, Scala] with {
+given Terminal [Singleton.type, Scala]:
   def arrow[Y] = _ => Singleton
-}
 
 // all terminal objects are isomorphic
 def exercise_1[A, B, ~>[_, _]](

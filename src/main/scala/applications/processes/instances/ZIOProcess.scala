@@ -9,7 +9,7 @@ import zio.json.JsonDecoder
 import sttp.client3.HttpURLConnectionBackend
 import sttp.model.Uri
 
-given RIOProcessDSL: ProcessDSL[RIO] with
+given RIOProcessDSL: ProcessDSL[RIO]:
   val backend = HttpURLConnectionBackend()
   import sttp.client3.*
   import sttp.client3.ziojson.*

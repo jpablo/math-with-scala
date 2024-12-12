@@ -108,7 +108,7 @@ object Example:
     type I = Nothing
     type ⨂[A, B] = A | B
     type T[A] = Fst[A] | Snd[A]
-    def tensor: (Scala × Scala --> Scala) [T] = categories.simple.functor.Examples.union
+    def tensor: (Scala × Scala --> Scala) [T] = ??? // categories.simple.functor.Examples.union
     def unitLeft[A]: (Nothing | A) =:= A = refl
     def unitRight[A]: (A | Nothing) =:= A = refl
     def associativity[A, B, C]: (A | (B | C)) =:= ((A | B) | C) = refl

@@ -43,7 +43,7 @@ trait Category0:
 
 type Scala[A, B] = A => B
 
-given Scala: Category0 with
+given Scala: Category0:
   type Self = Any
   type Hom[A, B] = Scala[A, B]
   def id[A]: A => A = identity[A]

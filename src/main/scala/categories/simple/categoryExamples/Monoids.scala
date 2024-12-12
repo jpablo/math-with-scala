@@ -18,14 +18,12 @@ def fromMonoid[M](M: classic.Monoid[M]) =
   new CategoryS[●, ConstantHom[M]]:
     def id[A <: ●]: M = M.identity
     extension [A <: ●, B <: ●, C <: ●] (g: M)
-      @targetName("compose")
       def ◦ (f: M) = M.combine(g, f)
 
   
 object IntCategory extends CategoryS[●,  ConstantHom[Int]]:
   def id[A <: ●] = 0
   extension [A <: ●, B <: ●, C <: ●] (g: Int)
-    @targetName("compose")
     def ◦ (f: Int) = g + f
 
 object Examples:

@@ -1,4 +1,4 @@
-val scala3Version = "3.5.0-RC1"
+val scala3Version = "3.6.2"
 val sttpVersion   = "3.8.3"
 val zioVersion    = "1.0.15"
 val zioPreludeVersion = "1.0.0-RC8"
@@ -25,6 +25,9 @@ scalacOptions ++= Seq(
   "-Xkind-projector:underscores",
   "-source:future",
   "-language:experimental.modularity",
+  "-language:experimental.namedTuples",
+  "-language:experimental.betterFors",
+//  "-language:experimental.pureFunctions",
   "-deprecation",
   "-feature",
 )

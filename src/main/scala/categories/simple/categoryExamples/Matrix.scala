@@ -9,12 +9,11 @@ trait MatrixDomain:
   val dim: Int
 
 class Matrix[T, m <: Int, n <: Int]
-  
+
 type MatrixT[T] = [m <: Int, n <: Int] =>> Matrix[T, m, n]
 
 def matrixCat[T]: CategoryS[Int, MatrixT[T]] =
   new CategoryS:
     def id[A <: Int] = ???
     extension [A <: Int, B <: Int, C <: Int] (g: B ~> C)
-      @targetName("compose")
       def ◦ (f: A ~> B): A ~> C = ???

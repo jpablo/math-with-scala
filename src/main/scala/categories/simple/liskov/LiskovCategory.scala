@@ -7,10 +7,9 @@ import scala.annotation.targetName
 // ----------------
 
 
-given Subtypes: Category[<:<] with
+given Subtypes: Category[<:<]:
   def id[A] = <:<.refl
   extension [A, B, C] (g: B <:< C)
-    @targetName("compose")
     def ◦ (f: A <:< B): A <:< C =
       g compose f
 

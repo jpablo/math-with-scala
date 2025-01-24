@@ -9,12 +9,11 @@ import categories.simple.functor.*
  * @tparam C
  * @tparam X0
  */
-type HomFunc[C[_, _], X0] =
-  [A] =>> C[X0, A]
+type HomFunc[~>[_, _], X0] =
+  [A] =>> X0 ~> A
 
 // and acts on arrows as composition by f.
 def homFunctor[C[_, _]: Category, X0]: (C --> Scala)[ C[X0, _] ] =
   Functor {
-    [A, B] => (f: C[A, B]) =>
-      (g: C[X0, A]) => f ◦ g
+    [A, B] => (f: C[A, B]) => (g: C[X0, A]) => f ◦ g
   }

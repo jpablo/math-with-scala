@@ -65,7 +65,7 @@ end FunctorCat
 
 def Psh[S[_, _], C[_, _]]
   (using S: Category[S], C: Category[C]) =
-  FunctorCat(using OpInstance[S], C)
+  FunctorCat(using opInstance[S], C)
 
 // we're interested in the category
 // Psh(S, Scala) of presheaves of types on S
@@ -74,7 +74,7 @@ def Psh[S[_, _], C[_, _]]
 // embedding:
 
 def yonedaEmbedding[S[_, _]: Category, i] =
-  homFunctor[Op[S], i](using OpInstance[S])
+  homFunctor[Op[S], i](using opInstance[S])
 
 
 // ----------------------

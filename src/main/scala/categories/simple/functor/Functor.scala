@@ -13,11 +13,11 @@ import zio.prelude.classic
  * A Functor F between the categories C and D
  */
 trait Functor
-  [F[_], Source[_, _], Target[_, _]]
-  (using
-    S: Category[Source],
-    T: Category[Target]
-  ):
+  [
+    F[_],
+    Source[_, _]: Category as source,
+    Target[_, _]: Category as target
+  ]:
 
   type ~>[A, B] = Source[A, B]
   type ->[A, B] = Target[A, B]
@@ -33,9 +33,7 @@ trait Functor
    * G ⊙ F between categories R --> T
    */
   def ⊙ [G[_], R[_, _]: Category] (other: (R --> Source)[G]) : (R --> Target) [F ⊙ G] =
-    Functor.apply {
-      [X, Y] => (f: R[X, Y]) => map(other(f))
-    }
+    Functor( [X, Y] => (f: R[X, Y]) => map(other(f)) )
 
 
   @Law
@@ -44,7 +42,7 @@ trait Functor
 
   @Law
   def identities[X] =
-    map(S.id[X]) <-> T.id[F[X]]
+    map(source.id[X]) <-> target.id[F[X]]
 
 end Functor
 
@@ -68,8 +66,8 @@ object Functor:
 
   def apply [
     F[_],
-    C[_, _]: Category,
-    D[_, _]: Category
+    C[_, _]: Category, // ~>
+    D[_, _]: Category  // ->
   ] (
     map0: [A, B] => C[A, B] => D[F[A], F[B]]
   ): Functor[F, C, D] = new:
@@ -78,9 +76,7 @@ object Functor:
   type Id[A] = A
 
   def identity[C[_, _]: Category]: (C --> C) [Id] =
-    Functor {
-      [X, Y] => (f: C[X, Y]) => f
-    }
+    Functor( [X, Y] => (f: C[X, Y]) => f)
 
 end Functor
 
@@ -100,9 +96,7 @@ type Endofunctor[F[_], C[_, _]] = (C --> C) [F]
 // creates endofunctors from zio.prelude.classic.Functor
 // --------------------------------------
 given [F[+_]] => (F: classic.Functor[F]) => Endofunctor[F, Scala] =
-  Functor {
-    [A, B] => (f: A => B) => F.map(f)
-  }
+  Functor( [A, B] => (f: A => B) => F.map(f) )
 
 object FunctorExamples:
   summon[Endofunctor[List, Scala]]

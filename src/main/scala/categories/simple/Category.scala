@@ -12,10 +12,11 @@ trait CategoryS[U, Hom[_ <: U, _ <: U]]:
   // Arrow constructor
   def id[A <: U]: A ~> A
 
-  // Arrow combinator
+  // "compose" operator
   extension [A <: U, B <: U, C <: U](g: B ~> C)
     def ◦ (f: A ~> B): A ~> C
 
+  // andThen operator
   extension [A <: U, B <: U, C <: U](f: A ~> B)
     def >>> (g: B ~> C): A ~> C = g ◦ f
 
@@ -65,7 +66,7 @@ given Scala: Category[Scala]:
 
 type Op[C[_, _]] = [A, B] =>> C[B, A]
 
-given OpInstance: [Hom[_, _]: Category as cat] => Category[Op[Hom]]:
+given opInstance: [Hom[_, _]: Category as cat] => Category[Op[Hom]]:
   def id[A] = cat.id[A]
 
   extension [A, B, C](g: C <~ B)

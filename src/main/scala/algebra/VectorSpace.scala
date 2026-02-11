@@ -18,3 +18,11 @@ trait VectorSpace[V, F](
   @Law("Identity element of scalar multiplication")
   def scalarMulIdentity(v: V) =
     F.one ⋅ v <-> v
+
+  @Law("Distributivity of scalar multiplication over vector addition")
+  def distributivity1(a: F, u: V, v: V) =
+    a ⋅ (u + v) <-> (a ⋅ u) + (a ⋅ v)
+
+  @Law("Distributivity of scalar multiplication over field addition")
+  def distributivity2(a: F, b: F, v: V) =
+    (a + b) ⋅ v <-> (a ⋅ v) + (b ⋅ v)

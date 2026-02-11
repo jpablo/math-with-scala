@@ -81,7 +81,7 @@ given PortGraphProcessOps: ProcessDSLOps[[A, B] =>> PortGraph[String]]:
 
   def swapInverse[X, Y]: (Y, X) ~> (X, Y) = ???
 
-object ExampleGraph extends App {
+object ExampleGraph {
   trait A;
 
   trait B

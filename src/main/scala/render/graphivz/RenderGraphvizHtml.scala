@@ -32,7 +32,7 @@ object RenderGraphvizHtml:
       pg.boxes.transform { case ((v, id), (inPorts, outPorts)) =>
         val id = UUID.randomUUID.toString
         // hack
-        if (v.toString == "id")
+        if v.toString == "id" then
           println(v)
           node(id).`with`(Shape.POINT)
         else
@@ -46,7 +46,7 @@ object RenderGraphvizHtml:
       pg.inner.map { case t @ ((b1, p1), (b2, p2)) =>
         val label1 = pg.boxes(b1)._2(p1).toString
         val label2 = pg.boxes(b2)._1(p2).toString
-        val label = if (label1 == label2) label1 else label1 + ":" + label2
+        val label = if label1 == label2 then label1 else label1 + ":" + label2
         linkInner(
           nodes(b1), p1.toString,
           nodes(b2), p2.toString,
@@ -69,11 +69,11 @@ object RenderGraphvizHtml:
       }.unzip
 
     val incomingSortLinks =
-      if (incoming.length > 1) List(incoming.reduceRight((n1, n2) => n1 `link` to(n2).`with`(Style.INVIS)))
+      if incoming.length > 1 then List(incoming.reduceRight((n1, n2) => n1 `link` to(n2).`with`(Style.INVIS)))
       else incoming
 
     val outgoingSortLinks =
-      if (outgoing.length > 1) List(outgoing.reduceRight((n1, n2) => n1 `link` to(n2).`with`(Style.INVIS)))
+      if outgoing.length > 1 then List(outgoing.reduceRight((n1, n2) => n1 `link` to(n2).`with`(Style.INVIS)))
       else outgoing
 
 
@@ -109,7 +109,7 @@ object RenderGraphvizHtml:
     def portsTable(prefix: String, ports: Range) =
       table(border := 0, cPadding := 2, cSpacing := 1,
         if ports.nonEmpty
-        then ports.map(id => tr(td(port := (prefix + id), if (showPorts) id else "")))
+        then ports.map(id => tr(td(port := (prefix + id), if showPorts then id else "")))
         else tr(td(""))
       )
 

@@ -17,7 +17,7 @@ object Orders:
 
     @Law
     def transitivity(a: A, b: A, c: A) =
-      if (a < b && b < c)
+      if a < b && b < c then
         a < c
       else
         true
@@ -29,7 +29,7 @@ object Orders:
 
     @Law
     def antiSymmetry(a: A, b: A) =
-      if (a <= b && b <= a)
+      if a <= b && b <= a then
         a == b
       else
         true

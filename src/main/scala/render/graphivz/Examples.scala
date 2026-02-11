@@ -7,7 +7,7 @@ import guru.nidi.graphviz.model.Factory.{graph, node, to}
 import guru.nidi.graphviz.attribute.{Attributes, Color, Label, Rank, Shape, Style}
 import java.io.File
 
-object Examples extends App:
+object Examples:
 
   // --------------------------
   val g: Graph =

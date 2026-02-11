@@ -261,11 +261,10 @@ object Eq {
 }
 
 
-object EqExamples extends App {
+object EqExamples {
   val ex1: 1 == 1 = Eq.refl
   val ex2: 1 == 2 = ???
 
-  println(ex1)
   import scala.compiletime.ops.int.*
 
   def lemma_add_succ[n <: Int]: n + 0 == n = ???
@@ -288,4 +287,5 @@ object EqExamples extends App {
     (value: A)
     (property: P[value.type])
 }
+
 

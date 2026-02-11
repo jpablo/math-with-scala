@@ -49,7 +49,7 @@ object PPMonCatProduct extends CartesianMonoidalCategory[PP, Tuple2] with Monoid
   def rightUnitor = ???
 
 
-object Examples extends App:
+object Examples:
   import isEqual.*
   def pprint[A, B](e: IsEq[PP[A, B]]) =
     s"${e.lhs.value} <-> ${e.rhs.value}"

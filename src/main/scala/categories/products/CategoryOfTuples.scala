@@ -31,7 +31,7 @@ trait CategoryP2[Hom[_, _]]:
     (f: (A1, A2) ~> (B1, B2)) def >>> (g: (B1, B2) ~> (C1, C2)): (A1, A2) ~> (C1, C2)
 
 
-object CategoryP2Examples extends App:
+object CategoryP2Examples:
 
   // Example 1: Scala x Scala category
 
@@ -75,7 +75,7 @@ object CategoryP2Examples extends App:
 end CategoryP2Examples
 
 
-object CategoryTuples extends App:
+object CategoryTuples:
   import categories.simple.categoryExamples.{Fst, Snd}
   // Example 2: Product of two arbitrary categories
   type Prod2P[~>[_, _], ->[_, _], A <: Tuple, B <: Tuple] =
@@ -100,7 +100,7 @@ object CategoryTuples extends App:
 
 // Another option: Modeling tuples as (F[1], F[2], ..., F[n])
 
-object CategoryP2FuncExamples extends App:
+object CategoryP2FuncExamples:
   import categories.highOrder.CategoryF1
   // Example 1: Scala2
   type Scala2F[A[_], B[_]] =

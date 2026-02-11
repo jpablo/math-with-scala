@@ -80,7 +80,7 @@ object PortGraph {
     val (updatedConnections, _, updatedBoxes) =
       connections.foldLeft(z0) { case ((connectionsAcc: List[Port[B]], insertedLabelCounts, boxes), connection @ (box, pos)) =>
         val (left, right) = boxes(box)
-        val labels = if (dir == Direction.In) left else right
+        val labels = if dir == Direction.In then left else right
         // the number extra ports inserted so far
         val delta = insertedLabelCounts(box)
         val startPos = pos + delta
@@ -97,7 +97,7 @@ object PortGraph {
         // now we have to splice the expand labels into the existing labels
         val (before, current :: after) = labels.splitAt(startPos) : @unchecked
         val newLabels = before ++ expandedLabels.reverse ++ after
-        val newLabelsBoth = (if (dir == Direction.In) (newLabels, right) else (left, newLabels))
+        val newLabelsBoth = (if dir == Direction.In then (newLabels, right) else (left, newLabels))
 
         (
           newConnections ++ connectionsAcc,
@@ -166,7 +166,7 @@ object PortGraph {
         val outPorts = g2.outgoing.filter(port => port._1 == rightBox)
         val inPorts = g1.incoming.filter(port => port._1 == leftBox)
 
-        if (attachedToIdentity(left)) {
+        if attachedToIdentity(left) then {
           // |-1-| ++ |-g-|
           (
             boxes + rightBoxWithPorts,
@@ -174,7 +174,7 @@ object PortGraph {
             right :: incoming,
             outPorts.reverse ++ outgoing )
 
-        } else if (attachedToIdentity(right)) {
+        } else if attachedToIdentity(right) then {
           // |-f-| ++ |-1-|
           (
             boxes + leftBoxWithPorts,
@@ -214,7 +214,7 @@ object PortGraph {
     }
 }
 
-object Examples extends App {
+object Examples {
   import PortGraph.*
 
   val a = withId("a")

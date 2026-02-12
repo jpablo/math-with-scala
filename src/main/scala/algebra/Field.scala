@@ -28,4 +28,12 @@ trait Field[F](
   def distributivity (a: F, b: F, c: F): IsEq[F] =
     a * (b + c) <-> (a * b) + (a * c)
 
+  @Law("Zero annihilation")
+  def zeroAnnihilation(a: F): IsEq[F] =
+    a * zero <-> zero
+
+  @Law("Non-triviality")
+  def nonTriviality: IsEq[Boolean] =
+    (zero != one) <-> true
+
 end Field

@@ -6,6 +6,7 @@ import applications.processes.{PortLabel, Single, Multiple}
 import categories.simple.CategoryS
 import categories.simple.monoidalCategories.props.PortGraph.singleBox
 
+import scala.Conversion.into
 import scala.collection.immutable.SeqMap
 import com.devskiller.friendly_id.FriendlyId
 
@@ -195,7 +196,7 @@ object PortGraph {
     PortGraph[B](SeqMap.empty, List.empty, List.empty, List.empty)
 
   // A single box with wires
-  def singleBox[B](b: B, in: List[PortLabel], out: List[PortLabel]): PortGraph[B] = {
+  def singleBox[B](b: B, in: into[List[PortLabel]], out: into[List[PortLabel]]): PortGraph[B] = {
     val box = withId(b)
     PortGraph(
       SeqMap(box -> (in, out)),

@@ -125,15 +125,25 @@ object ExampleGraph {
     initial >>> (top ++ bottom) >>> t
   }
 
-  val p1: Graph[A, C] = singleBox("p1", PortLabel("A"), PortLabel("C"))
-  val p2: Graph[(A, C), D] = singleBox("p2", PortLabel("A", "C"), PortLabel("D"))
-  val p3: Graph[D, (F, G)] = singleBox("p3", PortLabel("D"), PortLabel("F", "G"))
-  val p4: Graph[F, H] = singleBox("p4", PortLabel("F"), PortLabel("H"))
-  val p5: Graph[A, J] = singleBox("p5", PortLabel("A"), PortLabel("J"))
-  val p6: Graph[J, K] = singleBox("p6", PortLabel("J"), PortLabel("K"))
-  val t: Graph[(H, K), B] = singleBox("t", PortLabel("H", "K"), PortLabel("B"))
+  // `into` parameters (SIP-71): bare strings convert to single port labels
+  val p1: Graph[A, C] = singleBox("p1", "A", "C")
+  val p2: Graph[(A, C), D] = singleBox("p2", PortLabel("A", "C"), "D")
+  val p3: Graph[D, (F, G)] = singleBox("p3", "D", PortLabel("F", "G"))
+  val p4: Graph[F, H] = singleBox("p4", "F", "H")
+  val p5: Graph[A, J] = singleBox("p5", "A", "J")
+  val p6: Graph[J, K] = singleBox("p6", "J", "K")
+  val t: Graph[(H, K), B] = singleBox("t", PortLabel("H", "K"), "B")
 
   val g = process(p1, p2, p3, p4, p5, p6, t)
+}
+
+object NamedTuplePorts {
+  // Named tuples (SIP-58) give wires domain-meaningful labels: the TypeName
+  // macro labels these ports (price, qty) instead of (Double, Int)
+  val order = PortGraphProcessOps.id[(price: Double, qty: Int)]
+
+  val total: Graph[(price: Double, qty: Int), Double] =
+    singleBox("total", PortLabel("price", "qty"), "Double")
 }
 
 object Exercise7 {

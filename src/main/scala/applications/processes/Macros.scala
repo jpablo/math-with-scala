@@ -17,6 +17,9 @@ object TypeName {
 object PortLabel {
   def apply(lst: String*): List[PortLabel] =
     lst.toList.map(Single.apply)
+
+  // A bare string can be used wherever an `into[List[PortLabel]]` is expected (SIP-71)
+  given Conversion[String, List[PortLabel]] = s => List(Single(s))
 }
 
 sealed trait PortLabel {
@@ -51,6 +54,17 @@ given ToExpr[PortLabel]:
 def tpeNmeMacro[A: Type](using q: Quotes): Expr[TypeName[A]] = {
   import quotes.reflect.*
 
+  // The literal string types in a named tuple's names tuple, e.g. ("price", "qty")
+  def fieldNames(x: TypeRepr): List[String] =
+    x.dealias match {
+      case ConstantType(StringConstant(s)) => List(s)
+      case AppliedType(tpt, args) if defn.isTupleClass(tpt.typeSymbol) =>
+        args.flatMap(fieldNames)
+      case AppliedType(tpt, List(head, tail)) if tpt.typeSymbol.name == "*:" =>
+        fieldNames(head) ++ fieldNames(tail)
+      case _ => Nil
+    }
+
   def toTypeName(x: TypeRepr): PortLabel = {
     // println(x.show)
     x match {
@@ -60,6 +74,12 @@ def tpeNmeMacro[A: Type](using q: Quotes): Expr[TypeName[A]] = {
             case TypeRef(_, b) => Single(b)
             case x => toTypeName(x)
           }
+        }
+      // Named tuples (SIP-58): ports are labeled by field name rather than type name
+      case AppliedType(tpt, List(names, _)) if tpt.typeSymbol.name == "NamedTuple" =>
+        fieldNames(names).map(Single.apply) match {
+          case single :: Nil => single
+          case labels => Multiple(labels)
         }
       case TypeRef(_, b) =>
         // println("--- TypeRef(_, b) ---")
